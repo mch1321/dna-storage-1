@@ -5,6 +5,7 @@ from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints, FSM
 from utils import (
     hamming_dist,
+    inject_base_errors,
     inject_bit_errors,
     beautify_table,
     table_from_list,
@@ -12,6 +13,7 @@ from utils import (
 )
 
 EXAMPLE_MESSAGE = "001010101110010001010110110110100010111010100110011110010001"
+LONGER_MESSAGE = "001010101110010001010110110110100010111010100110011110010001001010101110010001010110110110100010111010100110011110010001"
 
 
 def constructing_transition_tables():
@@ -159,8 +161,12 @@ def dna_round_trip(eg=EXAMPLE_MESSAGE, output=True):
     input_size = output_size - reserved_bits
     init_state = output_size * "0"
 
+    easy_constraints = default_constraints()
+    # easy_constraints.gc_max = 0.85
+    # easy_constraints.gc_min = 0.15
+
     fsm = construct_fsm_from_constraints(
-        init_state, input_size, output_size, default_constraints(), random_choice
+        init_state, input_size, output_size, easy_constraints, random_choice
     )
 
     enc = fsm.conv(eg)
@@ -168,7 +174,7 @@ def dna_round_trip(eg=EXAMPLE_MESSAGE, output=True):
     path = fsm.viterbi(dna_to_bits(dna))
 
     if output:
-        print(f"DNA ROUND TRIP WITHOUT ERRORS")
+        print("DNA ROUND TRIP WITHOUT ERRORS")
 
         print(f"Raw message        : {eg}")
         print(f"Encoded message    : {enc}")
@@ -179,16 +185,41 @@ def dna_round_trip(eg=EXAMPLE_MESSAGE, output=True):
         print(f"Correctly decoded  : {eg == path.sequence}")
         print("----------------------------------------------------")
 
+    return dna, enc, fsm
+
+
+def dna_round_trip_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.1, output=True):
+    dna, enc, fsm = dna_round_trip(eg, output=False)
+    dna_err = inject_base_errors(dna, error_rate)
+    err = dna_to_bits(dna_err)
+    path = fsm.viterbi(dna_to_bits(dna_err))
+    dna_cor = bits_to_dna(path.observations)
+
+    if output:
+        print(f"DNA ROUND TRIP WITH ERROR RATE {error_rate}")
+        print(f"Raw message      : {eg}")
+        print(f"Encoded message  : {enc}")
+        print(f"DNA message      : {dna}")
+        print(f"Received message : {dna_err}")
+        print(f"Corrected DNA    : {dna_cor}")
+        print(f"Viterbi path     : {path.observations}")
+        print(f"Decoded message  : {path.sequence}")
+        print(f"Errors injected  : {hamming_dist(enc, err)}")
+        print(f"Errors remaining : {hamming_dist(enc, path.observations)}")
+        print(f"After decoding   : {hamming_dist(eg, path.sequence)}")
+        print("----------------------------------------------------")
+
     return dna, fsm
 
 
 def run_all_examples():
-    constructing_transition_tables()
-    one_half()
-    one_half_with_errors()
-    two_thirds()
-    two_thirds_with_errors()
-    dna_round_trip()
+    # constructing_transition_tables()
+    # one_half()
+    # one_half_with_errors()
+    # two_thirds()
+    # two_thirds_with_errors()
+    # dna_round_trip()
+    dna_round_trip_with_errors()
 
 
 if __name__ == "__main__":
