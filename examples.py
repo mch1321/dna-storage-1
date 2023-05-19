@@ -10,6 +10,7 @@ from utils import (
     beautify_table,
     table_from_list,
     table_from_matrix,
+    rand_bit_string,
 )
 
 EXAMPLE_MESSAGE = "001010101110010001010110110110100010111010100110011110010001"
@@ -192,7 +193,7 @@ def dna_round_trip_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.1, output=True):
     dna, enc, fsm = dna_round_trip(eg, output=False)
     dna_err = inject_base_errors(dna, error_rate)
     err = dna_to_bits(dna_err)
-    path = fsm.viterbi(dna_to_bits(dna_err))
+    path = fsm.viterbi(err)
     dna_cor = bits_to_dna(path.observations)
 
     if output:
@@ -213,13 +214,14 @@ def dna_round_trip_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.1, output=True):
 
 
 def run_all_examples():
-    # constructing_transition_tables()
-    # one_half()
-    # one_half_with_errors()
-    # two_thirds()
-    # two_thirds_with_errors()
-    # dna_round_trip()
+    constructing_transition_tables()
+    one_half()
+    one_half_with_errors()
+    two_thirds()
+    two_thirds_with_errors()
+    dna_round_trip()
     dna_round_trip_with_errors()
+    dna_round_trip_with_errors(eg=rand_bit_string(90))
 
 
 if __name__ == "__main__":
