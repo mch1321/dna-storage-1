@@ -53,6 +53,16 @@ def hamming_dist(one: str, two: str) -> int:
     return dist
 
 
+def rand_bit_string(length: int) -> str:
+    bits = ""
+    for i in range(length):
+        if rn.random() < 0.5:
+            bits += "0"
+        else:
+            bits += "1"
+    return bits
+
+
 def inject_bit_errors(message: str, rate: float = 0.01) -> str:
     result = ""
     for bit in message:
