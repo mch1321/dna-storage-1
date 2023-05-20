@@ -26,6 +26,9 @@ class Constraints:
             + f"Reserved: {self.reserved}"
         )
 
+    def short_str(self):
+        return f"GC Min: {self.gc_min}, GC Max: {self.gc_max}, Max Run Length: {self.max_run_length}"
+
 
 def default_constraints(
     symbol_size: int = 4,
@@ -50,6 +53,10 @@ def default_constraints(
             regexes.append(primer[i : i + concat_size])
 
     return Constraints(gc_min, gc_max, max_run_length, regexes)
+
+
+def wider_gc_limits() -> Constraints:
+    return default_constraints(gc_min=0.15, gc_max=0.85)
 
 
 if __name__ == "__main__":
