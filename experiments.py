@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from statistics import mean
+import copy
+import numpy as np
 import random as rn
 from choice_mechanism import random_choice
-from constraints import Constraints, default_constraints
+from constraints import Constraints, default_constraints, wider_gc_limits
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
@@ -21,13 +23,16 @@ class Parameters:
     repetitions: int = 20
     random_seed: int = None
 
+    def copy(self):
+        return copy.deepcopy(self)
+
     def __str__(self):
         return (
             "Parameters:\n"
             + f"    Symbol size: {self.symbol_size}\n"
             + f"    Reserved bits: {self.reserved_bits}\n"
             + f"    Choice mechanism: random\n"
-            + f"    Constraints: default\n"
+            + f"    Constraints: {self.constraints.short_str()}\n"
             + (
                 f"    Sequence: {self.sequence}\n"
                 if self.sequence is not None
@@ -41,7 +46,7 @@ class Parameters:
 
 def run_experiment(
     params: Parameters = Parameters(),
-    verbose: bool = False,
+    verbose: bool = True,
 ):
     output_size = 2 * params.symbol_size
 
@@ -172,6 +177,31 @@ def run_experiment(
     )
 
 
+def define_experiments(config: Parameters, error_rates: list[int]) -> list[Parameters]:
+    experiments = []
+    for rate in error_rates:
+        exp = config.copy()
+        exp.error_rate = rate
+        experiments.append(exp)
+    return experiments
+
+
 if __name__ == "__main__":
-    params = Parameters(random_seed=42)
-    run_experiment(params, verbose=True)
+    config = Parameters(
+        symbol_size=4,
+        reserved_bits=7,
+        constraints=default_constraints(
+            symbol_size=6,
+            gc_min=0.25,
+            gc_max=0.75,
+            restriction_sites=[],
+        ),
+        sequence_length=200,
+        repetitions=20,
+        random_seed=42,
+    )
+
+    experiments = define_experiments(config, np.linspace(0.005, 0.02, num=4))
+
+    for experiment in experiments:
+        run_experiment(experiment)
