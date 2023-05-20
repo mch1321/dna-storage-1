@@ -71,3 +71,24 @@ def max_hamming(
             opt.append(bits)
 
     return rn.choice(opt)
+
+
+def min_hamming(
+    state: str,
+    input: str,
+    reserved: list[str],
+) -> str:
+    least = len(state)
+    opt = []
+
+    for bits in reserved:
+        output = bits + input
+        dist = hamming_dist(state, output)
+
+        if dist < least:
+            least = dist
+            opt = [bits]
+        elif dist == least:
+            opt.append(bits)
+
+    return rn.choice(opt)
