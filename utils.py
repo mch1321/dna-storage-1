@@ -89,6 +89,17 @@ def inject_base_errors(message: str, rate: float = 0.01) -> str:
     return result
 
 
+# Injects a precise number of errors at random locations.
+def inject_base_errors_exact(message: str, num: int) -> str:
+    result = list(message)
+    if len(message) < num:
+        raise Exception("Number of errors too high for message length.")
+    locations = rn.sample(range(len(message)), num)
+    for i in locations:
+        result[i] = rand_base(exclude=result[i])
+    return "".join(result)
+
+
 def sequence_is_valid(sequence: str) -> bool:
     return all([base in "ACGT" for base in sequence])
 
