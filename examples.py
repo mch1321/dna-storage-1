@@ -1,4 +1,4 @@
-from choice_mechanism import random_choice
+from choice_mechanism import gc_tracking, random_choice
 from constraints import default_constraints
 from data_types import Path, Transition
 from dna_mapping import bits_to_dna, dna_to_bits
@@ -11,6 +11,7 @@ from utils import (
     table_from_list,
     table_from_matrix,
     rand_bit_string,
+    gc_content,
 )
 
 EXAMPLE_MESSAGE = "001010101110010001010110110110100010111010100110011110010001"
@@ -184,6 +185,7 @@ def dna_round_trip(eg=EXAMPLE_MESSAGE, output=True):
         print(f"Decoded message    : {path.sequence}")
         print(f"Found correct path : {enc == path.observations}")
         print(f"Correctly decoded  : {eg == path.sequence}")
+        print(f"GC Content         : {gc_content(dna)}")
         print("----------------------------------------------------")
 
     return dna, enc, fsm
@@ -208,6 +210,64 @@ def dna_round_trip_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.1, output=True):
         print(f"Errors injected  : {hamming_dist(enc, err)}")
         print(f"Errors remaining : {hamming_dist(enc, path.observations)}")
         print(f"After decoding   : {hamming_dist(eg, path.sequence)}")
+        print(f"GC Content       : {gc_content(dna)}")
+        print("----------------------------------------------------")
+
+    return dna, fsm
+
+
+def dna_gc_tracking(eg=EXAMPLE_MESSAGE, output=True):
+    symbol_size = 4
+    reserved_bits = 5
+
+    output_size = 2 * symbol_size
+    input_size = output_size - reserved_bits
+    init_state = output_size * "0"
+
+    fsm = construct_fsm_from_constraints(
+        init_state, input_size, output_size, default_constraints(), gc_tracking
+    )
+
+    enc = fsm.conv(eg)
+    dna = bits_to_dna(enc)
+    path = fsm.viterbi(dna_to_bits(dna))
+
+    if output:
+        print("DNA GC TRACKING WITHOUT ERRORS")
+
+        print(f"Raw message        : {eg}")
+        print(f"Encoded message    : {enc}")
+        print(f"DNA message        : {dna}")
+        print(f"Viterbi path       : {path.observations}")
+        print(f"Decoded message    : {path.sequence}")
+        print(f"Found correct path : {enc == path.observations}")
+        print(f"Correctly decoded  : {eg == path.sequence}")
+        print(f"GC Content         : {gc_content(dna)}")
+        print("----------------------------------------------------")
+
+    return dna, enc, fsm
+
+
+def dna_gc_tracking_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.1, output=True):
+    dna, enc, fsm = dna_gc_tracking(eg, output=False)
+    dna_err = inject_base_errors(dna, error_rate)
+    err = dna_to_bits(dna_err)
+    path = fsm.viterbi(err)
+    dna_cor = bits_to_dna(path.observations)
+
+    if output:
+        print(f"DNA GC TRACKING WITH ERROR RATE {error_rate}")
+        print(f"Raw message      : {eg}")
+        print(f"Encoded message  : {enc}")
+        print(f"DNA message      : {dna}")
+        print(f"Received message : {dna_err}")
+        print(f"Corrected DNA    : {dna_cor}")
+        print(f"Viterbi path     : {path.observations}")
+        print(f"Decoded message  : {path.sequence}")
+        print(f"Errors injected  : {hamming_dist(enc, err)}")
+        print(f"Errors remaining : {hamming_dist(enc, path.observations)}")
+        print(f"After decoding   : {hamming_dist(eg, path.sequence)}")
+        print(f"GC Content       : {gc_content(dna)}")
         print("----------------------------------------------------")
 
     return dna, fsm
@@ -222,6 +282,8 @@ def run_all_examples():
     dna_round_trip()
     dna_round_trip_with_errors()
     dna_round_trip_with_errors(eg=rand_bit_string(90))
+    dna_gc_tracking()
+    dna_gc_tracking_with_errors()
 
 
 if __name__ == "__main__":
