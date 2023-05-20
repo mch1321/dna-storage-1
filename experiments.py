@@ -3,8 +3,8 @@ from statistics import mean
 import copy
 import numpy as np
 import random as rn
-from choice_mechanism import random_choice
-from constraints import Constraints, default_constraints, wider_gc_limits
+from choice_mechanism import random_choice, gc_tracking
+from constraints import Constraints, default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
@@ -31,7 +31,7 @@ class Parameters:
             "Parameters:\n"
             + f"    Symbol size: {self.symbol_size}\n"
             + f"    Reserved bits: {self.reserved_bits}\n"
-            + f"    Choice mechanism: random\n"
+            + f"    Choice mechanism: {self.choice_mechanism.__name__}\n"
             + f"    Constraints: {self.constraints.short_str()}\n"
             + (
                 f"    Sequence: {self.sequence}\n"
@@ -188,20 +188,13 @@ def define_experiments(config: Parameters, error_rates: list[int]) -> list[Param
 
 if __name__ == "__main__":
     config = Parameters(
-        symbol_size=4,
-        reserved_bits=7,
-        constraints=default_constraints(
-            symbol_size=6,
-            gc_min=0.25,
-            gc_max=0.75,
-            restriction_sites=[],
-        ),
-        sequence_length=200,
+        choice_mechanism=gc_tracking,
+        sequence_length=300,
         repetitions=20,
         random_seed=42,
     )
 
-    experiments = define_experiments(config, np.linspace(0.005, 0.02, num=4))
+    experiments = define_experiments(config, np.linspace(0.0025, 0.02, num=8))
 
     for experiment in experiments:
         run_experiment(experiment)
