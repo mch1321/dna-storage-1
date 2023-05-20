@@ -27,3 +27,26 @@ def gc_tracking(
             closest = bits
 
     return closest
+
+
+def gc_tracked_random(
+    state: str,
+    input: str,
+    reserved: list[str],
+    gc_target: float = 0.5,
+) -> str:
+    least = 1
+    opt_gc = []
+
+    for bits in reserved:
+        concat = state + bits + input
+        gc = gc_content(bits_to_dna(concat))
+        diff = abs(gc_target - gc)
+
+        if diff < least:
+            least = diff
+            opt_gc = [bits]
+        elif diff == least:
+            opt_gc.append(bits)
+
+    return rn.choice(opt_gc)
