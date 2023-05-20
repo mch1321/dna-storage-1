@@ -49,7 +49,7 @@ def constructing_transition_tables():
 
 
 def one_half(eg=EXAMPLE_MESSAGE, output=True):
-    initState = "00"
+    init_state = "00"
     states = ["00", "01", "10", "11"]
     inputs = ["0", "1"]
 
@@ -60,10 +60,10 @@ def one_half(eg=EXAMPLE_MESSAGE, output=True):
         [("10", "10"), ("11", "01")],
     ]
 
-    initState = "00"
+    init_state = "00"
     table = table_from_matrix(states, inputs, transition_matrix)
 
-    fsm: FSM = FSM(initState, table, 1, 2)
+    fsm: FSM = FSM(init_state, table, 1, 2)
 
     enc = fsm.conv(eg)
     path: Path = fsm.viterbi(enc)
@@ -101,7 +101,7 @@ def one_half_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True):
 
 
 def two_thirds(eg=EXAMPLE_MESSAGE, output=True):
-    initState = "0"
+    init_state = "0"
     states = ["0", "1", "2", "3", "4", "5", "6", "7"]
     inputs = ["00", "01", "10", "11"]
 
@@ -117,7 +117,7 @@ def two_thirds(eg=EXAMPLE_MESSAGE, output=True):
     ]
 
     transitions = table_from_matrix(states, inputs, transition_matrix)
-    fsm: FSM = FSM(initState, transitions, 2, 3)
+    fsm: FSM = FSM(init_state, transitions, 2, 3)
 
     enc = fsm.conv(eg)
     path: Path = fsm.viterbi(enc)

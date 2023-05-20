@@ -7,24 +7,24 @@ from utils import hamming_dist, table_from_list
 
 class FSM:
     def __init__(
-        self, initState: str, transitionTable, inputSize: int, outputSize: int
+        self, init_state: str, transition_table, input_size: int, output_size: int
     ):
-        self.initState = initState
-        self.table = transitionTable
-        self.inputSize = inputSize
-        self.outputSize = outputSize
+        self.init_state = init_state
+        self.table = transition_table
+        self.input_size = input_size
+        self.output_size = output_size
 
     def conv(self, message: str) -> str:
-        if len(message) % self.inputSize != 0:
+        if len(message) % self.input_size != 0:
             raise Exception(
                 "The length of the input message must be a multiple of the input size."
             )
 
         result = ""
-        state = self.initState
+        state = self.init_state
 
-        for i in range(0, len(message), self.inputSize):
-            symbol = message[i : i + self.inputSize]
+        for i in range(0, len(message), self.input_size):
+            symbol = message[i : i + self.input_size]
             new = self.table[state][symbol]
 
             if new is None:
@@ -36,15 +36,15 @@ class FSM:
         return result
 
     def viterbi(self, received: str) -> str:
-        if len(received) % self.outputSize != 0:
+        if len(received) % self.output_size != 0:
             raise Exception(
                 "The length of the received message must be a multiple of the symbol size."
             )
 
-        paths = {self.initState: Path(self.initState)}
+        paths = {self.init_state: Path(self.init_state)}
 
-        for i in range(0, len(received), self.outputSize):
-            symbol = received[i : i + self.outputSize]
+        for i in range(0, len(received), self.output_size):
+            symbol = received[i : i + self.output_size]
             extended_paths = {}
             for path in paths.values():
                 for t in self.table[path.tip].values():
@@ -82,20 +82,20 @@ def populate_space(size: int) -> list[str]:
 
 
 def table_from_constraints(
-    inputSize: int,
-    outputSize: int,
+    input_size: int,
+    output_size: int,
     constraints: Constraints,
     choice_mechanism: callable,
 ):
-    if inputSize >= outputSize:
+    if input_size >= output_size:
         raise Exception("Input/trigger size must be less than the output/symbol size.")
 
     transitions = []
 
-    reservedSize = outputSize - inputSize
-    states = populate_space(outputSize)  # Horizontal Symbols
-    inputs = populate_space(inputSize)  # Vertical Symbols
-    reserved = populate_space(reservedSize)  # Reserved bits
+    reserved_size = output_size - input_size
+    states = populate_space(output_size)  # Horizontal Symbols
+    inputs = populate_space(input_size)  # Vertical Symbols
+    reserved = populate_space(reserved_size)  # Reserved bits
 
     for s in states:
         for i in inputs:
@@ -113,11 +113,13 @@ def table_from_constraints(
 
 
 def construct_fsm_from_constraints(
-    initState: str,
-    inputSize: int,
-    outputSize: int,
+    init_state: str,
+    input_size: int,
+    output_size: int,
     constraints: Constraints,
     choice_mechanism: callable,
 ) -> FSM:
-    table = table_from_constraints(inputSize, outputSize, constraints, choice_mechanism)
-    return FSM(initState, table, inputSize, outputSize)
+    table = table_from_constraints(
+        input_size, output_size, constraints, choice_mechanism
+    )
+    return FSM(init_state, table, input_size, output_size)
