@@ -1,6 +1,6 @@
 import random as rn
 from dna_mapping import bits_to_dna
-from utils import gc_content
+from utils import gc_content, hamming_dist
 
 random_choice = lambda s, i, r: rn.choice(r)
 
@@ -50,3 +50,24 @@ def gc_tracked_random(
             opt_gc.append(bits)
 
     return rn.choice(opt_gc)
+
+
+def max_hamming(
+    state: str,
+    input: str,
+    reserved: list[str],
+) -> str:
+    most = 0
+    opt = []
+
+    for bits in reserved:
+        output = bits + input
+        dist = hamming_dist(state, output)
+
+        if dist > most:
+            most = dist
+            opt = [bits]
+        elif dist == most:
+            opt.append(bits)
+
+    return rn.choice(opt)
