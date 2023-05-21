@@ -253,8 +253,8 @@ if __name__ == "__main__":
     seed = 1704182
 
     config = Parameters(
-        reserved_bits=4,
-        constraints=default_constraints(gc_min=0.25, gc_max=0.75),
+        reserved_bits=3,
+        constraints=default_constraints(gc_min=0.15, gc_max=0.85),
         sequence_length=600,
         choice_mechanism=random_choice,
         repetitions=3,
