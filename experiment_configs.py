@@ -44,18 +44,36 @@ config5 = Parameters(
     repetitions=5,
 )
 
-# EXP 5 - GC TRACKING
-config5 = Parameters(
+# EXP 6 - GC TRACKING
+config6 = Parameters(
     sequence_length=600,
     choice_mechanism=gc_tracking,
     repetitions=5,
 )
 
-# EXP 6 - GC TRACKING + RANDOM
-config6 = Parameters(
+# EXP 7 - GC TRACKING + RANDOM
+config7 = Parameters(
     sequence_length=600,
     choice_mechanism=gc_tracked_random,
     repetitions=5,
+)
+
+# EXP 8 - 4 RESERVED BITS, 25% < GC < 75% (LONGER SEQUENCE)
+config8 = Parameters(
+    reserved_bits=4,
+    constraints=default_constraints(gc_min=0.25, gc_max=0.75),
+    sequence_length=600,
+    choice_mechanism=random_choice,
+    repetitions=3,
+)
+
+# EXP 9 - 3 RESERVED BITS, 15% < GC < 85% (LONGER SEQUENCE)
+config9 = Parameters(
+    reserved_bits=3,
+    constraints=default_constraints(gc_min=0.15, gc_max=0.85),
+    sequence_length=600,
+    choice_mechanism=random_choice,
+    repetitions=3,
 )
 
 # CONF 1 - DEFAULT
@@ -75,10 +93,20 @@ conf2 = Parameters(
     random_seed=1704182,
 )
 
-# CONF 2 - GC TRACKING + RANDOM
-conf2 = Parameters(
+# CONF 3 - GC TRACKING + RANDOM
+conf3 = Parameters(
     sequence_length=300,
     choice_mechanism=gc_tracked_random,
+    error_rate=0.01,
+    repetitions=10,
+    random_seed=1704182,
+)
+
+# CONF 4 - 4 RESERVED BITS
+conf4 = Parameters(
+    reserved_bits=4,
+    sequence_length=300,
+    choice_mechanism=random_choice,
     error_rate=0.01,
     repetitions=10,
     random_seed=1704182,
