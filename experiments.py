@@ -8,7 +8,7 @@ from constraints import Constraints, default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
-from utils import hamming_dist, inject_base_errors, rand_bit_string
+from utils import confusion, hamming_dist, inject_base_errors, rand_bit_string
 
 
 @dataclass
@@ -63,6 +63,8 @@ def run_experiment(
         init_state, input_size, output_size, params.constraints, params.choice_mechanism
     )
 
+    # conf = confusion()
+
     dna_errors_injected = []
     dna_errors_remaining = []
 
@@ -110,6 +112,9 @@ def run_experiment(
 
         # The estimated correct DNA sequence.
         dna_cor = bits_to_dna(observed)
+
+        # Add data to confusion matrix
+        # conf += confusion(dna, dna_cor)
 
         # Estimate of the content of the original sequence.
         result = path.sequence
@@ -174,6 +179,7 @@ def run_experiment(
         avg_seq_error,
         dna_percent_error,
         seq_percent_error,
+        # conf,
     )
 
 
@@ -200,7 +206,8 @@ def print_results(name: str, config: Parameters, x: list[float], y: list[float])
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
     print(
-        f'    "title": "{config.reserved_bits} Reserved Bits, Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
+        f'    "title": "Mechanims: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
+        + f'Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
     print(f'    "xlabel": "Input Error Rate",')
     print(f'    "ylabel": "Output Error Rate",')
@@ -246,12 +253,14 @@ if __name__ == "__main__":
     seed = 1704182
 
     config = Parameters(
+        reserved_bits=4,
+        constraints=default_constraints(gc_min=0.25, gc_max=0.75),
         sequence_length=600,
-        choice_mechanism=gc_tracked_random,
-        repetitions=5,
+        choice_mechanism=random_choice,
+        repetitions=3,
     )
 
     error_range = [0.001]
     error_range.extend(np.linspace(0.002, 0.02, num=10))
 
-    run_error_range("larger-gc-tracking", config, error_range, seed, iterations=4)
+    run_error_range("4-reserved-bits", config, error_range, seed, iterations=4)
