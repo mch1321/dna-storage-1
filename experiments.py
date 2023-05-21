@@ -3,7 +3,7 @@ from statistics import mean
 import copy
 import numpy as np
 import random as rn
-from choice_mechanism import random_choice, gc_tracked_random
+from choice_mechanism import random_choice, min_hamming
 from constraints import Constraints, default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
@@ -188,7 +188,7 @@ def define_experiments(config: Parameters, error_rates: list[int]) -> list[Param
 
 if __name__ == "__main__":
     config = Parameters(
-        choice_mechanism=gc_tracked_random,
+        choice_mechanism=min_hamming,
         sequence_length=300,
         repetitions=20,
         random_seed=42,
