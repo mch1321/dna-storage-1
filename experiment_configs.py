@@ -1,3 +1,4 @@
+from choice_mechanism import gc_tracking, gc_tracked_random, random_choice
 from constraints import default_constraints, wider_gc_limits
 from experiments import Parameters
 
@@ -35,4 +36,24 @@ config4 = Parameters(
     sequence_length=200,
     repetitions=20,
     random_seed=42,
+)
+
+# EXP 5 - DEFAULT LONGER SEQUENCE
+config5 = Parameters(
+    sequence_length=600,
+    repetitions=5,
+)
+
+# EXP 5 - GC TRACKING
+config5 = Parameters(
+    sequence_length=600,
+    choice_mechanism=gc_tracking,
+    repetitions=5,
+)
+
+# EXP 6 - GC TRACKING + RANDOM
+config6 = Parameters(
+    sequence_length=600,
+    choice_mechanism=gc_tracked_random,
+    repetitions=5,
 )

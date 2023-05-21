@@ -3,7 +3,7 @@ from statistics import mean
 import copy
 import numpy as np
 import random as rn
-from choice_mechanism import random_choice
+from choice_mechanism import gc_tracking, gc_tracked_random, random_choice
 from constraints import Constraints, default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
@@ -247,10 +247,11 @@ if __name__ == "__main__":
 
     config = Parameters(
         sequence_length=600,
+        choice_mechanism=gc_tracked_random,
         repetitions=5,
     )
 
     error_range = [0.001]
     error_range.extend(np.linspace(0.002, 0.02, num=10))
 
-    run_error_range("big-5-reserved-bits", config, error_range, seed, iterations=4)
+    run_error_range("larger-gc-tracking", config, error_range, seed, iterations=4)
