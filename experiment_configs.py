@@ -65,3 +65,21 @@ conf1 = Parameters(
     repetitions=10,
     random_seed=1704182,
 )
+
+# CONF 2 - GC TRACKING
+conf2 = Parameters(
+    sequence_length=300,
+    choice_mechanism=gc_tracking,
+    error_rate=0.01,
+    repetitions=10,
+    random_seed=1704182,
+)
+
+# CONF 2 - GC TRACKING + RANDOM
+conf2 = Parameters(
+    sequence_length=300,
+    choice_mechanism=gc_tracked_random,
+    error_rate=0.01,
+    repetitions=10,
+    random_seed=1704182,
+)

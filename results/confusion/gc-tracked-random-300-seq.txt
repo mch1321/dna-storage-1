@@ -1,0 +1,857 @@
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.005
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 93   0   0   0]
+ [  0 105   0   0]
+ [  0   0  95   0]
+ [  0   0   0 107]]
+Iteration 2
+Confusion:
+[[ 98   0   0   0]
+ [  0 101   0   0]
+ [  0   0  99   0]
+ [  0   0   0 102]]
+Iteration 3
+Confusion:
+[[ 98   0   1   0]
+ [  0  86   0   0]
+ [  1   0 113   0]
+ [  1   0   0 100]]
+Iteration 4
+Confusion:
+[[103   0   0   0]
+ [  0 107   0   0]
+ [  0   0  93   0]
+ [  1   0   0  96]]
+Iteration 5
+Confusion:
+[[ 95   1   0   0]
+ [  1  92   0   0]
+ [  0   0 108   0]
+ [  0   0   0 103]]
+Iteration 6
+Confusion:
+[[ 91   0   0   0]
+ [  0 105   0   0]
+ [  0   0  95   0]
+ [  0   0   0 109]]
+Iteration 7
+Confusion:
+[[ 88   1   0   0]
+ [  1  99   0   0]
+ [  0   0 101   0]
+ [  0   0   0 110]]
+Iteration 8
+Confusion:
+[[109   0   0   0]
+ [  0  92   0   0]
+ [  0   0 109   0]
+ [  0   0   0  90]]
+Iteration 9
+Confusion:
+[[107   0   0   0]
+ [  0  95   0   0]
+ [  0   0 105   0]
+ [  0   0   0  93]]
+Iteration 10
+Confusion:
+[[102   0   0   0]
+ [  0 102   0   0]
+ [  0   0  99   0]
+ [  0   0   0  97]]
+Accumulative Confusion:
+[[ 984    2    1    0]
+ [   2  984    0    0]
+ [   1    0 1017    0]
+ [   2    0    0 1007]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.01
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 93   0   0   0]
+ [  1 104   0   0]
+ [  0   0  95   0]
+ [  0   0   1 106]]
+Iteration 2
+Confusion:
+[[ 98   0   0   0]
+ [  0 100   1   0]
+ [  0   0  99   0]
+ [  0   0   0 102]]
+Iteration 3
+Confusion:
+[[105   0   0   1]
+ [  0  86   1   0]
+ [  0   0 113   0]
+ [  0   0   0  94]]
+Iteration 4
+Confusion:
+[[ 95   0   0   0]
+ [  0  96   0   0]
+ [  0   0 104   0]
+ [  0   0   0 105]]
+Iteration 5
+Confusion:
+[[104   0   1   0]
+ [  0 114   0   0]
+ [  1   0  85   0]
+ [  0   0   0  95]]
+Iteration 6
+Confusion:
+[[101   0   1   0]
+ [  1 102   1   0]
+ [  0   0  97   0]
+ [  0   0   0  97]]
+Iteration 7
+Confusion:
+[[107   0   0   0]
+ [  0 103   0   0]
+ [  0   0  97   0]
+ [  0   0   0  93]]
+Iteration 8
+Confusion:
+[[ 99   0   0   0]
+ [  0  93   0   0]
+ [  0   0 107   0]
+ [  0   0   0 101]]
+Iteration 9
+Confusion:
+[[ 98   0   0   0]
+ [  0 116   0   0]
+ [  0   0  85   0]
+ [  0   0   0 101]]
+Iteration 10
+Confusion:
+[[ 98   0   0   0]
+ [  0 107   0   0]
+ [  0   0  93   0]
+ [  0   0   0 102]]
+Accumulative Confusion:
+[[ 998    0    2    1]
+ [   2 1021    3    0]
+ [   1    0  975    0]
+ [   0    0    1  996]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.02
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 92   0   1   0]
+ [  1 104   0   0]
+ [  0   0  95   0]
+ [  0   0   0 107]]
+Iteration 2
+Confusion:
+[[103   0   0   0]
+ [  0 102   0   0]
+ [  0   0  98   0]
+ [  0   0   0  97]]
+Iteration 3
+Confusion:
+[[105   0   0   0]
+ [  0  89   0   0]
+ [  0   1 110   0]
+ [  1   0   0  94]]
+Iteration 4
+Confusion:
+[[ 94   0   0   0]
+ [  0 107   0   0]
+ [  0   0  93   0]
+ [  0   0   0 106]]
+Iteration 5
+Confusion:
+[[ 95   0   1   0]
+ [  0  97   0   1]
+ [  0   0 102   0]
+ [  0   0   0 104]]
+Iteration 6
+Confusion:
+[[104   0   0   0]
+ [  0 101   0   0]
+ [  0   0  99   0]
+ [  0   0   0  96]]
+Iteration 7
+Confusion:
+[[109   0   0   0]
+ [  0 105   0   0]
+ [  0   0  96   0]
+ [  0   0   0  90]]
+Iteration 8
+Confusion:
+[[110   0   0   1]
+ [  0  99   0   0]
+ [  0   0 102   0]
+ [  1   0   0  87]]
+Iteration 9
+Confusion:
+[[109   0   0   0]
+ [  0  93   0   0]
+ [  0   0 108   0]
+ [  0   0   0  90]]
+Iteration 10
+Confusion:
+[[101   0   1   0]
+ [  0 100   0   1]
+ [  0   0  99   0]
+ [  0   0   0  98]]
+Accumulative Confusion:
+[[1022    0    3    1]
+ [   1  997    0    2]
+ [   0    1 1002    0]
+ [   2    0    0  969]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.03
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 92   0   1   0]
+ [  1 104   0   0]
+ [  0   0  95   0]
+ [  0   0   0 107]]
+Iteration 2
+Confusion:
+[[100   0   0   0]
+ [  1  96   0   0]
+ [  0   0 102   1]
+ [  0   1   1  98]]
+Iteration 3
+Confusion:
+[[101   0   0   0]
+ [  1  86   0   0]
+ [  0   0 113   0]
+ [  0   1   0  98]]
+Iteration 4
+Confusion:
+[[103   0   0   1]
+ [  0 105   2   0]
+ [  0   0  93   0]
+ [  0   0   0  96]]
+Iteration 5
+Confusion:
+[[ 91   0   0   0]
+ [  0  94   0   0]
+ [  0   0 106   0]
+ [  0   0   0 109]]
+Iteration 6
+Confusion:
+[[103   0   0   0]
+ [  0 107   0   0]
+ [  0   0  94   0]
+ [  0   0   0  96]]
+Iteration 7
+Confusion:
+[[ 94   0   0   0]
+ [  0 103   0   0]
+ [  0   0  97   0]
+ [  0   0   0 106]]
+Iteration 8
+Confusion:
+[[105   0   1   1]
+ [  0 104   1   2]
+ [  0   0  93   0]
+ [  1   1   0  91]]
+Iteration 9
+Confusion:
+[[105   0   0   0]
+ [  0  96   0   0]
+ [  0   0 104   0]
+ [  0   0   0  95]]
+Iteration 10
+Confusion:
+[[ 97   0   0   0]
+ [  0  93   0   0]
+ [  0   0 108   0]
+ [  0   0   0 102]]
+Accumulative Confusion:
+[[ 991    0    2    2]
+ [   3  988    3    2]
+ [   0    0 1005    1]
+ [   1    3    1  998]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.04
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 93   0   0   0]
+ [  0 105   0   0]
+ [  0   0  95   0]
+ [  0   0   0 107]]
+Iteration 2
+Confusion:
+[[ 99   0   0   0]
+ [  0  96   0   0]
+ [  1   0 102   1]
+ [  1   1   1  98]]
+Iteration 3
+Confusion:
+[[101   2   0   0]
+ [  0  86   0   2]
+ [  1   1 110   0]
+ [  0   0   1  96]]
+Iteration 4
+Confusion:
+[[ 93   0   1   1]
+ [  2 106   1   0]
+ [  0   0  91   1]
+ [  0   1   1 102]]
+Iteration 5
+Confusion:
+[[ 89   1   0   0]
+ [  0 107   0   1]
+ [  1   2  89   0]
+ [  0   1   0 109]]
+Iteration 6
+Confusion:
+[[ 91   1   0   0]
+ [  0 108   0   0]
+ [  1   1  91   0]
+ [  0   0   0 107]]
+Iteration 7
+Confusion:
+[[100   0   0   0]
+ [  0  98   0   0]
+ [  0   0 103   0]
+ [  0   0   0  99]]
+Iteration 8
+Confusion:
+[[101   0   0   0]
+ [  0  98   0   0]
+ [  0   0 103   0]
+ [  0   0   0  98]]
+Iteration 9
+Confusion:
+[[ 96   1   0   1]
+ [  1 108   1   1]
+ [  0   0  89   0]
+ [  1   1   0 100]]
+Iteration 10
+Confusion:
+[[107   1   0   0]
+ [  0 104   0   0]
+ [  0   0  95   1]
+ [  0   0   0  92]]
+Accumulative Confusion:
+[[ 970    6    1    2]
+ [   3 1016    2    4]
+ [   4    4  968    3]
+ [   2    4    3 1008]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.05
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 91   1   0   1]
+ [  0 103   1   1]
+ [  0   1  93   1]
+ [  0   0   1 106]]
+Iteration 2
+Confusion:
+[[100   0   1   0]
+ [  0  93   0   0]
+ [  1   0 106   0]
+ [  1   0   0  98]]
+Iteration 3
+Confusion:
+[[108   0   2   0]
+ [  1  98   1   0]
+ [  1   0  99   0]
+ [  0   0   0  90]]
+Iteration 4
+Confusion:
+[[ 92   0   1   2]
+ [  0 107   1   0]
+ [  0   1  90   1]
+ [  1   0   0 104]]
+Iteration 5
+Confusion:
+[[ 85   0   1   0]
+ [  1  95   0   1]
+ [  0   1 102   0]
+ [  0   1   0 113]]
+Iteration 6
+Confusion:
+[[ 99   0   0   0]
+ [  0 104   0   0]
+ [  0   0  96   0]
+ [  0   0   0 101]]
+Iteration 7
+Confusion:
+[[ 93   0   0   0]
+ [  0  94   0   0]
+ [  1   1 105   0]
+ [  2   1   0 103]]
+Iteration 8
+Confusion:
+[[107   0   1   1]
+ [  0 101   0   1]
+ [  0   0  99   0]
+ [  0   0   0  90]]
+Iteration 9
+Confusion:
+[[113   0   0   0]
+ [  1  98   0   2]
+ [  0   0  99   1]
+ [  1   1   3  81]]
+Iteration 10
+Confusion:
+[[ 94   1   0   0]
+ [  0 107   0   0]
+ [  1   0  92   0]
+ [  0   0   0 105]]
+Accumulative Confusion:
+[[ 982    2    6    4]
+ [   3 1000    3    5]
+ [   4    4  981    3]
+ [   5    3    4  991]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.06
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 91   1   0   1]
+ [  0 103   1   1]
+ [  0   1  93   1]
+ [  0   0   1 106]]
+Iteration 2
+Confusion:
+[[101   0   0   0]
+ [  0  93   0   0]
+ [  0   0 107   0]
+ [  0   0   0  99]]
+Iteration 3
+Confusion:
+[[ 94   1   1   0]
+ [  1 108   1   0]
+ [  0   0  89   1]
+ [  0   0   0 104]]
+Iteration 4
+Confusion:
+[[ 87   1   1   2]
+ [  0 106   2   0]
+ [  2   1  90   0]
+ [  3   0   0 105]]
+Iteration 5
+Confusion:
+[[ 99   0   0   1]
+ [  0  96   0   1]
+ [  0   0 103   0]
+ [  0   0   1  99]]
+Iteration 6
+Confusion:
+[[ 90   0   0   0]
+ [  0  99   0   0]
+ [  0   0 101   0]
+ [  0   0   0 110]]
+Iteration 7
+Confusion:
+[[ 97   2   1   1]
+ [  1  87   2   0]
+ [  2   0 106   2]
+ [  0   2   0  97]]
+Iteration 8
+Confusion:
+[[ 92   0   0   0]
+ [  0 104   0   0]
+ [  0   0  96   0]
+ [  0   0   0 108]]
+Iteration 9
+Confusion:
+[[100   0   0   1]
+ [  1 101   1   0]
+ [  0   0  97   0]
+ [  1   1   0  97]]
+Iteration 10
+Confusion:
+[[ 98   0   0   0]
+ [  0  90   0   0]
+ [  0   0 110   0]
+ [  0   0   1 101]]
+Accumulative Confusion:
+[[ 949    5    3    6]
+ [   3  987    7    2]
+ [   4    2  992    4]
+ [   4    3    3 1026]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.07
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 91   1   0   1]
+ [  1 103   0   1]
+ [  0   1  93   1]
+ [  0   1   1 105]]
+Iteration 2
+Confusion:
+[[100   0   1   0]
+ [  0  92   0   1]
+ [  0   0 106   1]
+ [  1   1   0  97]]
+Iteration 3
+Confusion:
+[[102   0   1   0]
+ [  0  88   0   0]
+ [  0   1 110   1]
+ [  0   0   0  97]]
+Iteration 4
+Confusion:
+[[ 87   1   0   4]
+ [  2  94   1   0]
+ [  0   1 101   2]
+ [  0   1   2 104]]
+Iteration 5
+Confusion:
+[[ 97   0   0   0]
+ [  0  98   0   1]
+ [  0   0 102   0]
+ [  0   1   0 101]]
+Iteration 6
+Confusion:
+[[99  1  3  1]
+ [ 2 95  0  0]
+ [ 0  2 99  2]
+ [ 0  0  0 96]]
+Iteration 7
+Confusion:
+[[ 81   1   0   2]
+ [  0  94   3   2]
+ [  2   1  96   2]
+ [  2   3   2 109]]
+Iteration 8
+Confusion:
+[[ 99   0   1   1]
+ [  0  90   1   1]
+ [  0   0 108   0]
+ [  0   0   0  99]]
+Iteration 9
+Confusion:
+[[100   0   0   1]
+ [  0 102   2   0]
+ [  1   0  95   0]
+ [  1   1   0  97]]
+Iteration 10
+Confusion:
+[[ 83   0   1   1]
+ [  0 104   1   0]
+ [  0   0  95   1]
+ [  0   0   0 114]]
+Accumulative Confusion:
+[[ 939    4    7   11]
+ [   5  960    8    6]
+ [   3    6 1005   10]
+ [   4    8    5 1019]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.08
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 87   1   2   3]
+ [  3  97   3   2]
+ [  0   0  92   3]
+ [  2   2   3 100]]
+Iteration 2
+Confusion:
+[[ 96   1   0   1]
+ [  1 104   0   0]
+ [  0   1  94   1]
+ [  1   1   0  99]]
+Iteration 3
+Confusion:
+[[ 90   0   1   0]
+ [  0 102   1   1]
+ [  0   1  94   1]
+ [  0   1   0 108]]
+Iteration 4
+Confusion:
+[[109   0   0   1]
+ [  0  98   1   1]
+ [  0   2  98   0]
+ [  0   1   0  89]]
+Iteration 5
+Confusion:
+[[ 95   0   0   1]
+ [  1  91   0   1]
+ [  0   3 104   0]
+ [  0   1   1 102]]
+Iteration 6
+Confusion:
+[[107   0   1   0]
+ [  0  92   2   0]
+ [  2   3 101   1]
+ [  0   1   1  89]]
+Iteration 7
+Confusion:
+[[105   3   0   0]
+ [  3 109   0   0]
+ [  2   1  85   0]
+ [  4   0   2  86]]
+Iteration 8
+Confusion:
+[[ 95   1   0   0]
+ [  2  99   0   1]
+ [  0   1  98   0]
+ [  0   2   0 101]]
+Iteration 9
+Confusion:
+[[102   1   0   0]
+ [  0 105   1   1]
+ [  0   0  93   0]
+ [  0   0   0  97]]
+Iteration 10
+Confusion:
+[[ 96   0   0   2]
+ [  0 100   1   1]
+ [  0   1  97   0]
+ [  0   0   1 101]]
+Accumulative Confusion:
+[[982   7   4   8]
+ [ 10 997   9   8]
+ [  4  13 956   6]
+ [  7   9   8 972]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.09
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 87   1   2   3]
+ [  3  96   5   1]
+ [  0   0  94   1]
+ [  1   1   1 104]]
+Iteration 2
+Confusion:
+[[ 93   0   3   1]
+ [  0  94   5   2]
+ [  2   2  94   1]
+ [  1   2   0 100]]
+Iteration 3
+Confusion:
+[[103   5   0   0]
+ [  2  80   5   0]
+ [  2   2 107   2]
+ [  4   1   0  87]]
+Iteration 4
+Confusion:
+[[ 90   1   1   1]
+ [  0 106   3   2]
+ [  2   1  86   1]
+ [  0   2   0 104]]
+Iteration 5
+Confusion:
+[[ 96   1   0   2]
+ [  0 100   4   0]
+ [  1   1  94   0]
+ [  1   0   0 100]]
+Iteration 6
+Confusion:
+[[ 87   1   0   2]
+ [  0  98   0   0]
+ [  0   2  99   2]
+ [  1   0   1 107]]
+Iteration 7
+Confusion:
+[[92  0  1  3]
+ [ 1 94  3  2]
+ [ 2  2 95  1]
+ [ 1  4  1 98]]
+Iteration 8
+Confusion:
+[[101   0   0   1]
+ [  1 102   1   0]
+ [  0   1  95   0]
+ [  1   1   0  96]]
+Iteration 9
+Confusion:
+[[91  1  0  0]
+ [ 1 96  6  2]
+ [ 0  2 91  2]
+ [ 4  5  0 99]]
+Iteration 10
+Confusion:
+[[94  1  1  1]
+ [ 3 91  4  3]
+ [ 1  1 97  0]
+ [ 1  4  1 97]]
+Accumulative Confusion:
+[[934  11   8  14]
+ [ 11 957  36  12]
+ [ 10  14 952  10]
+ [ 15  20   4 992]]
+
+CALCULATING CONFUSION
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: gc_tracked_random
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 300
+    Error chance: 0.1
+    Repetitions: 10
+    Random seed: 1704182
+
+Iteration 1
+Confusion:
+[[ 84   3   2   4]
+ [  3  93   7   2]
+ [  3   1  89   2]
+ [  1   2   3 101]]
+Iteration 2
+Confusion:
+[[92  0  2  2]
+ [ 2 97  3  1]
+ [ 1  3 92  1]
+ [ 4  2  1 97]]
+Iteration 3
+Confusion:
+[[107   2   0   2]
+ [  0  84   1   1]
+ [  1   2 110   1]
+ [  1   0   1  87]]
+Iteration 4
+Confusion:
+[[92  2  3  2]
+ [ 1 99  0  2]
+ [ 1  1 93  4]
+ [ 1  3  0 96]]
+Iteration 5
+Confusion:
+[[ 96   1   0   4]
+ [  1  94   2   0]
+ [  2   1 100   0]
+ [  0   1   1  97]]
+Iteration 6
+Confusion:
+[[ 97   1   3   0]
+ [  3 102   3   1]
+ [  1   0  88   3]
+ [  1   3   1  93]]
+Iteration 7
+Confusion:
+[[104   1   2   0]
+ [  1  98   0   1]
+ [  0   0  96   4]
+ [  2   0   3  88]]
+Iteration 8
+Confusion:
+[[107   0   3   1]
+ [  2  98   2   4]
+ [  0   3  90   1]
+ [  0   2   2  85]]
+Iteration 9
+Confusion:
+[[ 99   1   2   2]
+ [  2 103   1   2]
+ [  0   3  85   4]
+ [  5   1   4  86]]
+Iteration 10
+Confusion:
+[[ 93   0   1   7]
+ [  1  86   2   0]
+ [  2   2 106   1]
+ [  3   2   1  93]]
+Accumulative Confusion:
+[[971  11  18  24]
+ [ 16 954  21  14]
+ [ 11  16 949  21]
+ [ 18  16  17 923]]

@@ -1,5 +1,5 @@
 import random as rn
-from choice_mechanism import gc_tracking
+from choice_mechanism import gc_tracking, gc_tracked_random
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from experiments import Parameters
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     for er in [0.005, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1]:
         params = Parameters(
             sequence_length=300,
-            choice_mechanism=gc_tracking,
+            choice_mechanism=gc_tracked_random,
             error_rate=er,
             repetitions=10,
             random_seed=1704182,
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         conf = calc_confusion(params, verbose=True)
         str_er = str(er).replace(".", "")
         plot_confusion(
-            f"er{str_er}-seq300-rep10-gc-tracking",
-            f"GC Tracking, Error Rate {er}, Symbol Length 4, 5 Reserved Bits, 0.35 < GC < 0.65",
+            f"er{str_er}-seq300-rep10-gc-tracked-random",
+            f"GC Tracking + Random, Error Rate {er}, Symbol Length 4, 5 Reserved Bits, 0.35 < GC < 0.65",
             conf,
         )
