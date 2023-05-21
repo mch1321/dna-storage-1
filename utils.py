@@ -1,3 +1,4 @@
+import numpy as np
 import random as rn
 from data_types import Transition
 
@@ -157,8 +158,8 @@ def base_idx(base: str) -> int:
         raise Exception(f"Invalid base {base}.")
 
 
-def confusion(true: str, pred: str) -> list[list[int]]:
-    confusion = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+def confusion(true: str, pred: str) -> np.ndarray:
+    confusion = np.array([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
 
     for t, p in zip(true, pred):
         confusion[base_idx(t)][base_idx(p)] += 1

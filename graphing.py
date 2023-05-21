@@ -49,25 +49,31 @@ def plot_from_dict(key: str, fit: bool = True):
     )
 
 
-def confusion(name: str, matrix: list[list[int]]):
+def plot_confusion(name: str, title: str, matrix: np.ndarray):
     axes = ["A", "C", "G", "T"]
-    df_cm = pd.DataFrame(matrix, axes, axes)
+    df = pd.DataFrame(matrix, axes, axes)
+    df.index.name = "True Base"
+    df.columns.name = "Predicted Base"
     fig = plt.figure(figsize=(12, 8))
+    plt.title(title, fontsize=16)
     sn.set(font_scale=1.4)
-    sn.heatmap(df_cm, annot=True, annot_kws={"size": 16})
+    ax = sn.heatmap(df, annot=True, annot_kws={"size": 16}, fmt="d", linewidth=0.5)
     fig.savefig(f"plots/confusion/{name}.png")
     plt.show()
 
 
 if __name__ == "__main__":
-    # plot_from_dict("larger-gc-tracking")
+    # plot_from_dict("larger-gc-tracked-random")
 
-    confusion(
-        name="eg",
-        matrix=[
-            [13, 1, 1, 0],
-            [3, 9, 6, 0],
-            [0, 0, 16, 2],
-            [0, 1, 0, 15],
-        ],
+    plot_confusion(
+        name="er001-seq300-rep10-default",
+        title="Error Rate 0.01, Symbol Length 4, 5 Reserved Bits, 0.35 < GC < 0.65",
+        matrix=np.array(
+            [
+                [960, 0, 0, 0],
+                [0, 1037, 0, 0],
+                [0, 0, 990, 0],
+                [0, 0, 0, 1013],
+            ]
+        ),
     )
