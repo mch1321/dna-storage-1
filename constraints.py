@@ -27,7 +27,7 @@ class Constraints:
         )
 
     def short_str(self):
-        return f"GC Min: {self.gc_min}, GC Max: {self.gc_max}, Max Run Length: {self.max_run_length}"
+        return f"{self.gc_min} <= GC <= {self.gc_max}, Max Run Length: {self.max_run_length}"
 
 
 def default_constraints(

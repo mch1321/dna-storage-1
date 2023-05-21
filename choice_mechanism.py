@@ -2,7 +2,9 @@ import random as rn
 from dna_mapping import bits_to_dna
 from utils import gc_content, hamming_dist
 
-random_choice = lambda s, i, r: rn.choice(r)
+
+def random_choice(s: str, i: str, r: list[str]) -> str:
+    return rn.choice(r)
 
 
 def gc_tracking(

@@ -3,12 +3,12 @@ from statistics import mean
 import copy
 import numpy as np
 import random as rn
-from choice_mechanism import random_choice, min_hamming
+from choice_mechanism import random_choice
 from constraints import Constraints, default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
-from utils import hamming_dist, inject_base_errors_exact, rand_bit_string
+from utils import hamming_dist, inject_base_errors, rand_bit_string
 
 
 @dataclass
@@ -38,7 +38,7 @@ class Parameters:
                 if self.sequence is not None
                 else f"    Sequence length: {self.sequence_length}\n"
             )
-            + f"    Error rate: {self.error_rate}\n"
+            + f"    Error chance: {self.error_rate}\n"
             + f"    Repetitions: {self.repetitions}\n"
             + f"    Random seed: {self.random_seed}\n"
         )
@@ -96,8 +96,8 @@ def run_experiment(
 
         # Inject substitution errors at given rate to
         # simulate errors during synthesis, PCR, storage or sequencing.
-        num_errors = int(params.error_rate * dna_len)
-        dna_err = inject_base_errors_exact(dna, num_errors)
+        # num_errors = int(params.error_rate * dna_len)
+        dna_err = inject_base_errors(dna, params.error_rate)
 
         # Convert nucleotides back to bits (analog to DNA sequencing).
         err = dna_to_bits(dna_err)
@@ -136,7 +136,7 @@ def run_experiment(
         sequence_errors.append(seq_error)
 
         if verbose:
-            print(f"REPETITION {i + 1} RESULTS:")
+            print(f"REPETITION {i + 1} OF {params.repetitions} RESULTS:")
             print("----------------------")
             print(f"ERRORS INJECTED INTO DNA: {dna_error}")
             print(f"RESULTANT ERRORS IN RECEIVED STRING: {bit_error}")
@@ -177,24 +177,80 @@ def run_experiment(
     )
 
 
-def define_experiments(config: Parameters, error_rates: list[int]) -> list[Parameters]:
+def define_experiments(
+    config: Parameters,
+    error_rates: list[int],
+    seed: int,
+) -> list[Parameters]:
     experiments = []
+    # Set initial starting seed so that all experiments are repeatable.
+    rn.seed(seed)
+
     for rate in error_rates:
         exp = config.copy()
         exp.error_rate = rate
+        # Set random seed for each experiment so that each one is individually repeatable.
+        exp.random_seed = rn.randrange(seed)
         experiments.append(exp)
+
     return experiments
 
 
+def print_results(name: str, config: Parameters, x: list[float], y: list[float]):
+    print("==================== EXPERIMENT RESULTS =======================")
+    print(f'"{name}":' + " {")
+    print(
+        f'    "title": "{config.reserved_bits} Reserved Bits, Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
+    )
+    print(f'    "xlabel": "Rate of errors injected",')
+    print(f'    "ylabel": "Rate of errors remaining",')
+    print(f'    "x": {x},'),
+    print(f'    "y": {y},')
+    print("}")
+
+
+def run_error_range(
+    name: str,
+    config: Parameters,
+    error_rates: list[int],
+    starting_seed: int,
+    iterations=10,
+):
+    # Set starting seed for all experiments
+    rn.seed(starting_seed)
+
+    print(
+        f"Running experiments with starting seed: {starting_seed} and error range: {error_rates}"
+    )
+    random_seed = starting_seed
+    dna_err = []
+    seq_err = []
+
+    for i in range(iterations):
+        random_seed = rn.randrange(random_seed)
+        experiments = define_experiments(config, error_rates, random_seed)
+
+        print(
+            f"\nRunning iteration {i + 1} out of {iterations} with random seed: {random_seed}"
+        )
+
+        for experiment in experiments:
+            _, _, _, _, _, dna_percent, seq_percent = run_experiment(experiment)
+            dna_err.append(dna_percent)
+            seq_err.append(seq_percent)
+
+    print_results(name, config, dna_err, seq_err)
+
+
 if __name__ == "__main__":
+    seed = 1704182
+
     config = Parameters(
-        choice_mechanism=min_hamming,
-        sequence_length=300,
-        repetitions=20,
-        random_seed=42,
+        choice_mechanism=random_choice,
+        sequence_length=360,
+        repetitions=3,
     )
 
-    experiments = define_experiments(config, np.linspace(0.0025, 0.02, num=8))
-
-    for experiment in experiments:
-        run_experiment(experiment)
+    run_error_range(
+        "5-reserved-bits", config, np.linspace(0.002, 0.02, num=10), seed, iterations=3
+    )
