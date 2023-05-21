@@ -5,6 +5,67 @@ import seaborn as sn
 from plots import plots
 
 
+def multiplot(
+    name: str,
+    xs: list[list],
+    ys: list[list],
+    set_labels: list[str],
+    xlabel: str,
+    ylabel: str,
+    title: str,
+    fit: bool = True,
+    invertx: bool = False,
+):
+    fig, ax = plt.subplots(figsize=(12, 12))
+
+    assert len(xs) <= 3
+    assert len(xs) == len(ys)
+    assert len(xs) == len(set_labels)
+
+    cs = ["red", "green", "blue"]
+
+    for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
+        plt.scatter(x, y, c=cs[i], label=l)
+        if fit:
+            sn.regplot(
+                x=x,
+                y=y,
+                ci=True,
+                scatter_kws={"color": cs[i]},
+                line_kws={"color": cs[i]},
+            )
+
+    ax.set(
+        xlabel=xlabel,
+        ylabel=ylabel,
+        title=title,
+    )
+
+    if invertx:
+        plt.legend(loc="upper right")
+        ax.invert_xaxis()
+    else:
+        plt.legend(loc="upper left")
+
+    fig.savefig(f"plots/{name}.png")
+    plt.show()
+
+
+def multiplot_from_dict(key: str, fit: bool = True):
+    p = plots[key]
+    multiplot(
+        key,
+        p["xs"],
+        p["ys"],
+        p["labels"],
+        p["xlabel"],
+        p["ylabel"],
+        p["title"],
+        fit,
+        True,
+    )
+
+
 def plot(
     name: str,
     x: list,
@@ -54,7 +115,7 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
     df = pd.DataFrame(matrix, axes, axes)
     df.index.name = "True Base"
     df.columns.name = "Predicted Base"
-    fig = plt.figure(figsize=(12, 8))
+    fig = plt.figure(figsize=(14, 8))
     plt.title(title, fontsize=16)
     sn.set(font_scale=1.4)
     ax = sn.heatmap(df, annot=True, annot_kws={"size": 16}, fmt="d", linewidth=0.5)
@@ -63,17 +124,18 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
+    multiplot_from_dict("multiplot-gc-tracking")
     # plot_from_dict("larger-gc-tracked-random")
 
-    plot_confusion(
-        name="er001-seq300-rep10-default",
-        title="Error Rate 0.01, Symbol Length 4, 5 Reserved Bits, 0.35 < GC < 0.65",
-        matrix=np.array(
-            [
-                [960, 0, 0, 0],
-                [0, 1037, 0, 0],
-                [0, 0, 990, 0],
-                [0, 0, 0, 1013],
-            ]
-        ),
-    )
+    # plot_confusion(
+    #     name="er001-seq300-rep10-default",
+    #     title="Error Rate 0.01, Symbol Length 4, 5 Reserved Bits, 0.35 < GC < 0.65",
+    #     matrix=np.array(
+    #         [
+    #             [960, 0, 0, 0],
+    #             [0, 1037, 0, 0],
+    #             [0, 0, 990, 0],
+    #             [0, 0, 0, 1013],
+    #         ]
+    #     ),
+    # )
