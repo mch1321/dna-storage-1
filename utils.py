@@ -144,6 +144,28 @@ def longest_homopolymer(sequence: str) -> int:
     return longest
 
 
+def base_idx(base: str) -> int:
+    if base == "A":
+        return 0
+    elif base == "C":
+        return 1
+    elif base == "G":
+        return 2
+    elif base == "T":
+        return 3
+    else:
+        raise Exception(f"Invalid base {base}.")
+
+
+def confusion(true: str, pred: str) -> list[list[int]]:
+    confusion = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+    for t, p in zip(true, pred):
+        confusion[base_idx(t)][base_idx(p)] += 1
+
+    return confusion
+
+
 if __name__ == "__main__":
     print(gc_content("AAAAAAAA") == 0)
     print(gc_content("ACGTACGT") == 0.5)
