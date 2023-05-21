@@ -57,3 +57,11 @@ config6 = Parameters(
     choice_mechanism=gc_tracked_random,
     repetitions=5,
 )
+
+# CONF 1 - DEFAULT
+conf1 = Parameters(
+    sequence_length=300,
+    error_rate=0.01,
+    repetitions=10,
+    random_seed=1704182,
+)
