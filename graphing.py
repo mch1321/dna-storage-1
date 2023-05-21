@@ -18,11 +18,11 @@ def multiplot(
 ):
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    assert len(xs) <= 3
+    assert len(xs) <= 5
     assert len(xs) == len(ys)
     assert len(xs) == len(set_labels)
 
-    cs = ["red", "green", "blue"]
+    cs = ["red", "green", "blue", "orange", "purple"]
 
     for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
         plt.scatter(x, y, c=cs[i], label=l)
@@ -47,7 +47,8 @@ def multiplot(
     else:
         plt.legend(loc="upper left")
 
-    fig.savefig(f"plots/{name}.png")
+    file_name = name if fit else f"{name}-no-trend"
+    fig.savefig(f"plots/{file_name}.png")
     plt.show()
 
 
@@ -124,8 +125,8 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
-    # multiplot_from_dict("multiplot-gc-tracking")
-    plot_from_dict("4-reserved-bits")
+    multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
+    # plot_from_dict("3-reserved-bits")
 
     # plot_confusion(
     #     name="er001-seq300-rep10-default",
