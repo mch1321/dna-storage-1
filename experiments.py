@@ -202,8 +202,8 @@ def print_results(name: str, config: Parameters, x: list[float], y: list[float])
     print(
         f'    "title": "{config.reserved_bits} Reserved Bits, Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
-    print(f'    "xlabel": "Rate of errors injected",')
-    print(f'    "ylabel": "Rate of errors remaining",')
+    print(f'    "xlabel": "Input Error Rate",')
+    print(f'    "ylabel": "Output Error Rate",')
     print(f'    "x": {x},'),
     print(f'    "y": {y},')
     print("}")
@@ -246,11 +246,11 @@ if __name__ == "__main__":
     seed = 1704182
 
     config = Parameters(
-        choice_mechanism=random_choice,
-        sequence_length=360,
-        repetitions=3,
+        sequence_length=600,
+        repetitions=5,
     )
 
-    run_error_range(
-        "5-reserved-bits", config, np.linspace(0.002, 0.02, num=10), seed, iterations=3
-    )
+    error_range = [0.001]
+    error_range.extend(np.linspace(0.002, 0.02, num=10))
+
+    run_error_range("big-5-reserved-bits", config, error_range, seed, iterations=4)

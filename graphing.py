@@ -71,31 +71,150 @@ plots = {
             0.0009259259259259259,
             0.0,
         ],
-    }
+    },
+    "big-5-reserved-bits": {
+        "title": "5 Reserved Bits, Symbol Length 4, 0.35 <= GC <= 0.65, Max Run Length: 8",
+        "xlabel": "Input Error Rate",
+        "ylabel": "Output Error Rate",
+        "x": [
+            0.00075,
+            0.0017499999999999998,
+            0.00475,
+            0.00475,
+            0.0072499999999999995,
+            0.008,
+            0.012,
+            0.0125,
+            0.0165,
+            0.017,
+            0.017,
+            0.00075,
+            0.0022500000000000003,
+            0.0032500000000000003,
+            0.00475,
+            0.0055000000000000005,
+            0.011000000000000001,
+            0.010249999999999999,
+            0.014750000000000001,
+            0.01925,
+            0.022000000000000002,
+            0.01775,
+            0.001,
+            0.0025,
+            0.0032500000000000003,
+            0.0055000000000000005,
+            0.01125,
+            0.011000000000000001,
+            0.01275,
+            0.0165,
+            0.0155,
+            0.0175,
+            0.02,
+            0.001,
+            0.003,
+            0.0032500000000000003,
+            0.006,
+            0.0115,
+            0.01075,
+            0.01225,
+            0.01275,
+            0.01675,
+            0.01625,
+            0.018000000000000002,
+        ],
+        "y": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0003333333333333334,
+            0.0003333333333333334,
+            0.0003333333333333334,
+            0.001,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0006666666666666668,
+            0.0,
+            0.0013333333333333335,
+            0.001,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0003333333333333334,
+            0.0003333333333333334,
+            0.0,
+            0.0003333333333333334,
+            0.0,
+            0.0003333333333333334,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0006666666666666668,
+            0.0,
+            0.0,
+            0.0,
+            0.0003333333333333334,
+        ],
+    },
 }
 
 
-def plot(key: str):
-    plot = plots[key]
+def plot(
+    name: str,
+    x: list,
+    y: list,
+    xlabel: str,
+    ylabel: str,
+    title: str,
+    fit: bool = True,
+    invertx: bool = False,
+):
     fig, ax = plt.subplots(figsize=(12, 8))
-
-    x, y = plot["x"], plot["y"]
 
     plt.scatter(x, y)
 
     ax.set(
-        xlabel=plot["xlabel"],
-        ylabel=plot["ylabel"],
-        title=plot["title"],
+        xlabel=xlabel,
+        ylabel=ylabel,
+        title=title,
     )
 
-    ax.invert_xaxis()
+    if invertx:
+        ax.invert_xaxis()
 
-    sns.regplot(x=x, y=y, ci=False, line_kws={"color": "red"})
+    if fit:
+        sns.regplot(x=x, y=y, ci=False, line_kws={"color": "red"})
 
-    fig.savefig(f"plots/{key}.png")
+    fig.savefig(f"plots/{name}.png")
     plt.show()
 
 
+def plot_from_dict(key: str, fit: bool = True):
+    p = plots[key]
+    plot(
+        key,
+        p["x"],
+        p["y"],
+        p["xlabel"],
+        p["ylabel"],
+        p["title"],
+        fit,
+        True,
+    )
+
+
 if __name__ == "__main__":
-    plot("5-reserved-bits")
+    plot_from_dict("big-5-reserved-bits")
