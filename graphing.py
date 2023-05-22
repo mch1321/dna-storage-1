@@ -125,8 +125,8 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
-    multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("3-reserved-bits")
+    # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
+    plot_from_dict("sym-5-res-5-gc-tracking")
 
     # plot_confusion(
     #     name="er001-seq300-rep10-default",

@@ -206,7 +206,7 @@ def print_results(name: str, config: Parameters, x: list[float], y: list[float])
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
     print(
-        f'    "title": "Mechanims: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
+        f'    "title": "Mechanim: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
         + f'Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
     print(f'    "xlabel": "Input Error Rate",')
@@ -253,10 +253,11 @@ if __name__ == "__main__":
     seed = 1704182
 
     config = Parameters(
-        reserved_bits=3,
-        constraints=default_constraints(gc_min=0.15, gc_max=0.85),
+        symbol_size=5,
+        reserved_bits=5,
+        constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
         sequence_length=600,
-        choice_mechanism=random_choice,
+        choice_mechanism=gc_tracking,
         repetitions=3,
     )
 
