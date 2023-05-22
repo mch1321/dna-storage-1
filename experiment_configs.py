@@ -4,10 +4,10 @@ from experiments import Parameters
 
 
 # EXP 1 - DEFAULT (5 RESERVED BITS, 35% < GC < 85%)
-config1 = Parameters(sequence_length=300, repetitions=20, random_seed=42)
+exp1 = Parameters(sequence_length=300, repetitions=20, random_seed=42)
 
 # EXP 2 - 3 RESERVED BITS, 15% < GC < 85%
-config2 = Parameters(
+exp2 = Parameters(
     reserved_bits=3,
     constraints=wider_gc_limits(),
     sequence_length=300,
@@ -16,7 +16,7 @@ config2 = Parameters(
 )
 
 # EXP 3 - 4 RESERVED BITS, 25% < GC < 75%
-config3 = Parameters(
+exp3 = Parameters(
     reserved_bits=4,
     constraints=default_constraints(gc_min=0.25, gc_max=0.75),
     sequence_length=300,
@@ -25,7 +25,7 @@ config3 = Parameters(
 )
 
 # EXP 4 - SYMBOL LENGTH 5, 5 RESERVED BITS, 30% < GC 70%
-config4 = Parameters(
+exp4 = Parameters(
     symbol_size=5,
     constraints=default_constraints(
         symbol_size=5,
@@ -39,27 +39,27 @@ config4 = Parameters(
 )
 
 # EXP 5 - DEFAULT LONGER SEQUENCE
-config5 = Parameters(
+exp5 = Parameters(
     sequence_length=600,
     repetitions=5,
 )
 
 # EXP 6 - GC TRACKING
-config6 = Parameters(
+exp6 = Parameters(
     sequence_length=600,
     choice_mechanism=gc_tracking,
     repetitions=5,
 )
 
 # EXP 7 - GC TRACKING + RANDOM
-config7 = Parameters(
+exp7 = Parameters(
     sequence_length=600,
     choice_mechanism=gc_tracked_random,
     repetitions=5,
 )
 
 # EXP 8 - 4 RESERVED BITS, 25% < GC < 75% (LONGER SEQUENCE)
-config8 = Parameters(
+exp8 = Parameters(
     reserved_bits=4,
     constraints=default_constraints(gc_min=0.25, gc_max=0.75),
     sequence_length=600,
@@ -68,11 +68,42 @@ config8 = Parameters(
 )
 
 # EXP 9 - 3 RESERVED BITS, 15% < GC < 85% (LONGER SEQUENCE)
-config9 = Parameters(
+exp9 = Parameters(
     reserved_bits=3,
     constraints=default_constraints(gc_min=0.15, gc_max=0.85),
     sequence_length=600,
     choice_mechanism=random_choice,
+    repetitions=3,
+)
+
+# EXP 10 - GC TRACKING, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75% (SEQ 600)
+exp10 = Parameters(
+    symbol_size=5,
+    reserved_bits=5,
+    constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
+    sequence_length=600,
+    choice_mechanism=gc_tracking,
+    repetitions=3,
+)
+
+# EXP 11 - RANDOM, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75% (SEQ 300)
+# Shorter sequence for shorter run time
+exp11 = Parameters(
+    symbol_size=5,
+    reserved_bits=5,
+    constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
+    sequence_length=300,
+    choice_mechanism=random_choice,
+    repetitions=3,
+)
+
+# EXP 11 - GC TRACKED RANDOM, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75%
+config = Parameters(
+    symbol_size=5,
+    reserved_bits=5,
+    constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
+    sequence_length=600,
+    choice_mechanism=gc_tracked_random,
     repetitions=3,
 )
 

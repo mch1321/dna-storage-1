@@ -206,7 +206,7 @@ def print_results(name: str, config: Parameters, x: list[float], y: list[float])
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
     print(
-        f'    "title": "Mechanim: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
+        f'    "title": "Mechanim: {config.choice_mechanism.__name__}, {config.reserved_bits} Reserved Bits, '
         + f'Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
     print(f'    "xlabel": "Input Error Rate",')
@@ -257,11 +257,13 @@ if __name__ == "__main__":
         reserved_bits=5,
         constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
         sequence_length=600,
-        choice_mechanism=gc_tracking,
+        choice_mechanism=gc_tracked_random,
         repetitions=3,
     )
 
     error_range = [0.001]
     error_range.extend(np.linspace(0.002, 0.02, num=10))
 
-    run_error_range("4-reserved-bits", config, error_range, seed, iterations=4)
+    run_error_range(
+        "sym-5-res-5-gc-tracked-random", config, error_range, seed, iterations=4
+    )
