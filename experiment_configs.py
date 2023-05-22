@@ -97,13 +97,23 @@ exp11 = Parameters(
     repetitions=3,
 )
 
-# EXP 11 - GC TRACKED RANDOM, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75%
-config = Parameters(
+# EXP 12 - GC TRACKED RANDOM, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75%
+exp12 = Parameters(
     symbol_size=5,
     reserved_bits=5,
     constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
     sequence_length=600,
     choice_mechanism=gc_tracked_random,
+    repetitions=3,
+)
+
+# EXP 11 - RANDOM, SYMBOL SIZE 5, 5 RESERVED BITS, 25% < GC < 75%
+exp13 = Parameters(
+    symbol_size=5,
+    reserved_bits=5,
+    constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
+    sequence_length=600,
+    choice_mechanism=random_choice,
     repetitions=3,
 )
 

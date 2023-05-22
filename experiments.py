@@ -257,13 +257,11 @@ if __name__ == "__main__":
         reserved_bits=5,
         constraints=default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[]),
         sequence_length=600,
-        choice_mechanism=gc_tracked_random,
+        choice_mechanism=random_choice,
         repetitions=3,
     )
 
     error_range = [0.001]
     error_range.extend(np.linspace(0.002, 0.02, num=10))
 
-    run_error_range(
-        "sym-5-res-5-gc-tracked-random", config, error_range, seed, iterations=4
-    )
+    run_error_range("sym-5-res-5-random", config, error_range, seed, iterations=4)

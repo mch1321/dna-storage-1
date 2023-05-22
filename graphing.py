@@ -16,7 +16,7 @@ def multiplot(
     fit: bool = True,
     invertx: bool = False,
 ):
-    fig, ax = plt.subplots(figsize=(12, 12))
+    fig, ax = plt.subplots(figsize=(12, 10))
 
     assert len(xs) <= 5
     assert len(xs) == len(ys)
@@ -126,7 +126,31 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 if __name__ == "__main__":
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    plot_from_dict("sym-5-res-5-gc-tracked-random")
+    # plot_from_dict("sym-5-res-5-random")
+
+    plt.rcParams["font.size"] = 16
+
+    xs = [
+        plots["sym-5-res-5-random"]["x"],
+        plots["sym-5-res-5-gc-tracking"]["x"],
+        plots["sym-5-res-5-gc-tracked-random"]["x"],
+    ]
+    ys = [
+        plots["sym-5-res-5-random"]["y"],
+        plots["sym-5-res-5-gc-tracking"]["y"],
+        plots["sym-5-res-5-gc-tracked-random"]["y"],
+    ]
+    multiplot(
+        name="multiplot-sym-5-res-5-choice-mechanism",
+        xs=xs,
+        ys=ys,
+        set_labels=["Random Choice", "GC Tracking", "GC Tracked Random"],
+        xlabel="Input Error Rate",
+        ylabel="Output Error Rate",
+        title="Symbol Length 5, 25% <= GC <= 35%, 5 Reserved Bits",
+        fit=True,
+        invertx=True,
+    )
 
     # plot_confusion(
     #     name="er001-seq300-rep10-default",
