@@ -21,7 +21,7 @@ fn construct_table(
     input_size: usize,
     output_size: usize,
     constraints: Constraints,
-    mechanism: impl Fn(&str, &str, Vec<String>) -> String,
+    mut mechanism: impl FnMut(&str, &str, Vec<String>) -> String,
 ) -> Table {
     assert!(input_size < output_size);
 
@@ -62,7 +62,7 @@ pub(crate) fn construct_fsm(
     output_size: usize,
     init_state: String,
     constraints: Constraints,
-    mechanism: impl Fn(&str, &str, Vec<String>) -> String,
+    mechanism: impl FnMut(&str, &str, Vec<String>) -> String,
 ) -> FSM {
     return (
         input_size,

@@ -1,5 +1,6 @@
 use mechanisms::{gc_tracked_random, gc_tracking, random_choice};
 use pyo3::prelude::*;
+use rand::{rngs::StdRng, SeedableRng};
 mod constraints;
 mod fsm;
 mod mapping;
@@ -28,12 +29,14 @@ fn random_fsm(
     constraints: Constraints,
     seed: u64,
 ) -> fsm::FSM {
+    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
+
     return generate_fsm(
         symbol_size,
         reserved_bits,
         init_state,
         constraints,
-        |_, _, r| random_choice(r, seed),
+        |_, _, r| random_choice(r, &mut rng),
     );
 }
 
@@ -63,12 +66,14 @@ fn gc_tracked_random_fsm(
     constraints: Constraints,
     seed: u64,
 ) -> fsm::FSM {
+    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
+
     return generate_fsm(
         symbol_size,
         reserved_bits,
         init_state,
         constraints,
-        |s, i, r| gc_tracked_random(s, i, r, seed),
+        |s, i, r| gc_tracked_random(s, i, r, &mut rng),
     );
 }
 
@@ -78,7 +83,7 @@ fn generate_fsm(
     reserved_bits: usize,
     init_state: String,
     constraints: Constraints,
-    mechanism: impl Fn(&str, &str, Vec<String>) -> String,
+    mechanism: impl FnMut(&str, &str, Vec<String>) -> String,
 ) -> fsm::FSM {
     let output_size = symbol_size * 2;
     let input_size = output_size - reserved_bits;

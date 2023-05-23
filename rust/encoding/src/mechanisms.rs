@@ -1,12 +1,10 @@
 use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
-use rand::SeedableRng;
 
 use crate::constraints::gc_content;
 
-pub(crate) fn random_choice(reserved: Vec<String>, seed: u64) -> String {
-    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
-    return reserved.choose(&mut rng).unwrap().to_string();
+pub(crate) fn random_choice(reserved: Vec<String>, rng: &mut StdRng) -> String {
+    return reserved.choose(rng).unwrap().to_string();
 }
 
 pub(crate) fn gc_tracking(state: &str, input: &str, reserved: Vec<String>) -> String {
@@ -36,9 +34,8 @@ pub(crate) fn gc_tracked_random(
     state: &str,
     input: &str,
     reserved: Vec<String>,
-    seed: u64,
+    rng: &mut StdRng,
 ) -> String {
-    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
     let mut closest: Vec<String> = Vec::new();
     let mut min_diff: f32 = 1.0;
     let gc_target: f32 = 0.5;
@@ -57,5 +54,5 @@ pub(crate) fn gc_tracked_random(
         }
     }
 
-    return closest.choose(&mut rng).unwrap().to_string();
+    return closest.choose(rng).unwrap().to_string();
 }
