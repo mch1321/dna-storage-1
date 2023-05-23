@@ -1,8 +1,10 @@
-from dataclasses import dataclass
-from statistics import mean
 import copy
 import numpy as np
 import random as rn
+import viterbi
+import encoding
+from dataclasses import dataclass
+from statistics import mean
 from choice_mechanism import gc_tracking, gc_tracked_random, random_choice
 from constraints import Constraints, default_constraints
 from data_types import Path
@@ -44,9 +46,11 @@ class Parameters:
         )
 
 
+# TODO: Remove rust checks and neaten up
 def run_experiment(
     params: Parameters = Parameters(),
     verbose: bool = True,
+    rust: bool = True,
 ):
     output_size = 2 * params.symbol_size
 
@@ -59,9 +63,25 @@ def run_experiment(
     if params.random_seed is not None:
         rn.seed(params.random_seed)
 
-    fsm = construct_fsm_from_constraints(
-        init_state, input_size, output_size, params.constraints, params.choice_mechanism
-    )
+    if rust:
+        c = params.constraints
+        rs_cons = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+        # TODO: check mechanism
+        fsm = encoding.random_fsm(
+            params.symbol_size,
+            params.reserved_bits,
+            init_state,
+            rs_cons,
+            params.random_seed,
+        )
+    else:
+        fsm = construct_fsm_from_constraints(
+            init_state,
+            input_size,
+            output_size,
+            params.constraints,
+            params.choice_mechanism,
+        )
 
     # conf = confusion()
 
@@ -90,7 +110,10 @@ def run_experiment(
         seq_len = len(seq)
 
         # Encode sequence with convolutional code.
-        enc = fsm.conv(seq)
+        if rust:
+            enc = viterbi.encode(fsm, seq)
+        else:
+            enc = fsm.conv(seq)
 
         # Translate encoded sequence to nucleotides (analog to DNA synthesis).
         dna = bits_to_dna(enc)
@@ -105,10 +128,14 @@ def run_experiment(
         err = dna_to_bits(dna_err)
 
         # Decode received bits using viterbi.
-        path: Path = fsm.viterbi(err)
+        if rust:
+            (_, result, observed) = viterbi.decode(fsm, err)
+        else:
+            path: Path = fsm.viterbi(err)
 
-        # The path estimated my Viterbi.
-        observed = path.observations
+        if not rust:
+            # The path estimated my Viterbi.
+            observed = path.observations
 
         # The estimated correct DNA sequence.
         dna_cor = bits_to_dna(observed)
@@ -116,8 +143,9 @@ def run_experiment(
         # Add data to confusion matrix
         # conf += confusion(dna, dna_cor)
 
-        # Estimate of the content of the original sequence.
-        result = path.sequence
+        if not rust:
+            # Estimate of the content of the original sequence.
+            result = path.sequence
 
         # Number of errors occuring in the DNA.
         dna_error = hamming_dist(dna, dna_err)
@@ -264,4 +292,4 @@ if __name__ == "__main__":
     error_range = [0.001]
     error_range.extend(np.linspace(0.002, 0.02, num=10))
 
-    run_error_range("sym-5-res-5-random", config, error_range, seed, iterations=4)
+    run_error_range("rust/sym-5-res-5-random", config, error_range, seed, iterations=4)
