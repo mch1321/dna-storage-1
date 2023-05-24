@@ -1,0 +1,35 @@
+Running experiments with starting seed: 5410293095 and error range: [0.0005 0.001  0.0015 0.002  0.0025 0.003  0.0035 0.004  0.0045 0.005
+ 0.0055 0.006  0.0065 0.007  0.0075 0.008  0.0085 0.009  0.0095 0.01
+ 0.0105 0.011  0.0115 0.012  0.0125 0.013  0.0135 0.014  0.0145 0.015
+ 0.0155 0.016  0.0165 0.017  0.0175 0.018  0.0185 0.019  0.0195 0.02  ]
+
+Running iteration 1 out of 5 with random seed: 853148195
+
+RUNNING EXPERIMENT
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 3
+    Choice mechanism: random
+    Constraints: 0.15 <= GC <= 0.85, Max Run Length: 8
+    Sequence length: 3000
+    Error chance: 0.0005
+    Repetitions: 3
+    Random seed: 284733380
+
+REPETITION 1 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
+REPETITION 2 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 2
+RESULTANT ERRORS IN RECEIVED STRING: 3
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
