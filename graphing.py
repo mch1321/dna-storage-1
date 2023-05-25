@@ -16,13 +16,13 @@ def multiplot(
     fit: bool = True,
     invertx: bool = False,
 ):
-    fig, ax = plt.subplots(figsize=(12, 10))
+    fig, ax = plt.subplots(figsize=(30, 20))
 
-    assert len(xs) <= 5
+    assert len(xs) <= 6
     assert len(xs) == len(ys)
     assert len(xs) == len(set_labels)
 
-    cs = ["red", "green", "blue", "orange", "purple"]
+    cs = ["red", "green", "blue", "orange", "purple", "black"]
 
     for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
         plt.scatter(x, y, c=cs[i], label=l)
@@ -77,7 +77,7 @@ def plot(
     fit: bool = True,
     invertx: bool = False,
 ):
-    fig, ax = plt.subplots(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(30, 20))
 
     plt.scatter(x, y)
 
@@ -125,29 +125,35 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
+    plt.rcParams["font.size"] = 28
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("sym-5-res-5-random")
-
-    plt.rcParams["font.size"] = 16
+    # plot_from_dict("rust/sym-6-res-6-random-seq-600")
 
     xs = [
-        plots["sym-5-res-5-random"]["x"],
-        plots["sym-5-res-5-gc-tracking"]["x"],
-        plots["sym-5-res-5-gc-tracked-random"]["x"],
+        plots["rust/sym-6-res-6-random-seq-600"]["x"],
+        plots["rust/sym-5-res-5-random-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-random-seq-3000"]["x"],
+        plots["rust/sym-3-res-3-random-seq-3000"]["x"],
     ]
     ys = [
-        plots["sym-5-res-5-random"]["y"],
-        plots["sym-5-res-5-gc-tracking"]["y"],
-        plots["sym-5-res-5-gc-tracked-random"]["y"],
+        plots["rust/sym-6-res-6-random-seq-600"]["y"],
+        plots["rust/sym-5-res-5-random-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-random-seq-3000"]["y"],
+        plots["rust/sym-3-res-3-random-seq-3000"]["y"],
     ]
     multiplot(
-        name="multiplot-sym-5-res-5-choice-mechanism",
+        name="rust/random-sym-3-6-res-3-6",
         xs=xs,
         ys=ys,
-        set_labels=["Random Choice", "GC Tracking", "GC Tracked Random"],
+        set_labels=[
+            "Symbol Size 6, 6 Reserved Bits, (25% <= GC <= 75%)",
+            "Symbol Size 5, 5 Reserved Bits, (35% <= GC <= 65%)",
+            "Symbol Size 4, 4 Reserved Bits, (25% <= GC <= 75%)",
+            "Symbol Size 3, 3 Reserved Bits, (25% <= GC <= 75%)",
+        ],
         xlabel="Input Error Rate",
         ylabel="Output Error Rate",
-        title="Symbol Length 5, 25% <= GC <= 35%, 5 Reserved Bits",
+        title="Random Choice, 25% <= GC <= 35%",
         fit=True,
         invertx=True,
     )
@@ -160,7 +166,7 @@ if __name__ == "__main__":
     #             [960, 0, 0, 0],
     #             [0, 1037, 0, 0],
     #             [0, 0, 990, 0],
-    #             [0, 0, 0, 1013],
+    #           rust/sym-4-res-5-random"  [0, 0, 0, 1013],
     #         ]
     #     ),
     # )

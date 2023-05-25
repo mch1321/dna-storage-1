@@ -17,7 +17,7 @@ from utils import confusion, hamming_dist, inject_base_errors, rand_bit_string
 class Parameters:
     symbol_size: int = 4
     reserved_bits: int = 5
-    choice_mechanism: callable = random_choice
+    choice_mechanism: str = "random"
     constraints: Constraints = default_constraints()
     sequence: str = None
     sequence_length: int = 60
@@ -33,7 +33,7 @@ class Parameters:
             "Parameters:\n"
             + f"    Symbol size: {self.symbol_size}\n"
             + f"    Reserved bits: {self.reserved_bits}\n"
-            + f"    Choice mechanism: {self.choice_mechanism.__name__}\n"
+            + f"    Choice mechanism: {self.choice_mechanism}\n"
             + f"    Constraints: {self.constraints.short_str()}\n"
             + (
                 f"    Sequence: {self.sequence}\n"
@@ -50,7 +50,6 @@ class Parameters:
 def run_experiment(
     params: Parameters = Parameters(),
     verbose: bool = True,
-    rust: bool = True,
 ):
     output_size = 2 * params.symbol_size
 
@@ -63,10 +62,10 @@ def run_experiment(
     if params.random_seed is not None:
         rn.seed(params.random_seed)
 
-    if rust:
-        c = params.constraints
-        rs_cons = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
-        # TODO: check mechanism
+    c = params.constraints
+    rs_cons = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+
+    if params.choice_mechanism == "random":
         fsm = encoding.random_fsm(
             params.symbol_size,
             params.reserved_bits,
@@ -74,14 +73,23 @@ def run_experiment(
             rs_cons,
             params.random_seed,
         )
-    else:
-        fsm = construct_fsm_from_constraints(
+    elif params.choice_mechanism == "gc_tracking":
+        fsm = encoding.gc_tracking_fsm(
+            params.symbol_size,
+            params.reserved_bits,
             init_state,
-            input_size,
-            output_size,
-            params.constraints,
-            params.choice_mechanism,
+            rs_cons,
         )
+    elif params.choice_mechanism == "gc_tracked_random":
+        fsm = encoding.gc_tracked_random_fsm(
+            params.symbol_size,
+            params.reserved_bits,
+            init_state,
+            rs_cons,
+            params.random_seed,
+        )
+    else:
+        raise Exception("Invalid choice mechanism")
 
     # conf = confusion()
 
@@ -93,7 +101,6 @@ def run_experiment(
 
     sequence_errors = []
 
-    seq_len = None
     dna_len = None
 
     if verbose:
@@ -102,21 +109,13 @@ def run_experiment(
 
     for i in range(params.repetitions):
         # Generate random sequence or use given one.
-        seq = (
-            rand_bit_string(params.sequence_length)
-            if params.sequence is None
-            else params.sequence
-        )
-        seq_len = len(seq)
+        seq = rand_bit_string(params.sequence_length)
 
         # Encode sequence with convolutional code.
-        if rust:
-            enc = viterbi.encode(fsm, seq)
-        else:
-            enc = fsm.conv(seq)
+        enc = viterbi.encode(fsm, seq)
 
         # Translate encoded sequence to nucleotides (analog to DNA synthesis).
-        dna = bits_to_dna(enc)
+        dna = encoding.bits_to_dna(enc)
         dna_len = len(dna)
 
         # Inject substitution errors at given rate to
@@ -125,27 +124,16 @@ def run_experiment(
         dna_err = inject_base_errors(dna, params.error_rate)
 
         # Convert nucleotides back to bits (analog to DNA sequencing).
-        err = dna_to_bits(dna_err)
+        err = encoding.dna_to_bits(dna_err)
 
-        # Decode received bits using viterbi.
-        if rust:
-            (_, result, observed) = viterbi.decode(fsm, err)
-        else:
-            path: Path = fsm.viterbi(err)
+        # Decode received bits using viterbi, get the resulting sequence.
+        (_, result, observed) = viterbi.decode(fsm, err)
 
-        if not rust:
-            # The path estimated my Viterbi.
-            observed = path.observations
-
-        # The estimated correct DNA sequence.
+        # The estimated DNA sequence.
         dna_cor = bits_to_dna(observed)
 
         # Add data to confusion matrix
         # conf += confusion(dna, dna_cor)
-
-        if not rust:
-            # Estimate of the content of the original sequence.
-            result = path.sequence
 
         # Number of errors occuring in the DNA.
         dna_error = hamming_dist(dna, dna_err)
@@ -185,7 +173,7 @@ def run_experiment(
     avg_seq_error = mean(sequence_errors)
 
     dna_percent_error = avg_dna_error / dna_len
-    seq_percent_error = avg_seq_error / seq_len
+    seq_percent_error = avg_seq_error / params.sequence_length
 
     if verbose:
         print("AVERAGE RESULTS:")
@@ -234,7 +222,7 @@ def print_results(name: str, config: Parameters, x: list[float], y: list[float])
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
     print(
-        f'    "title": "Mechanim: {config.choice_mechanism.__name__}, {config.reserved_bits} Reserved Bits, '
+        f'    "title": "Mechanim: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
         + f'Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
     print(f'    "xlabel": "Input Error Rate",')
@@ -270,9 +258,7 @@ def run_error_range(
         )
 
         for experiment in experiments:
-            _, _, _, _, _, dna_percent, seq_percent = run_experiment(
-                experiment, rust=False
-            )
+            _, _, _, _, _, dna_percent, seq_percent = run_experiment(experiment)
             dna_err.append(dna_percent)
             seq_err.append(seq_percent)
 
@@ -281,20 +267,23 @@ def run_error_range(
 
 if __name__ == "__main__":
     # seed = 1704182
-    seed = 2000
+    seed = 5410293095
 
     config = Parameters(
-        symbol_size=4,
-        reserved_bits=5,
-        constraints=default_constraints(gc_min=0.35, gc_max=0.65),
-        sequence_length=600,
-        choice_mechanism=random_choice,
+        symbol_size=3,
+        reserved_bits=3,
+        constraints=default_constraints(gc_min=0.25, gc_max=0.75),
+        sequence_length=3000,
+        choice_mechanism="random",
         repetitions=3,
     )
 
-    error_range = [0.001]
-    error_range.extend(np.linspace(0.002, 0.02, num=10))
+    error_range = np.linspace(0.0005, 0.02, num=40)
 
     run_error_range(
-        "pyrs/sym-4-res-5-seq-600-py", config, error_range, seed, iterations=4
+        "rust/sym-3-res-3-random-seq-3000",
+        config,
+        error_range,
+        seed,
+        iterations=5,
     )

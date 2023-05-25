@@ -1,0 +1,16 @@
+Running experiments with starting seed: 2000 and error range: [0.001, 0.002, 0.004, 0.006, 0.008, 0.01, 0.012, 0.014, 0.016, 0.018000000000000002, 0.02]
+
+Running iteration 1 out of 4 with random seed: 918
+
+RUNNING EXPERIMENT
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 5
+    Choice mechanism: random_choice
+    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Sequence length: 600
+    Error chance: 0.001
+    Repetitions: 3
+    Random seed: 894
+
