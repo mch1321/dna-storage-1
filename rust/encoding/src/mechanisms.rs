@@ -1,9 +1,11 @@
 use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
 
+use crate::bits_to_dna;
 use crate::constraints::gc_content;
 
 pub(crate) fn random_choice(reserved: Vec<String>, rng: &mut StdRng) -> String {
+    // println!("{}", reserved.len());
     return reserved.choose(rng).unwrap().to_string();
 }
 
@@ -14,7 +16,7 @@ pub(crate) fn gc_tracking(state: &str, input: &str, reserved: Vec<String>) -> St
 
     for candidate in reserved {
         let concat = state.to_string() + input + &candidate;
-        let gc_content = gc_content(&concat);
+        let gc_content = gc_content(&bits_to_dna(&concat));
         let diff = (gc_target - gc_content).abs();
 
         if diff == 0.0 {
@@ -42,7 +44,7 @@ pub(crate) fn gc_tracked_random(
 
     for candidate in reserved {
         let concat = state.to_string() + input + &candidate;
-        let gc_content = gc_content(&concat);
+        let gc_content = gc_content(&bits_to_dna(&concat));
         let diff = (gc_target - gc_content).abs();
 
         if diff < min_diff {
@@ -54,12 +56,17 @@ pub(crate) fn gc_tracked_random(
         }
     }
 
+    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
 }
 
 fn hamming_dist(one: &str, two: &str) -> usize {
     assert!(one.len() == two.len());
-    return one.chars().zip(two.chars()).filter(|(a, b)| a != b).count();
+    return one
+        .chars()
+        .zip(two.chars())
+        .filter(|(a, b)| *a != *b)
+        .count();
 }
 
 pub(crate) fn most_similar(
@@ -85,6 +92,7 @@ pub(crate) fn most_similar(
         }
     }
 
+    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
 }
 
@@ -111,5 +119,28 @@ pub(crate) fn most_different(
         }
     }
 
+    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
+}
+
+fn even_parity(seq: &str) -> bool {
+    return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
+}
+
+pub(crate) fn parity(state: &str, input: &str, reserved: Vec<String>, rng: &mut StdRng) -> String {
+    let mut even: Vec<String> = Vec::new();
+
+    for candidate in reserved {
+        let concat = state.to_string() + input + &candidate;
+        if even_parity(&concat) {
+            even.push(candidate);
+        }
+    }
+
+    if even.is_empty() {
+        panic!("No candidates with even parity.")
+    }
+
+    // println!("{}", even.len());
+    return even.choose(rng).unwrap().to_string();
 }

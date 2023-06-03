@@ -17,7 +17,7 @@ impl Constraints {
 }
 
 pub(crate) fn gc_content(seq: &str) -> f32 {
-    return seq.chars().filter(|c| c == &'G' || c == &'C').count() as f32 / seq.len() as f32;
+    return seq.chars().filter(|c| *c == 'G' || *c == 'C').count() as f32 / seq.len() as f32;
 }
 
 fn longest_homopolymer(seq: &str) -> usize {
