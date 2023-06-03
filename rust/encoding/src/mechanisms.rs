@@ -15,7 +15,7 @@ pub(crate) fn gc_tracking(state: &str, input: &str, reserved: Vec<String>) -> St
     let gc_target: f32 = 0.5;
 
     for candidate in reserved {
-        let concat = state.to_string() + input + &candidate;
+        let concat = state.to_string() + &candidate + input;
         let gc_content = gc_content(&bits_to_dna(&concat));
         let diff = (gc_target - gc_content).abs();
 
@@ -43,7 +43,7 @@ pub(crate) fn gc_tracked_random(
     let gc_target: f32 = 0.5;
 
     for candidate in reserved {
-        let concat = state.to_string() + input + &candidate;
+        let concat = state.to_string() + &candidate + input;
         let gc_content = gc_content(&bits_to_dna(&concat));
         let diff = (gc_target - gc_content).abs();
 
@@ -131,7 +131,7 @@ pub(crate) fn parity(state: &str, input: &str, reserved: Vec<String>, rng: &mut 
     let mut even: Vec<String> = Vec::new();
 
     for candidate in reserved {
-        let concat = state.to_string() + input + &candidate;
+        let concat = state.to_string() + &candidate + input;
         if even_parity(&concat) {
             even.push(candidate);
         }
@@ -143,4 +143,27 @@ pub(crate) fn parity(state: &str, input: &str, reserved: Vec<String>, rng: &mut 
 
     // println!("{}", even.len());
     return even.choose(rng).unwrap().to_string();
+}
+
+pub(crate) fn alt_parity(
+    state: &str,
+    input: &str,
+    reserved: Vec<String>,
+    rng: &mut StdRng,
+) -> String {
+    let mut alt: Vec<String> = Vec::new();
+    let state_parity = even_parity(state);
+    for candidate in &reserved {
+        let next_parity = even_parity(&(candidate.to_owned() + input));
+        if state_parity != next_parity {
+            alt.push(candidate.to_string());
+        }
+    }
+
+    if alt.is_empty() {
+        return random_choice(reserved, rng);
+    }
+
+    // println!("{}", even.len());
+    return alt.choose(rng).unwrap().to_string();
 }
