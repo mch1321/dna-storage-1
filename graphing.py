@@ -127,33 +127,36 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 if __name__ == "__main__":
     plt.rcParams["font.size"] = 28
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("rust/sym-6-res-6-random-seq-600")
+    # plot_from_dict("rust/sym-4-res-4-different-seq-3000")
 
     xs = [
-        plots["rust/sym-6-res-6-random-seq-600"]["x"],
-        plots["rust/sym-5-res-5-random-seq-3000"]["x"],
         plots["rust/sym-4-res-4-random-seq-3000"]["x"],
-        plots["rust/sym-3-res-3-random-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-similar-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-different-seq-3000"]["x"],
     ]
     ys = [
-        plots["rust/sym-6-res-6-random-seq-600"]["y"],
-        plots["rust/sym-5-res-5-random-seq-3000"]["y"],
         plots["rust/sym-4-res-4-random-seq-3000"]["y"],
-        plots["rust/sym-3-res-3-random-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-similar-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-different-seq-3000"]["y"],
     ]
     multiplot(
-        name="rust/random-sym-3-6-res-3-6",
+        name="rust/mechanism-sym-4-res-4",
         xs=xs,
         ys=ys,
         set_labels=[
-            "Symbol Size 6, 6 Reserved Bits, (25% <= GC <= 75%)",
-            "Symbol Size 5, 5 Reserved Bits, (35% <= GC <= 65%)",
-            "Symbol Size 4, 4 Reserved Bits, (25% <= GC <= 75%)",
-            "Symbol Size 3, 3 Reserved Bits, (25% <= GC <= 75%)",
+            "Random",
+            "GC Tracking",
+            "GC Tracked Random",
+            "Most Similar",
+            "Most Different",
         ],
         xlabel="Input Error Rate",
         ylabel="Output Error Rate",
-        title="Random Choice, 25% <= GC <= 35%",
+        title="Symbol Size 4, 4, Reserved Bits, 25% <= GC <= 35%, Sequence Length 3000",
         fit=True,
         invertx=True,
     )
