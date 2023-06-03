@@ -104,6 +104,14 @@ def run_experiment(
             rs_cons,
             params.random_seed,
         )
+    elif params.choice_mechanism == "parity":
+        fsm = encoding.parity_fsm(
+            params.symbol_size,
+            params.reserved_bits,
+            init_state,
+            rs_cons,
+            params.random_seed,
+        )
     else:
         raise Exception("Invalid choice mechanism")
 
@@ -290,14 +298,14 @@ if __name__ == "__main__":
         reserved_bits=4,
         constraints=default_constraints(gc_min=0.25, gc_max=0.75),
         sequence_length=3000,
-        choice_mechanism="different",
+        choice_mechanism="parity",
         repetitions=3,
     )
 
     error_range = np.linspace(0.0005, 0.02, num=40)
 
     run_error_range(
-        "rust/sym-4-res-4-different-seq-3000",
+        "rust/sym-4-res-4-parity-pen-seq-3000",
         config,
         error_range,
         seed,

@@ -285,10 +285,10 @@ if __name__ == "__main__":
 
     config = Parameters(
         symbol_size=4,
-        reserved_bits=5,
-        constraints=default_constraints(gc_min=0.35, gc_max=0.65),
+        reserved_bits=4,
+        constraints=default_constraints(gc_min=0.25, gc_max=0.75),
         sequence_length=600,
-        choice_mechanism=random_choice,
+        choice_mechanism=gc_tracked_random,
         repetitions=3,
     )
 

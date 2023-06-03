@@ -127,7 +127,7 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 if __name__ == "__main__":
     plt.rcParams["font.size"] = 28
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("rust/sym-4-res-4-different-seq-3000")
+    # plot_from_dict("rust/sym-4-res-4-parity-pen-seq-3000")
 
     xs = [
         plots["rust/sym-4-res-4-random-seq-3000"]["x"],
@@ -135,6 +135,9 @@ if __name__ == "__main__":
         plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
         plots["rust/sym-4-res-4-similar-seq-3000"]["x"],
         plots["rust/sym-4-res-4-different-seq-3000"]["x"],
+        plots["rust/sym-4-res-4-parity-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["x"],
     ]
     ys = [
         plots["rust/sym-4-res-4-random-seq-3000"]["y"],
@@ -142,6 +145,9 @@ if __name__ == "__main__":
         plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
         plots["rust/sym-4-res-4-similar-seq-3000"]["y"],
         plots["rust/sym-4-res-4-different-seq-3000"]["y"],
+        plots["rust/sym-4-res-4-parity-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["y"],
     ]
     multiplot(
         name="rust/mechanism-sym-4-res-4",
@@ -153,6 +159,9 @@ if __name__ == "__main__":
             "GC Tracked Random",
             "Most Similar",
             "Most Different",
+            "Parity",
+            # "Parity Decoding",
+            # "Parity Penalty",
         ],
         xlabel="Input Error Rate",
         ylabel="Output Error Rate",
