@@ -130,15 +130,15 @@ fn even_parity(seq: &str) -> bool {
 pub(crate) fn parity(state: &str, input: &str, reserved: Vec<String>, rng: &mut StdRng) -> String {
     let mut even: Vec<String> = Vec::new();
 
-    for candidate in reserved {
+    for candidate in &reserved {
         let concat = state.to_string() + &candidate + input;
         if even_parity(&concat) {
-            even.push(candidate);
+            even.push(candidate.to_string());
         }
     }
 
     if even.is_empty() {
-        panic!("No candidates with even parity.")
+        return random_choice(reserved, rng);
     }
 
     // println!("{}", even.len());
