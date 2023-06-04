@@ -30,6 +30,33 @@ class Constraints:
         return f"{self.gc_min} <= GC <= {self.gc_max}, Max Run Length: {self.max_run_length}"
 
 
+def standard_constraints(symbol_size: int, reserved_bits: int):
+    if symbol_size == 4:
+        if reserved_bits == 3:
+            return default_constraints(gc_min=0.15, gc_max=0.85)
+        elif reserved_bits == 4:
+            return default_constraints(gc_min=0.25, gc_max=0.75)
+        elif reserved_bits == 5:
+            return default_constraints()
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 3, 4 and 5."
+            )
+    elif symbol_size == 5:
+        if reserved_bits == 3:
+            return default_constraints(gc_min=0.15, gc_max=0.85, restriction_sites=[])
+        elif reserved_bits == 4:
+            return default_constraints(gc_min=0.2, gc_max=0.8, restriction_sites=[])
+        elif reserved_bits == 5:
+            return default_constraints(gc_min=0.25, gc_max=0.75, restriction_sites=[])
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 3, 4 and 5."
+            )
+    else:
+        raise Exception("No standard constraints for symbol sizes other than 4 and 5.")
+
+
 def default_constraints(
     symbol_size: int = 4,
     max_run_length: int = 8,

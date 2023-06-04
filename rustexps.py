@@ -6,7 +6,7 @@ import encoding
 from dataclasses import dataclass
 from statistics import mean
 from choice_mechanism import gc_tracking, gc_tracked_random, random_choice
-from constraints import Constraints, default_constraints
+from constraints import Constraints, default_constraints, standard_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
@@ -298,24 +298,74 @@ def run_error_range(
 
 
 if __name__ == "__main__":
-    # seed = 1704182
-    seed = 5410293095
+    # Randomly generated seeds.
+    seeds = [
+        548061814,
+        155688848,
+        292348927,
+        403274468,
+        612819644,
+        943797417,
+        668695445,
+        900620255,
+        872647061,
+        345574507,
+        654795644,
+        707772079,
+        102585517,
+        784160164,
+        841153880,
+        610658896,
+        290172510,
+        547326374,
+        749241474,
+        571897292,
+    ]
+    seed_idx = 0
 
-    config = Parameters(
-        symbol_size=4,
-        reserved_bits=4,
-        constraints=default_constraints(gc_min=0.25, gc_max=0.75),
-        sequence_length=3000,
-        choice_mechanism="alt_parity",
-        repetitions=3,
-    )
-
+    # seq_len = 3000
+    seq_len = 60
+    sizes = [4, 5]
+    reserved = [3, 4, 5]
+    mechanisms = [
+        "random",
+        "gc_tracking",
+        "gc_tracked_random",
+        "similar",
+        "different",
+        "parity",
+        "alt_parity",
+    ]
     error_range = np.linspace(0.0005, 0.02, num=40)
 
-    run_error_range(
-        "rust/sym-4-res-4-alt-parity-pen-seq-3000",
-        config,
-        error_range,
-        seed,
-        iterations=5,
-    )
+    # Number of random sequences encoded/decoded to form a single data point.
+    reps = 3
+
+    # Number of iterations each configuration is repeated for.
+    iters = 5
+
+    for size in sizes:
+        for res in reserved:
+            for mechanism in mechanisms:
+                config = Parameters(
+                    symbol_size=size,
+                    reserved_bits=res,
+                    constraints=standard_constraints(size, res),
+                    sequence_length=seq_len,
+                    choice_mechanism=mechanism,
+                    repetitions=reps,
+                )
+                seed_idx += 1
+
+                if seed_idx >= len(seeds):
+                    seed_idx = 0
+
+                seed = seeds[seed_idx]
+
+                run_error_range(
+                    f"final/sym-{size}-res-{res}-{mechanism}-seq-{seq_len}",
+                    config,
+                    error_range,
+                    seed,
+                    iterations=iters,
+                )
