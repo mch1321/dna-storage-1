@@ -124,6 +124,18 @@ def gc_content(sequence: str) -> float:
     return float(gc) / float(len(sequence))
 
 
+def gc_variance(sequence: str, step: int = 4) -> list[float]:
+    prev = None
+    var = []
+    for i in range(len(sequence), step):
+        section = sequence[i : min(i + step, len(sequence))]
+        gc = gc_content(section)
+        if prev is not None:
+            var.append(abs(prev - gc))
+        prev = gc
+    return var
+
+
 def longest_homopolymer(sequence: str) -> int:
     longest = 0
     count = 0
