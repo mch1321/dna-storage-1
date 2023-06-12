@@ -10,7 +10,14 @@ from constraints import Constraints, default_constraints, standard_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from fsm import construct_fsm_from_constraints
-from utils import confusion, hamming_dist, inject_base_errors, rand_bit_string
+from utils import (
+    confusion,
+    gc_content,
+    hamming_dist,
+    inject_base_errors,
+    max_gc_variance,
+    rand_bit_string,
+)
 
 
 @dataclass
@@ -24,6 +31,7 @@ class Parameters:
     error_rate: float = 0.05
     repetitions: int = 20
     random_seed: int = None
+    gc_window: int = 10
 
     def copy(self):
         return copy.deepcopy(self)
@@ -42,6 +50,7 @@ class Parameters:
             )
             + f"    Error chance: {self.error_rate}\n"
             + f"    Repetitions: {self.repetitions}\n"
+            + f"    GC Window Size: {self.gc_window}\n"
             + f"    Random seed: {self.random_seed}\n"
         )
 
@@ -133,6 +142,9 @@ def run_experiment(
 
     sequence_errors = []
 
+    gc_cont = []
+    gc_variance = []
+
     dna_len = None
 
     if verbose:
@@ -150,6 +162,10 @@ def run_experiment(
         dna = encoding.bits_to_dna(enc)
         dna_len = len(dna)
 
+        # Gather info about the encoded DNA sequence.
+        gc_cont.append(gc_content(dna))
+        gc_variance.append(max_gc_variance(dna, window=params.gc_window))
+
         # Inject substitution errors at given rate to
         # simulate errors during synthesis, PCR, storage or sequencing.
         # num_errors = int(params.error_rate * dna_len)
@@ -162,7 +178,7 @@ def run_experiment(
         (_, result, observed) = viterbi.decode(fsm, err)
 
         # The estimated DNA sequence.
-        dna_cor = bits_to_dna(observed)
+        dna_cor = encoding.bits_to_dna(observed)
 
         # Add data to confusion matrix
         # conf += confusion(dna, dna_cor)
@@ -203,6 +219,8 @@ def run_experiment(
     avg_bit_error = mean(bit_errors_injected)
     avg_rem_bit_error = mean(bit_errors_remaining)
     avg_seq_error = mean(sequence_errors)
+    avg_gc_content = mean(gc_cont)
+    avg_gc_variance = mean(gc_variance)
 
     dna_percent_error = avg_dna_error / dna_len
     seq_percent_error = avg_seq_error / params.sequence_length
@@ -210,6 +228,8 @@ def run_experiment(
     if verbose:
         print("AVERAGE RESULTS:")
         print("----------------------")
+        print(f"AVG. GC CONTENT: {avg_gc_content}")
+        print(f"AVG. MAX GC VARIANCE: {avg_gc_variance}")
         print(f"AVG. ERRORS INJECTED INTO DNA: {avg_dna_error}")
         print(f"AVG. RESULTANT ERRORS IN RECEIVED STRING: {avg_bit_error}")
         print(f"AVG. ERRORS REMAINING IN DNA AFTER DECODING: {avg_rem_dna_error}")
@@ -227,13 +247,16 @@ def run_experiment(
         avg_seq_error,
         dna_percent_error,
         seq_percent_error,
+        avg_gc_content,
+        avg_gc_variance,
         # conf,
     )
 
 
 def define_experiments(
     config: Parameters,
-    error_rates: list[int],
+    error_rates: list[float],
+    gc_windows: list[int],
     seed: int,
 ) -> list[Parameters]:
     experiments = []
@@ -241,26 +264,39 @@ def define_experiments(
     rn.seed(seed)
 
     for rate in error_rates:
-        exp = config.copy()
-        exp.error_rate = rate
-        # Set random seed for each experiment so that each one is individually repeatable.
-        exp.random_seed = rn.randrange(seed)
-        experiments.append(exp)
+        for window in gc_windows:
+            exp = config.copy()
+            exp.error_rate = rate
+            exp.gc_window = window
+            # Set random seed for each experiment so that each one is individually repeatable.
+            exp.random_seed = rn.randrange(seed)
+            experiments.append(exp)
 
     return experiments
 
 
-def print_results(name: str, config: Parameters, x: list[float], y: list[float]):
+def print_results(
+    name: str,
+    config: Parameters,
+    x: list[float],
+    y: list[float],
+    gc_windows: list[int],
+    gc: list[float],
+    gc_var: list[float],
+):
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
     print(
-        f'    "title": "Mechanim: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
+        f'    "title": "Mechanism: {config.choice_mechanism}, {config.reserved_bits} Reserved Bits, '
         + f'Symbol Length {config.symbol_size}, {config.constraints.short_str()}",'
     )
     print(f'    "xlabel": "Input Error Rate",')
     print(f'    "ylabel": "Output Error Rate",')
     print(f'    "x": {x},'),
-    print(f'    "y": {y},')
+    print(f'    "y": {y},'),
+    print(f'    "window": {gc_windows},')
+    print(f'    "gc": {gc},'),
+    print(f'    "gc_var": {gc_var},'),
     print("}")
 
 
@@ -268,6 +304,7 @@ def run_error_range(
     name: str,
     config: Parameters,
     error_rates: list[int],
+    gc_windows: list[int],
     starting_seed: int,
     iterations=10,
 ):
@@ -275,26 +312,34 @@ def run_error_range(
     rn.seed(starting_seed)
 
     print(
-        f"Running experiments with starting seed: {starting_seed} and error range: {error_rates}"
+        f"\nRunning experiments with starting seed: {starting_seed} and error range: {error_rates}"
     )
     random_seed = starting_seed
     dna_err = []
     seq_err = []
+    gc_win = []
+    gcs = []
+    gc_vars = []
 
     for i in range(iterations):
         random_seed = rn.randrange(random_seed)
-        experiments = define_experiments(config, error_rates, random_seed)
+        experiments = define_experiments(config, error_rates, gc_windows, random_seed)
 
         print(
             f"\nRunning iteration {i + 1} out of {iterations} with random seed: {random_seed}"
         )
 
         for experiment in experiments:
-            _, _, _, _, _, dna_percent, seq_percent = run_experiment(experiment)
+            _, _, _, _, _, dna_percent, seq_percent, gc, gc_var = run_experiment(
+                experiment
+            )
             dna_err.append(dna_percent)
             seq_err.append(seq_percent)
+            gc_win.append(experiment.gc_window)
+            gcs.append(gc)
+            gc_vars.append(gc_var)
 
-    print_results(name, config, dna_err, seq_err)
+    print_results(name, config, dna_err, seq_err, gc_win, gcs, gc_vars)
 
 
 if __name__ == "__main__":
@@ -323,20 +368,23 @@ if __name__ == "__main__":
     ]
     seed_idx = 0
 
-    # seq_len = 3000
-    seq_len = 60
-    sizes = [4, 5]
-    reserved = [3, 4, 5]
+    seq_len = 3000
+    sizes = [5]
+    reserved = [4]
     mechanisms = [
         "random",
-        "gc_tracking",
-        "gc_tracked_random",
-        "similar",
-        "different",
-        "parity",
-        "alt_parity",
+        # "gc_tracking",
+        # "gc_tracked_random",
+        # "similar",
+        # "different",
+        # "parity",
+        # "alt_parity",
     ]
     error_range = np.linspace(0.0005, 0.02, num=40)
+    # error_range = [0]
+
+    # gc_windows = [10, 20, 30, 40, 50]
+    gc_windows = [10]
 
     # Number of random sequences encoded/decoded to form a single data point.
     reps = 3
@@ -347,10 +395,19 @@ if __name__ == "__main__":
     for size in sizes:
         for res in reserved:
             for mechanism in mechanisms:
+                if (mechanism == "similar" or mechanism == "different") and (
+                    size != res
+                ):
+                    continue
+                if seq_len % (size * 2 - res) != 0:
+                    continue
+
+                c = standard_constraints(size, res)
+
                 config = Parameters(
                     symbol_size=size,
                     reserved_bits=res,
-                    constraints=standard_constraints(size, res),
+                    constraints=c,
                     sequence_length=seq_len,
                     choice_mechanism=mechanism,
                     repetitions=reps,
@@ -362,10 +419,12 @@ if __name__ == "__main__":
 
                 seed = seeds[seed_idx]
 
+                mech = mechanism.replace("_", "-")
                 run_error_range(
-                    f"final/sym-{size}-res-{res}-{mechanism}-seq-{seq_len}",
+                    f"final/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
                     config,
                     error_range,
+                    gc_windows,
                     seed,
                     iterations=iters,
                 )

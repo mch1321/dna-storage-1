@@ -12,7 +12,7 @@ pub(crate) struct Path {
     pub(crate) length: usize,
     pub(crate) sequence: String,
     pub(crate) observations: String,
-    tip: Option<String>,
+    // tip: Option<String>,
 }
 
 impl Path {
@@ -20,7 +20,7 @@ impl Path {
         self.length += dist;
         self.sequence += &input;
         self.observations += &output;
-        self.tip = Option::from(output);
+        // self.tip = Option::from(output);
     }
 }
 
@@ -30,7 +30,7 @@ impl Clone for Path {
             length: self.length,
             sequence: self.sequence.clone(),
             observations: self.observations.clone(),
-            tip: self.tip.clone(),
+            // tip: self.tip.clone(),
         }
     }
 }
@@ -58,9 +58,9 @@ pub(crate) fn conv(fsm: &FSM, msg: String) -> String {
     return result;
 }
 
-fn even_parity(seq: String) -> bool {
-    return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
-}
+// fn even_parity(seq: String) -> bool {
+//     return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
+// }
 
 pub(crate) fn viterbi(fsm: &FSM, msg: String) -> Path {
     assert!(msg.len() % fsm.output_size == 0);
@@ -69,7 +69,7 @@ pub(crate) fn viterbi(fsm: &FSM, msg: String) -> Path {
         length: 0,
         sequence: String::from(""),
         observations: String::from(""),
-        tip: None,
+        // tip: None,
     };
     let mut paths: Paths = HashMap::from([(fsm.init_state.to_string(), start_path)]);
 
@@ -81,12 +81,12 @@ pub(crate) fn viterbi(fsm: &FSM, msg: String) -> Path {
             for (input, (next, output)) in &fsm.table[&tip] {
                 let dist = hamming_dist(symbol, output);
                 let mut extended = path.clone();
-                let tip = extended.tip.clone();
+                // let tip = extended.tip.clone();
                 extended.extend(dist, input.to_string(), output.to_string());
 
-                if tip.is_some() && (even_parity(tip.unwrap()) != even_parity(output.to_owned())) {
-                    extended.length += 1;
-                }
+                // if tip.is_some() && (even_parity(tip.unwrap()) != even_parity(output.to_owned())) {
+                //     extended.length += 1;
+                // }
 
                 if !extended_paths.contains_key(next)
                     || extended.length < extended_paths[next].length

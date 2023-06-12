@@ -18,14 +18,24 @@ def multiplot(
 ):
     fig, ax = plt.subplots(figsize=(30, 20))
 
-    assert len(xs) <= 6
+    assert len(xs) <= 9
     assert len(xs) == len(ys)
     assert len(xs) == len(set_labels)
 
-    cs = ["red", "green", "blue", "orange", "purple", "black"]
+    cs = [
+        "red",
+        "green",
+        "blue",
+        "orange",
+        "purple",
+        "black",
+        "yellow",
+        "teal",
+        "brown",
+    ]
 
     for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
-        plt.scatter(x, y, c=cs[i], label=l)
+        plt.scatter(x, y, s=40, c=cs[i], label=l)
         if fit:
             sn.regplot(
                 x=x,
@@ -46,6 +56,8 @@ def multiplot(
         ax.invert_xaxis()
     else:
         plt.legend(loc="upper left")
+
+    plt.legend(loc="upper right")
 
     file_name = name if fit else f"{name}-no-trend"
     fig.savefig(f"plots/{file_name}.png")
@@ -125,55 +137,97 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
-    plt.rcParams["font.size"] = 28
+    plt.rcParams["font.size"] = 30
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    plot_from_dict("rust/sym-4-res-4-alt-parity-pen-seq-3000")
+    # plot_from_dict("final/sym-5-res-5-random-seq-3000")
+    # key = "gc/sym-4-res-5-random-seq-3000"
+    # p = plots[key]
+    # plot(
+    #     key,
+    #     x=p["window"],
+    #     y=p["gc_var"],
+    #     xlabel="Window Size",
+    #     ylabel="Maximum GC Variance",
+    #     title="GC Variance: Random Choice, 5 Reserved Bits, Symbol Length 4",
+    # )
 
     xs = [
-        # plots["rust/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["gc/sym-4-res-3-random-seq-3000"]["window"],
+        # plots["gc/sym-4-res-4-random-seq-3000"]["window"],
+        # plots["gc/sym-4-res-5-random-seq-3000"]["window"],
+        plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["window"],
+        plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["window"],
+        plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["window"],
+        # plots["gc/sym-4-res-3-random-seq-3000"]["window"],
+        # plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["window"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-similar-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-different-seq-3000"]["x"],
-        plots["rust/sym-4-res-4-parity-seq-3000"]["x"],
-        plots["rust/sym-4-res-4-alt-parity-seq-3000"]["x"],
-        plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-alt-parity-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["x"],
         # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["x"],
     ]
     ys = [
-        # plots["rust/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["gc/sym-4-res-3-random-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-4-random-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-5-random-seq-3000"]["gc_var"],
+        plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["gc_var"],
+        plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["gc_var"],
+        plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-3-random-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["gc_var"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-similar-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-different-seq-3000"]["y"],
-        plots["rust/sym-4-res-4-parity-seq-3000"]["y"],
-        plots["rust/sym-4-res-4-alt-parity-seq-3000"]["y"],
-        plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-alt-parity-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["y"],
         # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["y"],
     ]
     multiplot(
-        name="rust/alt-parity-sym-4-res-4",
+        name="gc/sym-4-res-3-5-gc-tracking-seq-3000",
         xs=xs,
         ys=ys,
         set_labels=[
-            # "Random",
+            # "Random Choice, 3 Reserved Bits",
+            # "Random Choice, 4 Reserved Bits",
+            # "Random Choice, 5 Reserved Bits",
+            "GC-Tracking, 3 Reserved Bits",
+            "GC-Tracking, 4 Reserved Bits",
+            "GC-Tracking, 5 Reserved Bits",
+            # "Randomised GC-Tracking",
             # "GC Tracking",
             # "GC Tracked Random",
             # "Most Similar",
             # "Most Different",
-            "Parity",
-            "Alternating Parity",
-            "Alternating Parity Penalty",
+            # "Parity",
+            # "Alternating Parity",
+            # "Alternating Parity Penalty",
             # "Parity Decoding",
             # "Parity Penalty",
         ],
-        xlabel="Input Error Rate",
-        ylabel="Output Error Rate",
-        title="Symbol Size 4, 4, Reserved Bits, 25% <= GC <= 35%, Sequence Length 3000",
+        xlabel="Window Size",
+        ylabel="Maximum GC Variance",
+        title="",
         fit=True,
-        invertx=True,
+        invertx=False,
     )
 
     # plot_confusion(

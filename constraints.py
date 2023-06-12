@@ -31,6 +31,17 @@ class Constraints:
 
 
 def standard_constraints(symbol_size: int, reserved_bits: int):
+    if symbol_size == 3:
+        if reserved_bits == 2:
+            return default_constraints(gc_min=0.16, gc_max=0.84)
+        if reserved_bits == 3:
+            return default_constraints(gc_min=0.33, gc_max=0.67)
+        if reserved_bits == 4:
+            return default_constraints(gc_min=0.33, gc_max=0.67)
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 2, 3 and 4."
+            )
     if symbol_size == 4:
         if reserved_bits == 3:
             return default_constraints(gc_min=0.15, gc_max=0.85)
