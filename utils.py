@@ -90,6 +90,23 @@ def inject_base_errors(message: str, rate: float = 0.01) -> str:
     return result
 
 
+def inject_deletion_errors(message: str, rate: float = 0.01) -> str:
+    result = ""
+    for base in message:
+        if rn.random() > rate:
+            result += base
+    return result
+
+
+def inject_insertion_errors(message: str, rate: float = 0.01) -> str:
+    result = ""
+    for base in message:
+        if rn.random() <= rate:
+            result += rand_base()
+        result += base
+    return result
+
+
 # Injects a precise number of errors at random locations.
 def inject_base_errors_exact(message: str, num: int) -> str:
     result = list(message)
