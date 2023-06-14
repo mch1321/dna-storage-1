@@ -5,7 +5,6 @@ use crate::bits_to_dna;
 use crate::constraints::gc_content;
 
 pub(crate) fn random_choice(reserved: Vec<String>, rng: &mut StdRng) -> String {
-    // println!("{}", reserved.len());
     return reserved.choose(rng).unwrap().to_string();
 }
 
@@ -56,7 +55,6 @@ pub(crate) fn gc_tracked_random(
         }
     }
 
-    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
 }
 
@@ -92,7 +90,6 @@ pub(crate) fn most_similar(
         }
     }
 
-    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
 }
 
@@ -119,7 +116,6 @@ pub(crate) fn most_different(
         }
     }
 
-    // println!("{}", closest.len());
     return closest.choose(rng).unwrap().to_string();
 }
 
@@ -141,7 +137,6 @@ pub(crate) fn parity(state: &str, input: &str, reserved: Vec<String>, rng: &mut 
         return random_choice(reserved, rng);
     }
 
-    // println!("{}", even.len());
     return even.choose(rng).unwrap().to_string();
 }
 
@@ -164,6 +159,5 @@ pub(crate) fn alt_parity(
         return random_choice(reserved, rng);
     }
 
-    // println!("{}", even.len());
     return alt.choose(rng).unwrap().to_string();
 }

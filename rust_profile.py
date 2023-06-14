@@ -6,7 +6,7 @@ from graphing import plot
 from utils import inject_base_errors, rand_bit_string
 
 
-def profile(config: Parameters) -> tuple[float, float, float]:
+def profile(config: Parameters, fsm_only: bool = False) -> tuple[float, float, float]:
     output_size = 2 * config.symbol_size
 
     if config.reserved_bits >= output_size:
@@ -37,6 +37,9 @@ def profile(config: Parameters) -> tuple[float, float, float]:
     total += fsm_duration
     print(f"--- Constructing the FSM took {fsm_duration} seconds. ---")
 
+    if fsm_only:
+        return fsm_duration, None, None, None
+
     seq = rand_bit_string(config.sequence_length)
 
     start_time = time.time()
@@ -63,17 +66,23 @@ if __name__ == "__main__":
     sequence_lengths = list(range(30, 360, 30))
     sequence_lengths.extend(range(360, 720, 90))
     sequence_lengths.extend(range(720, 1300, 180))
+
+    symbol_sizes = list(range(2, 21))
+
     fsm_dur = []
     enc_dur = []
     dec_dur = []
     tot_dur = []
 
     for length in sequence_lengths:
-        fsm, enc, dec, tot = profile(Parameters(sequence_length=length))
-        fsm_dur.append(fsm)
+        _, enc, dec, tot = profile(Parameters(sequence_length=length))
         enc_dur.append(enc)
         dec_dur.append(dec)
         tot_dur.append(tot)
+
+    for length in symbol_sizes:
+        fsm, _, _, _ = profile(Parameters(sequence_length=length), fsm_only=True)
+        fsm_dur.append(fsm)
 
     print("===================== RESULTS =======================")
     print(f"SEQUENCE LENGTHS : {sequence_lengths}")
@@ -84,11 +93,11 @@ if __name__ == "__main__":
 
     plot(
         "rust-fsm-profile",
-        sequence_lengths,
+        symbol_sizes,
         fsm_dur,
-        "Sequence Length / bits",
+        "Symbol Length / nucleotides",
         "Duration / seconds",
-        "FSM Construction Profile (Rust)",
+        "",
         fit=False,
     )
     plot(
@@ -97,7 +106,7 @@ if __name__ == "__main__":
         enc_dur,
         "Sequence Length / bits",
         "Duration / seconds",
-        "Encoding Profile (Rust)",
+        "",
         fit=False,
     )
     plot(
@@ -106,7 +115,7 @@ if __name__ == "__main__":
         dec_dur,
         "Sequence Length / bits",
         "Duration / seconds",
-        "Decoding Profile (Rust)",
+        "",
         fit=False,
     )
     plot(
@@ -115,6 +124,6 @@ if __name__ == "__main__":
         tot_dur,
         "Sequence Length / bits",
         "Duration / seconds",
-        "Total Profile (Rust)",
+        "",
         fit=False,
     )

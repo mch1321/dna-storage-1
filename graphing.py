@@ -16,6 +16,7 @@ def multiplot(
     fit: bool = True,
     invertx: bool = False,
 ):
+    plt.rcParams["font.size"] = 32
     fig, ax = plt.subplots(figsize=(30, 20))
 
     assert len(xs) <= 9
@@ -35,7 +36,7 @@ def multiplot(
     ]
 
     for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
-        plt.scatter(x, y, s=40, c=cs[i], label=l)
+        plt.scatter(x, y, s=70, c=cs[i], label=l)
         if fit:
             sn.regplot(
                 x=x,
@@ -56,8 +57,6 @@ def multiplot(
         ax.invert_xaxis()
     else:
         plt.legend(loc="upper left")
-
-    plt.legend(loc="upper right")
 
     file_name = name if fit else f"{name}-no-trend"
     fig.savefig(f"plots/{file_name}.png")
@@ -89,9 +88,10 @@ def plot(
     fit: bool = True,
     invertx: bool = False,
 ):
+    plt.rcParams["font.size"] = 32
     fig, ax = plt.subplots(figsize=(30, 20))
 
-    plt.scatter(x, y)
+    plt.scatter(x, y, s=70)
 
     ax.set(
         xlabel=xlabel,
@@ -139,7 +139,7 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 if __name__ == "__main__":
     plt.rcParams["font.size"] = 30
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("final/sym-5-res-5-random-seq-3000")
+    # plot_from_dict("del/sym-4-res-4-random-seq-120")
     # key = "gc/sym-4-res-5-random-seq-3000"
     # p = plots[key]
     # plot(
@@ -155,11 +155,20 @@ if __name__ == "__main__":
         # plots["gc/sym-4-res-3-random-seq-3000"]["window"],
         # plots["gc/sym-4-res-4-random-seq-3000"]["window"],
         # plots["gc/sym-4-res-5-random-seq-3000"]["window"],
-        plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["window"],
-        plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["window"],
-        plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["window"],
-        # plots["gc/sym-4-res-3-random-seq-3000"]["window"],
         # plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["window"],
+        # plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["window"],
+        # plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["window"],
+        # plots["burst/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-1"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-2"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["x"],
+        plots["burst/sym-4-res-4-random-seq-3000-b-4"]["x"],
+        plots["burst/sym-4-res-4-alt-parity-seq-3000-b-4"]["x"],
+        plots["cons/sym-4-res-4-alt-parity-seq-3000-b-4"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-5"]["x"],
+        # plots["final/sym-5-res-4-random-seq-3000"]["x"],
+        # plots["final/sym-5-res-5-random-seq-3000"]["x"],
         # plots["final/sym-4-res-4-random-seq-3000"]["x"],
         # plots["final/sym-4-res-5-random-seq-3000"]["x"],
         # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["x"],
@@ -180,11 +189,20 @@ if __name__ == "__main__":
         # plots["gc/sym-4-res-3-random-seq-3000"]["gc_var"],
         # plots["gc/sym-4-res-4-random-seq-3000"]["gc_var"],
         # plots["gc/sym-4-res-5-random-seq-3000"]["gc_var"],
-        plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["gc_var"],
-        plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["gc_var"],
-        plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["gc_var"],
-        # plots["gc/sym-4-res-3-random-seq-3000"]["gc_var"],
         # plots["gc/sym-4-res-3-gc-tracking-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-4-gc-tracking-seq-3000"]["gc_var"],
+        # plots["gc/sym-4-res-5-gc-tracking-seq-3000"]["gc_var"],
+        # plots["burst/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-1"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-2"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["y"],
+        plots["burst/sym-4-res-4-random-seq-3000-b-4"]["y"],
+        plots["burst/sym-4-res-4-alt-parity-seq-3000-b-4"]["y"],
+        plots["cons/sym-4-res-4-alt-parity-seq-3000-b-4"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-5"]["y"],
+        # plots["final/sym-5-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-5-res-5-random-seq-3000"]["y"],
         # plots["final/sym-4-res-4-random-seq-3000"]["y"],
         # plots["final/sym-4-res-5-random-seq-3000"]["y"],
         # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["y"],
@@ -202,16 +220,16 @@ if __name__ == "__main__":
         # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["y"],
     ]
     multiplot(
-        name="gc/sym-4-res-3-5-gc-tracking-seq-3000",
+        name="burst/sym-4-res-4-alt-parity-seq-3000-b-4",
         xs=xs,
         ys=ys,
         set_labels=[
-            # "Random Choice, 3 Reserved Bits",
-            # "Random Choice, 4 Reserved Bits",
-            # "Random Choice, 5 Reserved Bits",
-            "GC-Tracking, 3 Reserved Bits",
-            "GC-Tracking, 4 Reserved Bits",
-            "GC-Tracking, 5 Reserved Bits",
+            "Random Choice",
+            "Alt Parity",
+            "Alt Parity Constraint Decoding",
+            # "Normal",
+            # "Symbol Length 5, 4 Reserved Bits",
+            # "Symbol Length 5, 5 Reserved Bits",
             # "Randomised GC-Tracking",
             # "GC Tracking",
             # "GC Tracked Random",
@@ -223,11 +241,11 @@ if __name__ == "__main__":
             # "Parity Decoding",
             # "Parity Penalty",
         ],
-        xlabel="Window Size",
-        ylabel="Maximum GC Variance",
-        title="",
+        xlabel="Input Error Rate",
+        ylabel="Output Error Rate",
+        title="Default Constraints",
         fit=True,
-        invertx=False,
+        invertx=True,
     )
 
     # plot_confusion(

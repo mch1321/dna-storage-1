@@ -15,6 +15,8 @@ from utils import (
     gc_content,
     hamming_dist,
     inject_base_errors,
+    inject_burst_errors,
+    inject_deletion_errors,
     max_gc_variance,
     rand_bit_string,
 )
@@ -163,19 +165,22 @@ def run_experiment(
         dna_len = len(dna)
 
         # Gather info about the encoded DNA sequence.
-        gc_cont.append(gc_content(dna))
-        gc_variance.append(max_gc_variance(dna, window=params.gc_window))
+        # gc_cont.append(gc_content(dna))
+        # gc_variance.append(max_gc_variance(dna, window=params.gc_window))
 
         # Inject substitution errors at given rate to
         # simulate errors during synthesis, PCR, storage or sequencing.
         # num_errors = int(params.error_rate * dna_len)
-        dna_err = inject_base_errors(dna, params.error_rate)
+        # dna_err = inject_base_errors(dna, params.error_rate)
+        # dna_err = inject_deletion_errors(dna, params.error_rate)
+        dna_err = inject_burst_errors(dna, params.error_rate, min_burst=4, max_burst=4)
 
         # Convert nucleotides back to bits (analog to DNA sequencing).
         err = encoding.dna_to_bits(dna_err)
 
         # Decode received bits using viterbi, get the resulting sequence.
-        (_, result, observed) = viterbi.decode(fsm, err)
+        # (_, result, observed) = viterbi.decode(fsm, err)
+        (_, result, observed) = viterbi.constraint_decode(fsm, rs_cons, err)
 
         # The estimated DNA sequence.
         dna_cor = encoding.bits_to_dna(observed)
@@ -219,8 +224,8 @@ def run_experiment(
     avg_bit_error = mean(bit_errors_injected)
     avg_rem_bit_error = mean(bit_errors_remaining)
     avg_seq_error = mean(sequence_errors)
-    avg_gc_content = mean(gc_cont)
-    avg_gc_variance = mean(gc_variance)
+    # avg_gc_content = mean(gc_cont)
+    # avg_gc_variance = mean(gc_variance)
 
     dna_percent_error = avg_dna_error / dna_len
     seq_percent_error = avg_seq_error / params.sequence_length
@@ -228,8 +233,8 @@ def run_experiment(
     if verbose:
         print("AVERAGE RESULTS:")
         print("----------------------")
-        print(f"AVG. GC CONTENT: {avg_gc_content}")
-        print(f"AVG. MAX GC VARIANCE: {avg_gc_variance}")
+        # print(f"AVG. GC CONTENT: {avg_gc_content}")
+        # print(f"AVG. MAX GC VARIANCE: {avg_gc_variance}")
         print(f"AVG. ERRORS INJECTED INTO DNA: {avg_dna_error}")
         print(f"AVG. RESULTANT ERRORS IN RECEIVED STRING: {avg_bit_error}")
         print(f"AVG. ERRORS REMAINING IN DNA AFTER DECODING: {avg_rem_dna_error}")
@@ -247,8 +252,8 @@ def run_experiment(
         avg_seq_error,
         dna_percent_error,
         seq_percent_error,
-        avg_gc_content,
-        avg_gc_variance,
+        0,
+        0,
         # conf,
     )
 
@@ -369,18 +374,19 @@ if __name__ == "__main__":
     seed_idx = 0
 
     seq_len = 3000
-    sizes = [5]
+    sizes = [4]
     reserved = [4]
     mechanisms = [
-        "random",
+        # "random",
         # "gc_tracking",
         # "gc_tracked_random",
         # "similar",
         # "different",
         # "parity",
-        # "alt_parity",
+        "alt_parity",
     ]
     error_range = np.linspace(0.0005, 0.02, num=40)
+    # error_range = np.linspace(0.001, 0.01, num=10)
     # error_range = [0]
 
     # gc_windows = [10, 20, 30, 40, 50]
@@ -421,7 +427,7 @@ if __name__ == "__main__":
 
                 mech = mechanism.replace("_", "-")
                 run_error_range(
-                    f"final/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
+                    f"cons/sym-{size}-res-{res}-{mech}-seq-{seq_len}-b-4",
                     config,
                     error_range,
                     gc_windows,

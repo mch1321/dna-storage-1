@@ -48,10 +48,29 @@ def hamming_dist(one: str, two: str) -> int:
     assert len(one) == len(two)
 
     dist = 0
-    for i in range(len(one)):
-        if one[i] != two[i]:
+    for a, b in zip(list(one), list(two)):
+        if a != b:
             dist += 1
     return dist
+
+
+def burst_score(true: str, pred: str) -> int:
+    assert len(true) == len(pred)
+
+    burst = 0
+    score = 0
+
+    for t, p in zip(list(true), list(pred)):
+        if t != p:
+            burst += 1
+            if burst == 2:
+                score += 2
+            elif burst > 2:
+                score += 1
+        else:
+            burst = 0
+
+    return score
 
 
 def rand_bit_string(length: int) -> str:
@@ -76,8 +95,7 @@ def inject_bit_errors(message: str, rate: float = 0.01) -> str:
 
 def rand_base(exclude: str = ""):
     bases = "ACGT".replace(exclude, "")
-    index = rn.randrange(len(bases))
-    return bases[index]
+    return rn.choice(bases)
 
 
 def inject_base_errors(message: str, rate: float = 0.01) -> str:
@@ -87,6 +105,29 @@ def inject_base_errors(message: str, rate: float = 0.01) -> str:
             result += rand_base(base)
         else:
             result += base
+    return result
+
+
+def inject_burst_errors(
+    message: str, rate: float = 0.01, min_burst=2, max_burst=4
+) -> str:
+    result = message[:]
+
+    num_errors = int(len(message) * rate)
+
+    # Injects ROUGHLY num_errors many errors into the message.
+    while num_errors > 0:
+        burst = rn.randint(min_burst, max_burst)
+        position = rn.randrange(len(message) - burst)
+
+        error = ""
+        for i in range(burst):
+            error += rand_base(message[position + i])
+
+        result = result[:position] + error + result[position + burst :]
+
+        num_errors -= burst
+
     return result
 
 
@@ -211,3 +252,9 @@ if __name__ == "__main__":
     print(longest_homopolymer("AACGTCCC") == 3)
     print(longest_homopolymer("TTTTACCC") == 4)
     print(longest_homopolymer("TTTTATTT") == 4)
+
+    print(burst_score("ACGTACGT", "ACGTACGT"))
+    print(burst_score("ACGTACGT", "AAGAAAGT"))
+    print(burst_score("ACGTACGT", "AAATAAGT"))
+    print(burst_score("ACGTACGT", "AAAAAAAA"))
+    print(burst_score("ACGTACGT", "AAAATAAA"))
