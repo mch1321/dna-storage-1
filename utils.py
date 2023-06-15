@@ -73,6 +73,16 @@ def burst_score(true: str, pred: str) -> int:
     return score
 
 
+def strs(sequence: str, size: int = 4) -> int:
+    count = 0
+    for i in range(len(sequence) - size * 2):
+        one = sequence[i : i + size]
+        two = sequence[i + size : i + size * 2]
+        if one == two:
+            count += 1
+    return count
+
+
 def rand_bit_string(length: int) -> str:
     bits = ""
     for i in range(length):
