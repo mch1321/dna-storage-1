@@ -413,21 +413,49 @@ def dna_rust_python_equivalence(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True
     return hamming_dist(eg, py_path.sequence), hamming_dist(eg, seq)
 
 
+def rust_one_half_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True):
+    fsm = viterbi.one_half()
+    enc = viterbi.encode(fsm, eg)
+    dna = encoding.bits_to_dna(enc)
+    dna_err = inject_base_errors(dna, error_rate)
+    err = encoding.dna_to_bits(dna_err)
+    (l, seq, obs) = viterbi.decode(fsm, err)
+    dna_cor = encoding.bits_to_dna(obs)
+
+    if output:
+        print(f"RUST DNA ROUND TRIP WITH ERROR RATE {error_rate}")
+        print(f"Raw message      : {eg}")
+        print(f"Encoded message  : {enc}")
+        print(f"DNA message      : {dna}")
+        print(f"Received message : {dna_err}")
+        print(f"Corrected DNA    : {dna_cor}")
+        print(f"Viterbi path     : {obs}")
+        print(f"Decoded message  : {seq}")
+        print(f"Errors injected  : {hamming_dist(enc, err)}")
+        print(f"Errors remaining : {hamming_dist(enc, obs)}")
+        print(f"After decoding   : {hamming_dist(eg, seq)}")
+        print(f"GC Content       : {gc_content(dna)}")
+        print("----------------------------------------------------")
+
+    return dna, enc, fsm
+
+
 def run_all_examples():
-    constructing_transition_tables()
-    one_half()
-    one_half_with_errors()
-    two_thirds()
-    two_thirds_with_errors()
-    dna_round_trip()
-    dna_round_trip_with_errors(error_rate=0.05)
-    dna_round_trip_with_errors(eg=rand_bit_string(90))
-    dna_gc_tracking()
-    dna_gc_tracking_with_errors()
-    rust_dna_round_trip()
-    rust_dna_round_trip_with_errors(error_rate=0.05)
-    rust_python_equivalence()
-    dna_rust_python_equivalence()
+    # constructing_transition_tables()
+    # one_half()
+    # one_half_with_errors()
+    # two_thirds()
+    # two_thirds_with_errors()
+    # dna_round_trip()
+    # dna_round_trip_with_errors(error_rate=0.05)
+    # dna_round_trip_with_errors(eg=rand_bit_string(90))
+    # dna_gc_tracking()
+    # dna_gc_tracking_with_errors()
+    # rust_dna_round_trip()
+    # rust_dna_round_trip_with_errors(error_rate=0.05)
+    # rust_python_equivalence()
+    # dna_rust_python_equivalence()
+    rust_one_half_with_errors()
 
 
 if __name__ == "__main__":

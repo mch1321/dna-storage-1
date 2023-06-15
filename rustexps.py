@@ -19,6 +19,7 @@ from utils import (
     inject_deletion_errors,
     max_gc_variance,
     rand_bit_string,
+    strs as short_tandem_repeats,
 )
 
 
@@ -135,6 +136,10 @@ def run_experiment(
         raise Exception("Invalid choice mechanism")
 
     # conf = confusion()
+    # fsm = viterbi.one_half()
+
+    # str_lens = list(range(4, 21))
+    # strs = []
 
     dna_errors_injected = []
     dna_errors_remaining = []
@@ -164,6 +169,9 @@ def run_experiment(
         dna = encoding.bits_to_dna(enc)
         dna_len = len(dna)
 
+        # for l in str_lens:
+        #     strs.append(short_tandem_repeats(dna, l) / dna_len)
+
         # Gather info about the encoded DNA sequence.
         # gc_cont.append(gc_content(dna))
         # gc_variance.append(max_gc_variance(dna, window=params.gc_window))
@@ -171,16 +179,16 @@ def run_experiment(
         # Inject substitution errors at given rate to
         # simulate errors during synthesis, PCR, storage or sequencing.
         # num_errors = int(params.error_rate * dna_len)
-        # dna_err = inject_base_errors(dna, params.error_rate)
+        dna_err = inject_base_errors(dna, params.error_rate)
         # dna_err = inject_deletion_errors(dna, params.error_rate)
-        dna_err = inject_burst_errors(dna, params.error_rate, min_burst=4, max_burst=4)
+        # dna_err = inject_burst_errors(dna, params.error_rate, min_burst=4, max_burst=4)
 
         # Convert nucleotides back to bits (analog to DNA sequencing).
         err = encoding.dna_to_bits(dna_err)
 
         # Decode received bits using viterbi, get the resulting sequence.
-        # (_, result, observed) = viterbi.decode(fsm, err)
-        (_, result, observed) = viterbi.constraint_decode(fsm, rs_cons, err)
+        (_, result, observed) = viterbi.decode(fsm, err)
+        # (_, result, observed) = viterbi.constraint_decode(fsm, rs_cons, err)
 
         # The estimated DNA sequence.
         dna_cor = encoding.bits_to_dna(observed)
@@ -244,6 +252,8 @@ def run_experiment(
         print(f"PERCENTAGE ERROR IN SEQUENCE: {seq_percent_error}")
         print(f"===============================================================")
 
+    # print(f"STRs: {strs}")
+
     return (
         avg_dna_error,
         avg_rem_dna_error,
@@ -254,6 +264,8 @@ def run_experiment(
         seq_percent_error,
         0,
         0,
+        # str_lens,
+        # strs,
         # conf,
     )
 
@@ -274,7 +286,7 @@ def define_experiments(
             exp.error_rate = rate
             exp.gc_window = window
             # Set random seed for each experiment so that each one is individually repeatable.
-            exp.random_seed = rn.randrange(seed)
+            exp.random_seed = rn.randrange(seed + 100_000)
             experiments.append(exp)
 
     return experiments
@@ -288,6 +300,8 @@ def print_results(
     gc_windows: list[int],
     gc: list[float],
     gc_var: list[float],
+    str_lens: list[int],
+    strs: list[int],
 ):
     print("==================== EXPERIMENT RESULTS =======================")
     print(f'"{name}":' + " {")
@@ -302,6 +316,8 @@ def print_results(
     print(f'    "window": {gc_windows},')
     print(f'    "gc": {gc},'),
     print(f'    "gc_var": {gc_var},'),
+    print(f'    "str_lens": {str_lens},'),
+    print(f'    "strs": {strs},'),
     print("}")
 
 
@@ -325,9 +341,11 @@ def run_error_range(
     gc_win = []
     gcs = []
     gc_vars = []
+    str_lens = []
+    strs = []
 
     for i in range(iterations):
-        random_seed = rn.randrange(random_seed)
+        random_seed = rn.randrange(random_seed + 100_000)
         experiments = define_experiments(config, error_rates, gc_windows, random_seed)
 
         print(
@@ -343,8 +361,11 @@ def run_error_range(
             gc_win.append(experiment.gc_window)
             gcs.append(gc)
             gc_vars.append(gc_var)
+            # l, s = run_experiment(experiment)
+            # str_lens.extend(l)
+            # strs.extend(s)
 
-    print_results(name, config, dna_err, seq_err, gc_win, gcs, gc_vars)
+    print_results(name, config, dna_err, seq_err, gc_win, gcs, gc_vars, str_lens, strs)
 
 
 if __name__ == "__main__":
@@ -409,6 +430,9 @@ if __name__ == "__main__":
                     continue
 
                 c = standard_constraints(size, res)
+                # c = Constraints(
+                #     gc_min=0.0, gc_max=1.0, max_run_length=seq_len, reserved=[]
+                # )
 
                 config = Parameters(
                     symbol_size=size,
@@ -427,7 +451,9 @@ if __name__ == "__main__":
 
                 mech = mechanism.replace("_", "-")
                 run_error_range(
-                    f"cons/sym-{size}-res-{res}-{mech}-seq-{seq_len}-b-4",
+                    # f"eval/one-half-seq-{seq_len}",
+                    f"final/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
+                    # f"strs/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
                     config,
                     error_range,
                     gc_windows,

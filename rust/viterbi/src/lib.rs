@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use pyo3::prelude::*;
 mod constraints;
 mod conv;
@@ -6,6 +8,33 @@ mod conv;
 pub type Constraints = (f32, f32, usize, Vec<String>);
 pub type FSM = (usize, usize, String, conv::Table);
 pub type Path = (usize, String, String);
+
+// Returns an FSM for a 1/2 encoding.
+#[pyfunction]
+fn one_half() -> FSM {
+    let mut table: conv::Table = HashMap::new();
+    let states = ["00", "01", "10", "11"];
+    let inputs = ["0", "1"];
+    let transitions = [
+        [("00", "00"), ("10", "11")],
+        [("00", "11"), ("10", "00")],
+        [("01", "01"), ("11", "10")],
+        [("10", "10"), ("11", "01")],
+    ];
+
+    for (s, state) in states.iter().enumerate() {
+        table.insert(state.to_string(), HashMap::new());
+        for (i, input) in inputs.iter().enumerate() {
+            let t = transitions[s][i];
+            table
+                .get_mut(&state.to_string())
+                .unwrap()
+                .insert(input.to_string(), (String::from(t.0), String::from(t.1)));
+        }
+    }
+
+    return (1, 2, String::from("00"), table);
+}
 
 // Convolutional encoder.
 #[pyfunction]
@@ -60,6 +89,7 @@ fn constraint_decode(fsm: FSM, constraints: Constraints, msg: String) -> Path {
 /// A Python module for convolutional codes implemented in Rust.
 #[pymodule]
 fn viterbi(_py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(one_half, m)?)?;
     m.add_function(wrap_pyfunction!(encode, m)?)?;
     m.add_function(wrap_pyfunction!(decode, m)?)?;
     m.add_function(wrap_pyfunction!(constraint_decode, m)?)?;

@@ -60,9 +60,9 @@ pub(crate) fn conv(fsm: &FSM, msg: String) -> String {
     return result;
 }
 
-fn even_parity(seq: &str) -> bool {
-    return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
-}
+// fn even_parity(seq: &str) -> bool {
+//     return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
+// }
 
 pub(crate) fn viterbi(fsm: &FSM, msg: String) -> Path {
     assert!(msg.len() % fsm.output_size == 0);
@@ -94,24 +94,25 @@ pub(crate) fn viterbi(fsm: &FSM, msg: String) -> Path {
                     || extended.length < extended_paths[next].length
                 {
                     extended_paths.insert(next.to_string(), extended);
-                } else if extended.length == extended_paths[next].length {
-                    let len = extended.observations.len();
-                    if len > fsm.output_size * 2 {
-                        let prev = &extended.observations
-                            [len - fsm.output_size * 2..len - fsm.output_size];
-                        let curr = &extended.observations[len - fsm.output_size..len];
-                        let path_prev = &extended_paths[next].observations
-                            [len - fsm.output_size * 2..len - fsm.output_size];
-                        let path_curr =
-                            &extended_paths[next].observations[len - fsm.output_size..len];
-
-                        if even_parity(path_prev) == even_parity(path_curr)
-                            && even_parity(prev) != even_parity(curr)
-                        {
-                            extended_paths.insert(next.to_string(), extended);
-                        }
-                    }
                 }
+                // else if extended.length == extended_paths[next].length {
+                //     let len = extended.observations.len();
+                //     if len > fsm.output_size * 2 {
+                //         let prev = &extended.observations
+                //             [len - fsm.output_size * 2..len - fsm.output_size];
+                //         let curr = &extended.observations[len - fsm.output_size..len];
+                //         let path_prev = &extended_paths[next].observations
+                //             [len - fsm.output_size * 2..len - fsm.output_size];
+                //         let path_curr =
+                //             &extended_paths[next].observations[len - fsm.output_size..len];
+
+                //         if even_parity(path_prev) == even_parity(path_curr)
+                //             && even_parity(prev) != even_parity(curr)
+                //         {
+                //             extended_paths.insert(next.to_string(), extended);
+                //         }
+                //     }
+                // }
             }
         }
 
@@ -166,24 +167,25 @@ pub(crate) fn constraint_viterbi(fsm: &FSM, constraints: Constraints, msg: Strin
                     || extended.length < extended_paths[next].length
                 {
                     extended_paths.insert(next.to_string(), extended);
-                } else if extended.length == extended_paths[next].length {
-                    let len = extended.observations.len();
-                    if len > fsm.output_size * 2 {
-                        let prev = &extended.observations
-                            [len - fsm.output_size * 2..len - fsm.output_size];
-                        let curr = &extended.observations[len - fsm.output_size..len];
-                        let path_prev = &extended_paths[next].observations
-                            [len - fsm.output_size * 2..len - fsm.output_size];
-                        let path_curr =
-                            &extended_paths[next].observations[len - fsm.output_size..len];
-
-                        if even_parity(path_prev) == even_parity(path_curr)
-                            && even_parity(prev) != even_parity(curr)
-                        {
-                            extended_paths.insert(next.to_string(), extended);
-                        }
-                    }
                 }
+                // else if extended.length == extended_paths[next].length {
+                //     let len = extended.observations.len();
+                //     if len > fsm.output_size * 2 {
+                //         let prev = &extended.observations
+                //             [len - fsm.output_size * 2..len - fsm.output_size];
+                //         let curr = &extended.observations[len - fsm.output_size..len];
+                //         let path_prev = &extended_paths[next].observations
+                //             [len - fsm.output_size * 2..len - fsm.output_size];
+                //         let path_curr =
+                //             &extended_paths[next].observations[len - fsm.output_size..len];
+
+                //         if even_parity(path_prev) == even_parity(path_curr)
+                //             && even_parity(prev) != even_parity(curr)
+                //         {
+                //             extended_paths.insert(next.to_string(), extended);
+                //         }
+                //     }
+                // }
             }
         }
 
