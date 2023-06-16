@@ -1,5 +1,6 @@
 use mechanisms::{
-    alt_parity, gc_tracked_random, gc_tracking, most_different, most_similar, parity, random_choice,
+    alt_parity, gc_tracked_random, gc_tracking, most_different, most_similar, parity,
+    random_choice, random_unused, xor,
 };
 use pyo3::prelude::*;
 use rand::{rngs::StdRng, SeedableRng};
@@ -159,6 +160,50 @@ fn alt_parity_fsm(
     );
 }
 
+// Uses the XOR choice mechanism to construct an FSM given constraints.
+#[pyfunction]
+fn xor_fsm(
+    symbol_size: usize,
+    reserved_bits: usize,
+    init_state: String,
+    constraints: Constraints,
+    seed: u64,
+) -> fsm::FSM {
+    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
+
+    return generate_fsm(
+        symbol_size,
+        reserved_bits,
+        init_state,
+        constraints,
+        |s, i, r| xor(s, i, r, &mut rng),
+    );
+}
+
+// Uses the random unused mechanism to construct an FSM given constraints.
+#[pyfunction]
+fn random_unused_fsm(
+    symbol_size: usize,
+    reserved_bits: usize,
+    init_state: String,
+    constraints: Constraints,
+    seed: u64,
+) -> fsm::FSM {
+    let mut rng: StdRng = SeedableRng::seed_from_u64(seed);
+    unsafe {
+        // Clear the used reserved bits list. Bad code - refactor.
+        mechanisms::USED.clear();
+    }
+
+    return generate_fsm(
+        symbol_size,
+        reserved_bits,
+        init_state,
+        constraints,
+        |_, i, r| random_unused(i, r, &mut rng),
+    );
+}
+
 // Constructs an FSM given constraints and a choice mechanism.
 fn generate_fsm(
     symbol_size: usize,
@@ -196,5 +241,7 @@ fn encoding(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(most_different_fsm, m)?)?;
     m.add_function(wrap_pyfunction!(parity_fsm, m)?)?;
     m.add_function(wrap_pyfunction!(alt_parity_fsm, m)?)?;
+    m.add_function(wrap_pyfunction!(xor_fsm, m)?)?;
+    m.add_function(wrap_pyfunction!(random_unused_fsm, m)?)?;
     Ok(())
 }

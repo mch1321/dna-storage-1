@@ -1,8 +1,12 @@
+use std::collections::HashMap;
+use std::iter::zip;
+
 use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
 
 use crate::bits_to_dna;
 use crate::constraints::gc_content;
+use once_cell::sync::Lazy;
 
 pub(crate) fn random_choice(reserved: Vec<String>, rng: &mut StdRng) -> String {
     return reserved.choose(rng).unwrap().to_string();
@@ -119,6 +123,48 @@ pub(crate) fn most_different(
     return closest.choose(rng).unwrap().to_string();
 }
 
+fn str_xor(one: &str, two: &str) -> String {
+    assert!(one.len() == two.len());
+
+    let mut res = String::new();
+
+    for (a, b) in zip(one.chars(), two.chars()) {
+        res.push(if a == b { '0' } else { '1' });
+    }
+
+    return res;
+}
+
+pub(crate) fn xor(state: &str, input: &str, reserved: Vec<String>, rng: &mut StdRng) -> String {
+    assert!(input.len() * 2 == state.len());
+
+    let mut closest: Vec<String> = Vec::new();
+    let mut min_diff: usize = input.len();
+
+    let xor = str_xor(
+        str_xor(
+            &state[0..state.len() / 2],
+            &state[state.len() / 2..state.len()],
+        )
+        .as_str(),
+        input,
+    );
+
+    for candidate in reserved {
+        let diff = hamming_dist(&xor, &candidate);
+
+        if diff < min_diff {
+            min_diff = diff;
+            closest.clear();
+            closest.push(candidate);
+        } else if diff == min_diff {
+            closest.push(candidate);
+        }
+    }
+
+    return closest.choose(rng).unwrap().to_string();
+}
+
 fn even_parity(seq: &str) -> bool {
     return seq.chars().filter(|c| *c == '1').count() % 2 == 0;
 }
@@ -160,4 +206,32 @@ pub(crate) fn alt_parity(
     }
 
     return alt.choose(rng).unwrap().to_string();
+}
+
+// state variable used to track used reserved bit sequences. Bad code - refactor.
+pub(crate) static mut USED: Lazy<HashMap<String, Vec<String>>> = Lazy::new(|| HashMap::new());
+
+pub(crate) fn random_unused(input: &str, reserved: Vec<String>, rng: &mut StdRng) -> String {
+    let mut diff: Vec<String> = vec![];
+
+    unsafe {
+        if !USED.contains_key(input) {
+            USED.insert(input.to_string(), Vec::new());
+        }
+
+        let used = USED.get(input).unwrap();
+        for r in &reserved {
+            if !used.contains(r) {
+                diff.push(r.to_string());
+            }
+        }
+
+        if diff.is_empty() {
+            return reserved.choose(rng).unwrap().to_string();
+        }
+
+        let choice = diff.choose(rng).unwrap().to_string();
+        USED.get_mut(input).unwrap().push(choice.clone());
+        return choice;
+    }
 }

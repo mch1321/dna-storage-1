@@ -132,6 +132,22 @@ def run_experiment(
             rs_cons,
             params.random_seed,
         )
+    elif params.choice_mechanism == "xor":
+        fsm = encoding.xor_fsm(
+            params.symbol_size,
+            params.reserved_bits,
+            init_state,
+            rs_cons,
+            params.random_seed,
+        )
+    elif params.choice_mechanism == "random_unused":
+        fsm = encoding.random_unused_fsm(
+            params.symbol_size,
+            params.reserved_bits,
+            init_state,
+            rs_cons,
+            params.random_seed,
+        )
     else:
         raise Exception("Invalid choice mechanism")
 
@@ -396,7 +412,7 @@ if __name__ == "__main__":
 
     seq_len = 3000
     sizes = [4]
-    reserved = [4]
+    reserved = [3]
     mechanisms = [
         # "random",
         # "gc_tracking",
@@ -404,7 +420,9 @@ if __name__ == "__main__":
         # "similar",
         # "different",
         # "parity",
-        "alt_parity",
+        # "alt_parity",
+        # "xor",
+        "random_unused",
     ]
     error_range = np.linspace(0.0005, 0.02, num=40)
     # error_range = np.linspace(0.001, 0.01, num=10)
