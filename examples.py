@@ -288,7 +288,14 @@ def rust_dna_round_trip(eg=EXAMPLE_MESSAGE, output=True):
     init_state = output_size * "0"
 
     c = default_constraints()
-    constraints = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+    constraints = (
+        c.gc_min,
+        c.gc_max,
+        c.str_lower,
+        c.str_upper,
+        c.max_run_length,
+        c.reserved,
+    )
     fsm = encoding.random_fsm(
         symbol_size, reserved_bits, init_state, constraints, 123456
     )
@@ -379,7 +386,14 @@ def dna_rust_python_equivalence(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True
     init_state = output_size * "0"
 
     c = default_constraints()
-    constraints = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+    constraints = (
+        c.gc_min,
+        c.gc_max,
+        c.str_lower,
+        c.str_upper,
+        c.max_run_length,
+        c.reserved,
+    )
     rs_fsm = encoding.random_fsm(
         symbol_size, reserved_bits, init_state, constraints, 3928401
     )
@@ -423,7 +437,7 @@ def rust_one_half_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True):
     dna_cor = encoding.bits_to_dna(obs)
 
     if output:
-        print(f"RUST DNA ROUND TRIP WITH ERROR RATE {error_rate}")
+        print(f"RUST DNA ROUND TRIP WITH ERROR RATE {error_rate} (1/2 conv code)")
         print(f"Raw message      : {eg}")
         print(f"Encoded message  : {enc}")
         print(f"DNA message      : {dna}")
@@ -441,20 +455,20 @@ def rust_one_half_with_errors(eg=EXAMPLE_MESSAGE, error_rate=0.05, output=True):
 
 
 def run_all_examples():
-    # constructing_transition_tables()
-    # one_half()
-    # one_half_with_errors()
-    # two_thirds()
-    # two_thirds_with_errors()
-    # dna_round_trip()
-    # dna_round_trip_with_errors(error_rate=0.05)
-    # dna_round_trip_with_errors(eg=rand_bit_string(90))
-    # dna_gc_tracking()
-    # dna_gc_tracking_with_errors()
-    # rust_dna_round_trip()
-    # rust_dna_round_trip_with_errors(error_rate=0.05)
-    # rust_python_equivalence()
-    # dna_rust_python_equivalence()
+    constructing_transition_tables()
+    one_half()
+    one_half_with_errors()
+    two_thirds()
+    two_thirds_with_errors()
+    dna_round_trip()
+    dna_round_trip_with_errors(error_rate=0.05)
+    dna_round_trip_with_errors(eg=rand_bit_string(90))
+    dna_gc_tracking()
+    dna_gc_tracking_with_errors()
+    rust_dna_round_trip()
+    rust_dna_round_trip_with_errors(error_rate=0.05)
+    rust_python_equivalence()
+    dna_rust_python_equivalence()
     rust_one_half_with_errors()
 
 

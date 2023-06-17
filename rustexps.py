@@ -75,7 +75,14 @@ def run_experiment(
         rn.seed(params.random_seed)
 
     c = params.constraints
-    rs_cons = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+    rs_cons = (
+        c.gc_min,
+        c.gc_max,
+        c.str_lower,
+        c.str_upper,
+        c.max_run_length,
+        c.reserved,
+    )
 
     if params.choice_mechanism == "random":
         fsm = encoding.random_fsm(
@@ -154,7 +161,7 @@ def run_experiment(
     # conf = confusion()
     # fsm = viterbi.one_half()
 
-    # str_lens = list(range(4, 21))
+    # str_lens = list(range(3, 21))
     # strs = []
 
     dna_errors_injected = []
@@ -197,7 +204,7 @@ def run_experiment(
         # num_errors = int(params.error_rate * dna_len)
         dna_err = inject_base_errors(dna, params.error_rate)
         # dna_err = inject_deletion_errors(dna, params.error_rate)
-        # dna_err = inject_burst_errors(dna, params.error_rate, min_burst=4, max_burst=4)
+        # dna_err = inject_burst_errors(dna, params.error_rate, min_burst=2, max_burst=2)
 
         # Convert nucleotides back to bits (analog to DNA sequencing).
         err = encoding.dna_to_bits(dna_err)
@@ -411,10 +418,10 @@ if __name__ == "__main__":
     seed_idx = 0
 
     seq_len = 3000
-    sizes = [4]
+    sizes = [3]
     reserved = [3]
     mechanisms = [
-        # "random",
+        "random",
         # "gc_tracking",
         # "gc_tracked_random",
         # "similar",
@@ -422,7 +429,7 @@ if __name__ == "__main__":
         # "parity",
         # "alt_parity",
         # "xor",
-        "random_unused",
+        # "random_unused",
     ]
     error_range = np.linspace(0.0005, 0.02, num=40)
     # error_range = np.linspace(0.001, 0.01, num=10)
@@ -449,7 +456,12 @@ if __name__ == "__main__":
 
                 c = standard_constraints(size, res)
                 # c = Constraints(
-                #     gc_min=0.0, gc_max=1.0, max_run_length=seq_len, reserved=[]
+                #     gc_min=0.0,
+                #     gc_max=1.0,
+                #     str_lower=0,
+                #     str_upper=0,
+                #     max_run_length=seq_len,
+                #     reserved=[],
                 # )
 
                 config = Parameters(
@@ -470,8 +482,10 @@ if __name__ == "__main__":
                 mech = mechanism.replace("_", "-")
                 run_error_range(
                     # f"eval/one-half-seq-{seq_len}",
-                    f"final/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
-                    # f"strs/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
+                    # f"final/sym-{size}-res-{res}-{mech}-seq-{seq_len}",
+                    # f"cons/sym-{size}-res-{res}-{mech}-seq-{seq_len}-pen-b-2",
+                    f"strs/sym-{size}-res-{res}-{mech}-seq-{seq_len}-err-with-con",
+                    # f"strs/unencoded",
                     config,
                     error_range,
                     gc_windows,

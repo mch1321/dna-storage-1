@@ -7,16 +7,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 5273770
 
-STRs: [0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014666666666666666, 0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 2 out of 40 with random seed: 33254202
 
@@ -24,16 +24,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 23657822
 
-STRs: [0.005333333333333333, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.005333333333333333, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 3 out of 40 with random seed: 24566538
 
@@ -41,16 +41,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 14596722
 
-STRs: [0.004, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.020666666666666667, 0.004, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 4 out of 40 with random seed: 13821398
 
@@ -58,16 +58,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 5007599
 
-STRs: [0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.018, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 5 out of 40 with random seed: 6428206
 
@@ -75,16 +75,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 3690915
 
-STRs: [0.006, 0.002, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.024, 0.006, 0.002, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 6 out of 40 with random seed: 4244065
 
@@ -92,16 +92,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 2183588
 
-STRs: [0.004666666666666667, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014, 0.004666666666666667, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 7 out of 40 with random seed: 3291477
 
@@ -109,16 +109,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 3055186
 
-STRs: [0.0006666666666666666, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.019333333333333334, 0.0006666666666666666, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 8 out of 40 with random seed: 2810626
 
@@ -126,16 +126,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 169025
 
-STRs: [0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 9 out of 40 with random seed: 2836844
 
@@ -143,16 +143,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 390261
 
-STRs: [0.004, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.004, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 10 out of 40 with random seed: 1690794
 
@@ -160,16 +160,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 1007630
 
-STRs: [0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.018666666666666668, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 11 out of 40 with random seed: 443771
 
@@ -177,16 +177,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 94631
 
-STRs: [0.007333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.010666666666666666, 0.007333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 12 out of 40 with random seed: 366147
 
@@ -194,16 +194,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 187129
 
-STRs: [0.004666666666666667, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.011333333333333334, 0.004666666666666667, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 13 out of 40 with random seed: 159122
 
@@ -211,16 +211,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 156436
 
-STRs: [0.0026666666666666666, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.006666666666666667, 0.0026666666666666666, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 14 out of 40 with random seed: 23841
 
@@ -228,16 +228,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 101268
 
-STRs: [0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.013333333333333334, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 15 out of 40 with random seed: 49613
 
@@ -245,16 +245,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 148543
 
-STRs: [0.004666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014666666666666666, 0.004666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 16 out of 40 with random seed: 125221
 
@@ -262,16 +262,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 115467
 
-STRs: [0.009333333333333334, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014, 0.009333333333333334, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 17 out of 40 with random seed: 56808
 
@@ -279,16 +279,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 3518
 
-STRs: [0.004666666666666667, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.004666666666666667, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 18 out of 40 with random seed: 127016
 
@@ -296,16 +296,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 98056
 
-STRs: [0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.02, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 19 out of 40 with random seed: 46778
 
@@ -313,16 +313,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 97951
 
-STRs: [0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.010666666666666666, 0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 20 out of 40 with random seed: 111299
 
@@ -330,16 +330,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 136868
 
-STRs: [0.006666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.018, 0.006666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 21 out of 40 with random seed: 55268
 
@@ -347,16 +347,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 98512
 
-STRs: [0.0033333333333333335, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.022, 0.0033333333333333335, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 22 out of 40 with random seed: 42395
 
@@ -364,16 +364,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 70803
 
-STRs: [0.0033333333333333335, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014, 0.0033333333333333335, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 23 out of 40 with random seed: 115788
 
@@ -381,16 +381,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 2648
 
-STRs: [0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.02266666666666667, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 24 out of 40 with random seed: 123098
 
@@ -398,16 +398,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 80933
 
-STRs: [0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.012, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 25 out of 40 with random seed: 25244
 
@@ -415,16 +415,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 103815
 
-STRs: [0.004, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.020666666666666667, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 26 out of 40 with random seed: 45037
 
@@ -432,16 +432,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 47726
 
-STRs: [0.008666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.012, 0.008666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 27 out of 40 with random seed: 26918
 
@@ -449,16 +449,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 126534
 
-STRs: [0.0026666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.020666666666666667, 0.0026666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 28 out of 40 with random seed: 38354
 
@@ -466,16 +466,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 35845
 
-STRs: [0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.010666666666666666, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 29 out of 40 with random seed: 43028
 
@@ -483,16 +483,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 99896
 
-STRs: [0.006, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.011333333333333334, 0.006, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 30 out of 40 with random seed: 78951
 
@@ -500,16 +500,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 110253
 
-STRs: [0.002, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.020666666666666667, 0.002, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 31 out of 40 with random seed: 113052
 
@@ -517,16 +517,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 182114
 
-STRs: [0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 32 out of 40 with random seed: 151836
 
@@ -534,16 +534,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 231797
 
-STRs: [0.007333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.012, 0.007333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 33 out of 40 with random seed: 63452
 
@@ -551,16 +551,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 144543
 
-STRs: [0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 34 out of 40 with random seed: 154164
 
@@ -568,16 +568,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 238899
 
-STRs: [0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.013333333333333334, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 35 out of 40 with random seed: 245062
 
@@ -585,16 +585,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 141792
 
-STRs: [0.0026666666666666666, 0.002, 0.0, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.0026666666666666666, 0.002, 0.0, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 36 out of 40 with random seed: 151580
 
@@ -602,16 +602,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 48515
 
-STRs: [0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 37 out of 40 with random seed: 37973
 
@@ -619,16 +619,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 95146
 
-STRs: [0.0013333333333333333, 0.002, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.014, 0.0013333333333333333, 0.002, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 38 out of 40 with random seed: 34599
 
@@ -636,16 +636,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 87132
 
-STRs: [0.004, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.020666666666666667, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 39 out of 40 with random seed: 45231
 
@@ -653,16 +653,16 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 108853
 
-STRs: [0.006666666666666667, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.015333333333333332, 0.006666666666666667, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Running iteration 40 out of 40 with random seed: 142672
 
@@ -670,19 +670,19 @@ RUNNING EXPERIMENT
 
 Parameters:
     Symbol size: 4
-    Reserved bits: 5
+    Reserved bits: 4
     Choice mechanism: random
-    Constraints: 0.35 <= GC <= 0.65, Max Run Length: 8
+    Constraints: 0.0 <= GC <= 1.0, Max Run Length: 3000
     Sequence length: 3000
     Error chance: 0
     Repetitions: 1
     GC Window Size: 10
     Random seed: 119873
 
-STRs: [0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+STRs: [0.016666666666666666, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 ==================== EXPERIMENT RESULTS =======================
 "strs/unencoded": {
-    "title": "Mechanism: random, 5 Reserved Bits, Symbol Length 4, 0.35 <= GC <= 0.65, Max Run Length: 8",
+    "title": "Mechanism: random, 4 Reserved Bits, Symbol Length 4, 0.0 <= GC <= 1.0, Max Run Length: 3000",
     "xlabel": "Input Error Rate",
     "ylabel": "Output Error Rate",
     "x": [],
@@ -690,6 +690,6 @@ STRs: [0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
     "window": [],
     "gc": [],
     "gc_var": [],
-    "str_lens": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    "strs": [0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.005333333333333333, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006, 0.002, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0006666666666666666, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.007333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0026666666666666666, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.009333333333333334, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.008666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0026666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.002, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.007333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0026666666666666666, 0.002, 0.0, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0013333333333333333, 0.002, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006666666666666667, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "str_lens": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "strs": [0.014666666666666666, 0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.005333333333333333, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.020666666666666667, 0.004, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.018, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.024, 0.006, 0.002, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014, 0.004666666666666667, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.019333333333333334, 0.0006666666666666666, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.004, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.018666666666666668, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.010666666666666666, 0.007333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.011333333333333334, 0.004666666666666667, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.006666666666666667, 0.0026666666666666666, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.013333333333333334, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014666666666666666, 0.004666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014, 0.009333333333333334, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.004666666666666667, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.02, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.010666666666666666, 0.0033333333333333335, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.018, 0.006666666666666667, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.022, 0.0033333333333333335, 0.0006666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014, 0.0033333333333333335, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.02266666666666667, 0.0033333333333333335, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.012, 0.006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.020666666666666667, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.012, 0.008666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.020666666666666667, 0.0026666666666666666, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.010666666666666666, 0.004666666666666667, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.011333333333333334, 0.006, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.020666666666666667, 0.002, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.012, 0.007333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.013333333333333334, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.0026666666666666666, 0.002, 0.0, 0.002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.004, 0.0013333333333333333, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014, 0.0013333333333333333, 0.002, 0.0013333333333333333, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.020666666666666667, 0.004, 0.0026666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015333333333333332, 0.006666666666666667, 0.0006666666666666666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.016666666666666666, 0.0033333333333333335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 }

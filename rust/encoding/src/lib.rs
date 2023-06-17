@@ -9,7 +9,7 @@ mod fsm;
 mod mapping;
 mod mechanisms;
 
-pub type Constraints = (f32, f32, usize, Vec<String>);
+pub type Constraints = (f32, f32, usize, usize, usize, Vec<String>);
 
 // Converts nucleotides to bits.
 #[pyfunction]
@@ -222,8 +222,10 @@ fn generate_fsm(
         constraints::Constraints {
             gc_min: constraints.0,
             gc_max: constraints.1,
-            max_run_length: constraints.2,
-            reserved: constraints.3,
+            str_lower: constraints.2,
+            str_upper: constraints.3,
+            max_run_length: constraints.4,
+            reserved: constraints.5,
         },
         mechanism,
     );
