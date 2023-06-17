@@ -108,6 +108,13 @@ def rand_base(exclude: str = ""):
     return rn.choice(bases)
 
 
+def rand_bases(exclude: str, length: int) -> str:
+    bases = "ACGT"
+    for e in exclude:
+        bases = bases.replace(e, "")
+    return "".join([rn.choice(bases) for _ in range(length)])
+
+
 def inject_base_errors(message: str, rate: float = 0.01) -> str:
     result = ""
     for base in message:
