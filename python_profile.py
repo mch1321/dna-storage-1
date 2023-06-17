@@ -1,4 +1,5 @@
 import time
+from constraints import default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from experiments import Parameters
@@ -76,7 +77,22 @@ if __name__ == "__main__":
         tot_dur.append(tot)
 
     for length in symbol_sizes:
-        fsm, _, _, _ = profile(Parameters(sequence_length=length), fsm_only=True)
+        constraints = default_constraints(
+            symbol_size=length,
+            gc_min=0.0,
+            gc_max=1.0,
+            str_lower=length,
+            str_upper=length,
+            restriction_sites=[],
+            primers=[],
+        )
+
+        fsm, enc, dec, tot = profile(
+            Parameters(
+                symbol_size=length, reserved_bits=length, constraints=constraints
+            ),
+            fsm_only=True,
+        )
         fsm_dur.append(fsm)
 
     print("===================== RESULTS =======================")

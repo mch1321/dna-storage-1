@@ -1,3 +1,4 @@
+from constraints import default_constraints
 from experiments import Parameters
 from graphing import multiplot
 from python_profile import profile as pyprof
@@ -8,7 +9,7 @@ if __name__ == "__main__":
     sequence_lengths.extend(range(360, 720, 90))
     sequence_lengths.extend(range(720, 1300, 180))
 
-    symbol_sizes = list(range(2, 21))
+    symbol_sizes = list(range(2, 7)) * 2
 
     fsm_dur = [[], []]
     enc_dur = [[], []]
@@ -27,10 +28,30 @@ if __name__ == "__main__":
     #     tot_dur[1].append(tot)
 
     for length in symbol_sizes:
-        fsm, _, _, _ = pyprof(Parameters(sequence_length=length), fsm_only=True)
+        constraints = default_constraints(
+            symbol_size=length,
+            gc_min=0.0,
+            gc_max=1.0,
+            str_lower=length,
+            str_upper=length,
+            restriction_sites=[],
+            primers=[],
+        )
+
+        fsm, _, _, _ = pyprof(
+            Parameters(
+                symbol_size=length, reserved_bits=length, constraints=constraints
+            ),
+            fsm_only=True,
+        )
         fsm_dur[0].append(fsm)
 
-        fsm, _, _, _ = rsprof(Parameters(sequence_length=length), fsm_only=True)
+        fsm, _, _, _ = rsprof(
+            Parameters(
+                symbol_size=length, reserved_bits=length, constraints=constraints
+            ),
+            fsm_only=True,
+        )
         fsm_dur[1].append(fsm)
 
     labels = ["Native Python", "Rust Call"]

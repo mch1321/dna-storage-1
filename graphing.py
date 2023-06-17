@@ -58,7 +58,7 @@ def multiplot(
     else:
         plt.legend(loc="upper left")
 
-    plt.legend(loc="upper right")
+    # plt.legend(loc="upper right")
     file_name = name if fit else f"{name}-no-trend"
     fig.savefig(f"plots/{file_name}.png")
     plt.show()
