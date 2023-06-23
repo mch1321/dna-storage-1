@@ -63,18 +63,18 @@ if __name__ == "__main__":
     sequence_lengths.extend(range(360, 720, 90))
     sequence_lengths.extend(range(720, 1300, 180))
 
-    symbol_sizes = list(range(2, 21))
+    symbol_sizes = list(range(2, 7))
 
     fsm_dur = []
     enc_dur = []
     dec_dur = []
     tot_dur = []
 
-    for length in sequence_lengths:
-        _, enc, dec, tot = profile(Parameters(sequence_length=length))
-        enc_dur.append(enc)
-        dec_dur.append(dec)
-        tot_dur.append(tot)
+    # for length in sequence_lengths:
+    #     _, enc, dec, tot = profile(Parameters(sequence_length=length))
+    #     enc_dur.append(enc)
+    #     dec_dur.append(dec)
+    #     tot_dur.append(tot)
 
     for length in symbol_sizes:
         constraints = default_constraints(
@@ -111,30 +111,30 @@ if __name__ == "__main__":
         "",
         fit=False,
     )
-    plot(
-        "python-enc-profile",
-        sequence_lengths,
-        enc_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "",
-        fit=False,
-    )
-    plot(
-        "python-dec-profile",
-        sequence_lengths,
-        dec_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "",
-        fit=False,
-    )
-    plot(
-        "python-tot-profile",
-        sequence_lengths,
-        tot_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "",
-        fit=False,
-    )
+    # plot(
+    #     "python-enc-profile",
+    #     sequence_lengths,
+    #     enc_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )
+    # plot(
+    #     "python-dec-profile",
+    #     sequence_lengths,
+    #     dec_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )
+    # plot(
+    #     "python-tot-profile",
+    #     sequence_lengths,
+    #     tot_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )
