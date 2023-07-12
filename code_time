@@ -1,0 +1,59 @@
+import time
+import viterbi
+import encoding
+from constraints import wider_gc_limits #M en vez de default_constraint para coger el gc content de 0.15-0.85 en vez del de 0.35-0.65
+from utils import inject_base_errors, hamming_dist
+
+symbol_size = 4
+reserved_bits = 4
+init_state = "0" * 8
+
+eg = "01010101010101010101" #"01010101010000111101"
+
+c = wider_gc_limits()
+constraints = (c.gc_min, c.gc_max, c.max_run_length, c.reserved)
+print(type(constraints))
+fsm = encoding.random_fsm(
+    symbol_size, reserved_bits, init_state, constraints, 123456
+)
+#print("This is fsm: ", fsm)
+#print(eg)
+start_1 = time.time()
+enc = viterbi.encode(fsm, eg)
+print("After Viterbi encode: ", enc)
+section1_time = time.time() - start_1
+#print(enc)
+
+start_2 = time.time()
+dna = encoding.bits_to_dna(enc)
+section2_time = time.time() - start_2
+print("From bits to DNA: ", dna)
+
+start_3 = time.time()
+err = inject_base_errors(dna, 0.05)
+section3_time = time.time() - start_3
+#print(err)
+#print(f"Number of errors injected: {hamming_dist(dna, err)}")
+
+start_4 = time.time()
+rec = encoding.dna_to_bits(err)
+section4_time = time.time() - start_4
+#print(rec)
+
+start_5 = time.time()
+(l, seq, obs) = viterbi.decode(fsm, rec)
+section5_time = time.time() - start_5
+
+# print(seq)
+
+# print(f"Number of errors remaining: {hamming_dist(eg, seq)}")
+
+# print(f"Encoding took {section1_time} seconds.")
+# print(f"Encoding bits to DNA took {section2_time} seconds.")
+# print(f"Injecting errors took {section3_time} seconds.")
+# print(f"Encoding DNA to bits took {section4_time} seconds.")
+# print(f"Decoding took {section5_time} seconds.")
+
+smallest = min(section1_time, section2_time, section3_time, section4_time, section5_time)
+print(f"Time ratio: {round(section1_time/smallest, 2)} : {round(section2_time/smallest, 2)} : {round(section3_time/smallest, 2)} : {round(section4_time/smallest, 2)} : {round(section5_time/smallest, 2)}") #prints time ratio rounded to 2 decimal places
+#print("This is fsm: ", fsm)

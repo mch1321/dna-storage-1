@@ -33,7 +33,7 @@ class Constraints:
 def default_constraints(
     symbol_size: int = 4,
     max_run_length: int = 8,
-    gc_min: float = 0.35,
+    gc_min: float = 0.35, #M cuando esta a 0.35 - 0.65 it cannot meet constraints
     gc_max: float = 0.65,
     restriction_sites: list[str] = ["GAGTC"],
     primers: list[str] = [
@@ -52,12 +52,16 @@ def default_constraints(
         for i in range(len(primer) - concat_size + 1):
             regexes.append(primer[i : i + concat_size])
 
+    #print("This is the regexes: ", Constraints(gc_min, gc_max, max_run_length, regexes))
+    print("These are the regexes: ", regexes)
     return Constraints(gc_min, gc_max, max_run_length, regexes)
 
 
 def wider_gc_limits() -> Constraints:
     return default_constraints(gc_min=0.15, gc_max=0.85)
-
+    
 
 if __name__ == "__main__":
     print(default_constraints())
+    #print(wider_gc_limits())
+    

@@ -64,11 +64,12 @@ def rand_bit_string(length: int) -> str:
     return bits
 
 
+#M este codigo simplemente hace insertion errors (no hace deletions)
 def inject_bit_errors(message: str, rate: float = 0.01) -> str:
     result = ""
     for bit in message:
         if rn.random() <= rate:
-            result += "0" if bit == "1" else "1"
+            result += "0" if bit == "1" else "1"  #M esto es igual a result = result + 0
         else:
             result += bit
     return result
@@ -80,6 +81,7 @@ def rand_base(exclude: str = ""):
     return bases[index]
 
 
+#M usando la funcion de arriba tmb it inserts una bases
 def inject_base_errors(message: str, rate: float = 0.01) -> str:
     result = ""
     for base in message:
