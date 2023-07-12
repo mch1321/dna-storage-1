@@ -1,4 +1,5 @@
 import time
+from constraints import default_constraints
 from data_types import Path
 from dna_mapping import bits_to_dna, dna_to_bits
 from experiments import Parameters
@@ -7,7 +8,7 @@ from graphing import plot
 from utils import inject_base_errors, rand_bit_string
 
 
-def profile(config: Parameters) -> tuple[float, float, float]:
+def profile(config: Parameters, fsm_only: bool = False) -> tuple[float, float, float]:
     output_size = 2 * config.symbol_size
 
     if config.reserved_bits >= output_size:
@@ -31,6 +32,9 @@ def profile(config: Parameters) -> tuple[float, float, float]:
     fsm_duration = time.time() - start_time
     total += fsm_duration
     print(f"--- Constructing the FSM took {fsm_duration} seconds. ---")
+
+    if fsm_only:
+        return fsm_duration, None, None, None
 
     seq = rand_bit_string(config.sequence_length)
 
@@ -58,17 +62,38 @@ if __name__ == "__main__":
     sequence_lengths = list(range(30, 360, 30))
     sequence_lengths.extend(range(360, 720, 90))
     sequence_lengths.extend(range(720, 1300, 180))
+
+    symbol_sizes = list(range(2, 7))
+
     fsm_dur = []
     enc_dur = []
     dec_dur = []
     tot_dur = []
 
-    for length in sequence_lengths:
-        fsm, enc, dec, tot = profile(Parameters(sequence_length=length))
+    # for length in sequence_lengths:
+    #     _, enc, dec, tot = profile(Parameters(sequence_length=length))
+    #     enc_dur.append(enc)
+    #     dec_dur.append(dec)
+    #     tot_dur.append(tot)
+
+    for length in symbol_sizes:
+        constraints = default_constraints(
+            symbol_size=length,
+            gc_min=0.0,
+            gc_max=1.0,
+            str_lower=length,
+            str_upper=length,
+            restriction_sites=[],
+            primers=[],
+        )
+
+        fsm, enc, dec, tot = profile(
+            Parameters(
+                symbol_size=length, reserved_bits=length, constraints=constraints
+            ),
+            fsm_only=True,
+        )
         fsm_dur.append(fsm)
-        enc_dur.append(enc)
-        dec_dur.append(dec)
-        tot_dur.append(tot)
 
     print("===================== RESULTS =======================")
     print(f"SEQUENCE LENGTHS : {sequence_lengths}")
@@ -79,37 +104,37 @@ if __name__ == "__main__":
 
     plot(
         "python-fsm-profile",
-        sequence_lengths,
+        symbol_sizes,
         fsm_dur,
-        "Sequence Length / bits",
+        "Symbol Length / nucleotides",
         "Duration / seconds",
-        "FSM Construction Profile (Python)",
+        "",
         fit=False,
     )
-    plot(
-        "python-enc-profile",
-        sequence_lengths,
-        enc_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "Encoding Profile (Python)",
-        fit=False,
-    )
-    plot(
-        "python-dec-profile",
-        sequence_lengths,
-        dec_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "Decoding Profile (Python)",
-        fit=False,
-    )
-    plot(
-        "python-tot-profile",
-        sequence_lengths,
-        tot_dur,
-        "Sequence Length / bits",
-        "Duration / seconds",
-        "Total Profile (Python)",
-        fit=False,
-    )
+    # plot(
+    #     "python-enc-profile",
+    #     sequence_lengths,
+    #     enc_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )
+    # plot(
+    #     "python-dec-profile",
+    #     sequence_lengths,
+    #     dec_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )
+    # plot(
+    #     "python-tot-profile",
+    #     sequence_lengths,
+    #     tot_dur,
+    #     "Sequence Length / bits",
+    #     "Duration / seconds",
+    #     "",
+    #     fit=False,
+    # )

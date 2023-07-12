@@ -1,0 +1,84 @@
+
+Running experiments with starting seed: 155688848 and error range: [0]
+
+Running iteration 1 out of 5 with random seed: 36241116
+
+RUNNING EXPERIMENT
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 3
+    Choice mechanism: random
+    Constraints: 0.15 <= GC <= 0.85, Max Run Length: 8
+    Sequence length: 3000
+    Error chance: 0
+    Repetitions: 3
+    GC Window Size: 10
+    Random seed: 5273770
+
+REPETITION 1 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
+REPETITION 2 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
+REPETITION 3 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
+AVERAGE RESULTS:
+----------------------
+AVG. GC CONTENT: 0.5066666666666666
+AVG. MAX GC VARIANCE: 0.6666666666666667
+AVG. ERRORS INJECTED INTO DNA: 0
+AVG. RESULTANT ERRORS IN RECEIVED STRING: 0
+AVG. ERRORS REMAINING IN DNA AFTER DECODING: 0
+AVG. ERRORS REMAINING IN STRING AFTER DECODING: 0
+AVG. ERRORS IN DECODED SEQUENCE: 0
+PERCENTAGE ERROR IN DNA: 0.0
+PERCENTAGE ERROR IN SEQUENCE: 0.0
+===============================================================
+
+RUNNING EXPERIMENT
+
+Parameters:
+    Symbol size: 4
+    Reserved bits: 3
+    Choice mechanism: random
+    Constraints: 0.15 <= GC <= 0.85, Max Run Length: 8
+    Sequence length: 3000
+    Error chance: 0
+    Repetitions: 3
+    GC Window Size: 20
+    Random seed: 30582656
+
+REPETITION 1 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================
+REPETITION 2 OF 3 RESULTS:
+----------------------
+ERRORS INJECTED INTO DNA: 0
+RESULTANT ERRORS IN RECEIVED STRING: 0
+ERRORS REMAINING IN DNA AFTER DECODING: 0
+ERRORS REMAINING IN STRING AFTER DECODING: 0
+ERRORS IN DECODED SEQUENCE: 0
+===============================================================

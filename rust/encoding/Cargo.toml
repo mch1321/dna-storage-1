@@ -9,5 +9,6 @@ name = "encoding"
 crate-type = ["cdylib"]
 
 [dependencies]
+once_cell = "1.18.0"
 pyo3 = "0.18.3"
 rand = "0.8.5"

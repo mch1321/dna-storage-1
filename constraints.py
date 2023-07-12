@@ -6,6 +6,8 @@ from utils import gc_content, longest_homopolymer, contains_reserved
 class Constraints:
     gc_min: float
     gc_max: float
+    str_lower: int
+    str_upper: int
     max_run_length: int
     reserved: list[str]
 
@@ -30,11 +32,57 @@ class Constraints:
         return f"{self.gc_min} <= GC <= {self.gc_max}, Max Run Length: {self.max_run_length}"
 
 
+def standard_constraints(symbol_size: int, reserved_bits: int):
+    if symbol_size == 3:
+        if reserved_bits == 2:
+            return default_constraints(gc_min=0.16, gc_max=0.84, str_upper=3)
+        if reserved_bits == 3:
+            return default_constraints(gc_min=0.33, gc_max=0.67, str_upper=3)
+        if reserved_bits == 4:
+            return default_constraints(gc_min=0.33, gc_max=0.67, str_upper=3)
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 2, 3 and 4."
+            )
+    if symbol_size == 4:
+        if reserved_bits == 3:
+            return default_constraints(gc_min=0.15, gc_max=0.85)
+        elif reserved_bits == 4:
+            return default_constraints(gc_min=0.25, gc_max=0.75)
+        elif reserved_bits == 5:
+            return default_constraints()
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 3, 4 and 5."
+            )
+    elif symbol_size == 5:
+        if reserved_bits == 3:
+            return default_constraints(
+                gc_min=0.15, gc_max=0.85, str_upper=5, restriction_sites=[]
+            )
+        elif reserved_bits == 4:
+            return default_constraints(
+                gc_min=0.2, gc_max=0.8, str_upper=5, restriction_sites=[]
+            )
+        elif reserved_bits == 5:
+            return default_constraints(
+                gc_min=0.25, gc_max=0.75, str_upper=5, restriction_sites=[]
+            )
+        else:
+            raise Exception(
+                "No standard constraints for reserved bits other than 3, 4 and 5."
+            )
+    else:
+        raise Exception("No standard constraints for symbol sizes other than 4 and 5.")
+
+
 def default_constraints(
     symbol_size: int = 4,
     max_run_length: int = 8,
     gc_min: float = 0.35, #M cuando esta a 0.35 - 0.65 it cannot meet constraints
     gc_max: float = 0.65,
+    str_lower: int = 3,
+    str_upper: int = 4,
     restriction_sites: list[str] = ["GAGTC"],
     primers: list[str] = [
         "GAACCGTGCCGAGTCTGAGC",  # start primer
@@ -52,9 +100,8 @@ def default_constraints(
         for i in range(len(primer) - concat_size + 1):
             regexes.append(primer[i : i + concat_size])
 
-    #print("This is the regexes: ", Constraints(gc_min, gc_max, max_run_length, regexes))
-    print("These are the regexes: ", regexes)
     return Constraints(gc_min, gc_max, max_run_length, regexes)
+
 
 
 def wider_gc_limits() -> Constraints:

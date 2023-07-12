@@ -16,16 +16,27 @@ def multiplot(
     fit: bool = True,
     invertx: bool = False,
 ):
+    plt.rcParams["font.size"] = 32
     fig, ax = plt.subplots(figsize=(30, 20))
 
-    assert len(xs) <= 6
+    assert len(xs) <= 9
     assert len(xs) == len(ys)
     assert len(xs) == len(set_labels)
 
-    cs = ["red", "green", "blue", "orange", "purple", "black"]
+    cs = [
+        "red",
+        "green",
+        "blue",
+        "orange",
+        "purple",
+        "black",
+        "brown",
+        "yellow",
+        "teal",
+    ]
 
     for i, (x, y, l) in enumerate(zip(xs, ys, set_labels)):
-        plt.scatter(x, y, c=cs[i], label=l)
+        plt.scatter(x, y, s=70, c=cs[i], label=l)
         if fit:
             sn.regplot(
                 x=x,
@@ -47,6 +58,7 @@ def multiplot(
     else:
         plt.legend(loc="upper left")
 
+    # plt.legend(loc="upper right")
     file_name = name if fit else f"{name}-no-trend"
     fig.savefig(f"plots/{file_name}.png")
     plt.show()
@@ -77,9 +89,10 @@ def plot(
     fit: bool = True,
     invertx: bool = False,
 ):
+    plt.rcParams["font.size"] = 32
     fig, ax = plt.subplots(figsize=(30, 20))
 
-    plt.scatter(x, y)
+    plt.scatter(x, y, s=70)
 
     ax.set(
         xlabel=xlabel,
@@ -125,35 +138,212 @@ def plot_confusion(name: str, title: str, matrix: np.ndarray):
 
 
 if __name__ == "__main__":
-    plt.rcParams["font.size"] = 28
+    plt.rcParams["font.size"] = 30
     # multiplot_from_dict("multiplot-reserved-bits-gc-tracking")
-    # plot_from_dict("rust/sym-6-res-6-random-seq-600")
+    # plot_from_dict("del/sym-4-res-4-random-seq-120")
+    # key = "gc/sym-4-res-5-random-seq-3000"
+    # p = plots[key]
+    # plot(
+    #     key,
+    #     x=p["window"],
+    #     y=p["gc_var"],
+    #     xlabel="Window Size",
+    #     ylabel="Maximum GC Variance",
+    #     title="GC Variance: Random Choice, 5 Reserved Bits, Symbol Length 4",
+    # )
 
     xs = [
-        plots["rust/sym-6-res-6-random-seq-600"]["x"],
-        plots["rust/sym-5-res-5-random-seq-3000"]["x"],
-        plots["rust/sym-4-res-4-random-seq-3000"]["x"],
-        plots["rust/sym-3-res-3-random-seq-3000"]["x"],
+        # plots["strs/unencoded"]["str_lens"],
+        # plots["strs/sym-3-res-3-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-4-res-3-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-4-res-4-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-3-res-3-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-4-res-4-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-5-res-5-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-3-res-3-random-seq-3000-with-con"]["str_lens"],
+        # plots["strs/sym-4-res-4-random-seq-3000-with-con"]["str_lens"],
+        # plots["strs/sym-5-res-5-random-seq-3000-with-con"]["str_lens"],
+        # plots["strs/sym-4-res-5-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-5-res-5-random-seq-3000"]["str_lens"],
+        # plots["strs/sym-4-res-4-alt-parity-seq-3000"]["str_lens"],
+        # plots["final/sym-4-res-3-random-seq-3000"]["x"],
+        # plots["eval/one-half-seq-3000"]["x"],
+        # plots["eval/sym-1-res-1-random-seq-3000-no-con"]["x"],
+        # plots["eval/sym-2-res-2-random-seq-3000-no-con"]["x"],
+        # plots["eval/sym-3-res-3-random-seq-3000-no-con"]["x"],
+        # plots["eval/sym-4-res-4-random-seq-3000-no-con"]["x"],
+        plots["final/sym-3-res-3-random-seq-3000"]["x"],
+        plots["final/sym-4-res-4-random-seq-3000"]["x"],
+        plots["final/sym-5-res-5-random-seq-3000"]["x"],
+        plots["strs/sym-3-res-3-random-seq-3000-err-with-con"]["x"],
+        plots["strs/sym-4-res-4-random-seq-3000-err-with-con"]["x"],
+        plots["strs/sym-5-res-5-random-seq-3000-err-with-con"]["x"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-gc-tracked-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-similar-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-different-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-alt-parity-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-xor-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-random-unused-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-1"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-2"]["x"],
+        # # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-4"]["x"],
+        # plots["burst/sym-4-res-4-alt-parity-seq-3000-b-4"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["x"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-4"]["x"],
+        # plots["cons/sym-4-res-4-random-seq-3000-pen-b-3"]["x"],
+        # plots["cons/sym-4-res-4-random-seq-3000-pen-b-4"]["x"],
+        # plots["final/sym-5-res-4-random-seq-3000"]["x"],
+        # plots["final/sym-5-res-5-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["x"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["x"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-similar-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-different-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-alt-parity-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["x"],
+        # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["x"],
     ]
     ys = [
-        plots["rust/sym-6-res-6-random-seq-600"]["y"],
-        plots["rust/sym-5-res-5-random-seq-3000"]["y"],
-        plots["rust/sym-4-res-4-random-seq-3000"]["y"],
-        plots["rust/sym-3-res-3-random-seq-3000"]["y"],
+        # plots["strs/unencoded"]["strs"],
+        # plots["strs/sym-3-res-3-random-seq-3000"]["strs"],
+        # plots["strs/sym-4-res-3-random-seq-3000"]["strs"],
+        # plots["strs/sym-4-res-4-random-seq-3000"]["strs"],
+        # plots["strs/sym-3-res-3-random-seq-3000"]["strs"],
+        # plots["strs/sym-4-res-4-random-seq-3000"]["strs"],
+        # plots["strs/sym-5-res-5-random-seq-3000"]["strs"],
+        # plots["strs/sym-3-res-3-random-seq-3000-with-con"]["strs"],
+        # plots["strs/sym-4-res-4-random-seq-3000-with-con"]["strs"],
+        # plots["strs/sym-5-res-5-random-seq-3000-with-con"]["strs"],
+        # plots["strs/sym-4-res-5-random-seq-3000"]["strs"],
+        # plots["strs/sym-5-res-5-random-seq-3000"]["strs"],
+        # plots["strs/sym-4-res-4-alt-parity-seq-3000"]["strs"],
+        # plots["final/sym-4-res-3-random-seq-3000"]["y"],
+        # plots["eval/one-half-seq-3000"]["y"],
+        # plots["eval/sym-1-res-1-random-seq-3000-no-con"]["y"],
+        # plots["eval/sym-2-res-2-random-seq-3000-no-con"]["y"],
+        # plots["eval/sym-3-res-3-random-seq-3000-no-con"]["y"],
+        # plots["eval/sym-4-res-4-random-seq-3000-no-con"]["y"],
+        plots["final/sym-3-res-3-random-seq-3000"]["y"],
+        plots["final/sym-4-res-4-random-seq-3000"]["y"],
+        plots["final/sym-5-res-5-random-seq-3000"]["y"],
+        plots["strs/sym-3-res-3-random-seq-3000-err-with-con"]["y"],
+        plots["strs/sym-4-res-4-random-seq-3000-err-with-con"]["y"],
+        plots["strs/sym-5-res-5-random-seq-3000-err-with-con"]["y"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-similar-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-different-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-alt-parity-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-xor-seq-3000"]["y"],
+        # plots["final/sym-4-res-3-random-unused-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-3-gc-tracked-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-1"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-2"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-3"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-4"]["y"],
+        # plots["burst/sym-4-res-4-alt-parity-seq-3000-b-4"]["y"],
+        # plots["cons/sym-4-res-4-random-seq-3000-pen-b-3"]["y"],
+        # plots["cons/sym-4-res-4-random-seq-3000-pen-b-4"]["y"],
+        # plots["burst/sym-4-res-4-random-seq-3000-b-5"]["y"],
+        # plots["final/sym-5-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-5-res-5-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-random-seq-3000"]["y"],
+        # plots["final/sym-4-res-3-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracking-seq-3000"]["y"],
+        # plots["final/sym-4-res-5-gc-tracked-random-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-gc-tracking-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-gc-tracked-random-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-similar-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-different-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-alt-parity-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-alt-parity-pen-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-dec-seq-3000"]["y"],
+        # plots["rust/sym-4-res-4-parity-pen-seq-3000"]["y"],
     ]
     multiplot(
-        name="rust/random-sym-3-6-res-3-6",
+        name="strs/sym-3-5-res-3-5-random-seq-3000-err-with-cons",
         xs=xs,
         ys=ys,
         set_labels=[
-            "Symbol Size 6, 6 Reserved Bits, (25% <= GC <= 75%)",
-            "Symbol Size 5, 5 Reserved Bits, (35% <= GC <= 65%)",
-            "Symbol Size 4, 4 Reserved Bits, (25% <= GC <= 75%)",
-            "Symbol Size 3, 3 Reserved Bits, (25% <= GC <= 75%)",
+            "Symbol Size 3, Standard Constraints",
+            "Symbol Size 4, Standard Constraints",
+            "Symbol Size 5, Standard Constraints",
+            "Symbol Size 3, Standard + STR Constraints",
+            "Symbol Size 4, Standard + STR Constraints",
+            "Symbol Size 5, Standard + STR Constraints",
+            # "Constraint Decoding, Burst Length 3",
+            # "Constraint Decoding, Burst Length 4",
+            # "Unencoded",
+            # "Symbol Size 3, 3 Reserved Bits",
+            # "Symbol Size 4, 3 Reserved Bits",
+            # "Symbol Size 4, 4 Reserved Bits",
+            # "Symbol Size 4, 5 Reserved Bits",
+            # "Symbol Size 5, 5 Reserved Bits",
+            # "Symbol Size 4, 4 Reserved Bits, Alt Parity"
+            # "1/2 Convolutional Code",
+            # "Symbol Size 1, 1 Reserved Bit, No Constraints",
+            # "Symbol Size 2, 2 Reserved Bit, No Constraints",
+            # "Symbol Size 3, 3 Reserved Bit, No Constraints",
+            # "Symbol Size 4, 4 Reserved Bit, No Constraints",
+            # "Symbol Size 4, 4 Reserved Bit, Default Constraints",
+            # "Random Choice, 3 Reserved Bits",
+            # "Random Choice, 4 Reserved Bits",
+            # "Random Choice, 5 Reserved Bits",
+            # "GC-Tracking, 3 Reserved Bits",
+            # "GC-Tracking, 4 Reserved Bits",
+            # "GC-Tracking, 5 Reserved Bits",
+            # "Randomised GC-Tracking, 3 Reserved Bits",
+            # "Randomised GC-Tracking, 4 Reserved Bits",
+            # "Randomised GC-Tracking, 5 Reserved Bits",
+            # "Normal",
+            # "Symbol Length 5, 4 Reserved Bits",
+            # "Symbol Length 5, 5 Reserved Bits",
+            # "Random",
+            # "GC Tracking",
+            # "Randomised GC Tracking",
+            # "Most Similar",
+            # "Most Different",
+            # # "Parity",
+            # "Alternating Parity",
+            # "XOR",
+            # "Random Unused",
+            # "Alternating Parity Penalty",
+            # "Parity Decoding",
+            # "Parity Penalty",
         ],
         xlabel="Input Error Rate",
         ylabel="Output Error Rate",
-        title="Random Choice, 25% <= GC <= 35%",
+        title="",
         fit=True,
         invertx=True,
     )
